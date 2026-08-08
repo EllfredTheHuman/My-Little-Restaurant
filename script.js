@@ -1,9 +1,11 @@
-// ========================================
+// =========================================
 // MY LITTLE SHOP
-// ========================================
+// =========================================
 
 
-// Screens
+// =========================================
+// SCREENS
+// =========================================
 
 const titleScreen =
     document.getElementById("titleScreen");
@@ -18,7 +20,9 @@ const settingsScreen =
     document.getElementById("settingsScreen");
 
 
-// Buttons
+// =========================================
+// BUTTONS
+// =========================================
 
 const playButton =
     document.getElementById("playButton");
@@ -39,73 +43,77 @@ const settingsBackButton =
     document.getElementById("settingsBackButton");
 
 
-// ========================================
-// SCREEN FUNCTION
-// ========================================
+// =========================================
+// SHOW SCREEN
+// =========================================
 
 function showScreen(screen) {
 
     titleScreen.classList.add("hidden");
+
     gameScreen.classList.add("hidden");
+
     customizeScreen.classList.add("hidden");
+
     settingsScreen.classList.add("hidden");
+
 
     screen.classList.remove("hidden");
 }
 
 
-// ========================================
+// =========================================
 // PLAY
-// ========================================
+// =========================================
 
-playButton.addEventListener("click", function() {
+playButton.addEventListener("click", function () {
 
     showScreen(gameScreen);
 
 });
 
 
-// ========================================
+// =========================================
 // CUSTOMIZE
-// ========================================
+// =========================================
 
-customizeButton.addEventListener("click", function() {
+customizeButton.addEventListener("click", function () {
 
     showScreen(customizeScreen);
 
 });
 
 
-// ========================================
+// =========================================
 // SETTINGS
-// ========================================
+// =========================================
 
-settingsButton.addEventListener("click", function() {
+settingsButton.addEventListener("click", function () {
 
     showScreen(settingsScreen);
 
 });
 
 
-// ========================================
+// =========================================
 // BACK BUTTONS
-// ========================================
+// =========================================
 
-backButton.addEventListener("click", function() {
-
-    showScreen(titleScreen);
-
-});
-
-
-customizeBackButton.addEventListener("click", function() {
+backButton.addEventListener("click", function () {
 
     showScreen(titleScreen);
 
 });
 
 
-settingsBackButton.addEventListener("click", function() {
+customizeBackButton.addEventListener("click", function () {
+
+    showScreen(titleScreen);
+
+});
+
+
+settingsBackButton.addEventListener("click", function () {
 
     showScreen(titleScreen);
 
