@@ -13,32 +13,36 @@
 
 <body>
 
-    <!-- TITLE SCREEN -->
+    <!-- =========================================
+         TITLE SCREEN
+    ========================================== -->
 
     <div id="titleScreen" class="screen">
 
-        <div class="background-shop">
+        <!-- Sky decorations -->
 
-            <div class="shop-sign">
-                MY LITTLE SHOP
-            </div>
+        <div class="sun"></div>
 
-            <div class="shop-window">
-
-                <div class="window-light"></div>
-
-                <div class="window-shelf">
-                    🍎 🍞 🥛 🍪
-                </div>
-
-            </div>
-
-            <div class="shop-door">
-                🚪
-            </div>
-
+        <div class="cloud cloud-one">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
 
+        <div class="cloud cloud-two">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+
+        <!-- Background hills -->
+
+        <div class="hill hill-back"></div>
+        <div class="hill hill-front"></div>
+
+
+        <!-- Main title -->
 
         <div class="title-content">
 
@@ -78,63 +82,82 @@
 
 
 
-    <!-- GAME SCREEN -->
+    <!-- =========================================
+         GAME SCREEN
+    ========================================== -->
 
     <div id="gameScreen" class="screen hidden">
 
-        <h2>
-            YOUR SHOP
-        </h2>
+        <div class="placeholder">
 
-        <p>
-            The shop will be built here!
-        </p>
+            <h2>
+                YOUR SHOP
+            </h2>
 
-        <button id="backButton">
-            ← BACK
-        </button>
+            <p>
+                The shop will be built here.
+            </p>
+
+            <button id="backButton">
+                ← BACK
+            </button>
+
+        </div>
 
     </div>
 
 
 
-    <!-- CUSTOMIZATION SCREEN -->
+    <!-- =========================================
+         CUSTOMIZATION SCREEN
+    ========================================== -->
 
     <div id="customizeScreen" class="screen hidden">
 
-        <h2>
-            CREATE YOUR SHOPKEEPER
-        </h2>
+        <div class="placeholder">
 
-        <p>
-            Character customization coming soon!
-        </p>
+            <h2>
+                CREATE YOUR SHOPKEEPER
+            </h2>
 
-        <button id="customizeBackButton">
-            ← BACK
-        </button>
+            <p>
+                Character customization is coming soon!
+            </p>
+
+            <button id="customizeBackButton">
+                ← BACK
+            </button>
+
+        </div>
 
     </div>
 
 
 
-    <!-- SETTINGS SCREEN -->
+    <!-- =========================================
+         SETTINGS SCREEN
+    ========================================== -->
 
     <div id="settingsScreen" class="screen hidden">
 
-        <h2>
-            SETTINGS
-        </h2>
+        <div class="placeholder">
 
-        <p>
-            Settings coming soon!
-        </p>
+            <h2>
+                SETTINGS
+            </h2>
 
-        <button id="settingsBackButton">
-            ← BACK
-        </button>
+            <p>
+                Settings are coming soon!
+            </p>
+
+            <button id="settingsBackButton">
+                ← BACK
+            </button>
+
+        </div>
 
     </div>
+
 
 
     <script src="script.js"></script>
