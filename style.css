@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 
-/* ==============================
+/* ========================================
    RESET
-============================== */
+======================================== */
 
 * {
     box-sizing: border-box;
     image-rendering: pixelated;
 }
-
 
 html,
 body {
@@ -22,206 +21,181 @@ body {
     overflow: hidden;
 }
 
-
 body {
-
     font-family: "Press Start 2P", monospace;
-
-    background: #8ed6e8;
-
-    color: white;
 }
 
 
-/* ==============================
+/* ========================================
    SCREENS
-============================== */
+======================================== */
 
 .screen {
-
     width: 100vw;
     height: 100vh;
 
     position: absolute;
 
     display: flex;
-
     justify-content: center;
     align-items: center;
-
 }
-
 
 .hidden {
     display: none !important;
 }
 
 
-/* ==============================
+/* ========================================
    TITLE SCREEN
-============================== */
+======================================== */
 
 #titleScreen {
 
+    position: relative;
+
     overflow: hidden;
 
     background:
-
         linear-gradient(
-            rgba(91, 190, 213, 0.5),
-            rgba(91, 190, 213, 0.5)
-        ),
-
-        #75c9df;
-}
-
-
-/* ==============================
-   BACKGROUND SHOP
-============================== */
-
-.background-shop {
-
-    position: absolute;
-
-    width: 700px;
-    height: 430px;
-
-    bottom: 0;
-
-    background: #f4d49a;
-
-    border: 12px solid #6b432e;
-
-    box-shadow:
-        12px 12px 0 #4b3024;
-}
-
-
-/* ==============================
-   SHOP SIGN
-============================== */
-
-.shop-sign {
-
-    position: absolute;
-
-    top: -95px;
-
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 520px;
-
-    padding: 25px;
-
-    text-align: center;
-
-    background: #f6b94a;
-
-    border: 10px solid #6b432e;
-
-    color: white;
-
-    font-size: 22px;
-
-    text-shadow:
-        4px 4px 0 #6b432e;
-
-    box-shadow:
-        8px 8px 0 #4b3024;
-}
-
-
-/* ==============================
-   WINDOW
-============================== */
-
-.shop-window {
-
-    position: absolute;
-
-    left: 50px;
-    top: 70px;
-
-    width: 390px;
-    height: 230px;
-
-    background: #8ed6e8;
-
-    border: 10px solid #6b432e;
-
-    overflow: hidden;
-}
-
-
-.window-light {
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,0.35),
-            transparent 60%
+            #52c9f2 0%,
+            #73d7f5 65%,
+            #9de5f6 100%
         );
 }
 
 
-.window-shelf {
+/* ========================================
+   PIXEL SUN
+======================================== */
+
+#titleScreen::before {
+
+    content: "";
 
     position: absolute;
 
-    left: 20px;
-    right: 20px;
-    bottom: 25px;
+    width: 110px;
+    height: 110px;
 
-    padding: 18px;
+    top: 70px;
+    right: 12%;
 
-    background: #8b5a38;
+    background: #ffe58a;
 
-    border: 6px solid #573824;
-
-    font-size: 30px;
-
-    text-align: center;
+    box-shadow:
+        0 0 0 8px #ffd96b,
+        0 0 30px rgba(255, 226, 120, 0.7);
 }
 
 
-/* ==============================
-   DOOR
-============================== */
+/* ========================================
+   PIXEL CLOUDS
+======================================== */
 
-.shop-door {
+#titleScreen::after {
+
+    content: "";
 
     position: absolute;
 
-    right: 40px;
+    width: 220px;
+    height: 45px;
+
+    left: 8%;
+    top: 120px;
+
+    background: white;
+
+    box-shadow:
+        35px -20px 0 white,
+        75px -8px 0 white,
+        115px 3px 0 white,
+        150px -15px 0 white;
+
+    opacity: 0.9;
+}
+
+
+/* ========================================
+   CLOUD 2
+======================================== */
+
+.background-cloud {
+
+    position: absolute;
+
+    width: 180px;
+    height: 38px;
+
+    right: 12%;
+    top: 250px;
+
+    background: white;
+
+    box-shadow:
+        30px -18px 0 white,
+        70px -8px 0 white,
+        110px -20px 0 white;
+
+    opacity: 0.75;
+}
+
+
+/* ========================================
+   PIXEL HILLS
+======================================== */
+
+.title-hills {
+
+    position: absolute;
+
+    left: 0;
     bottom: 0;
 
-    width: 170px;
-    height: 290px;
+    width: 100%;
+    height: 180px;
 
-    display: flex;
+    background: #67bd76;
 
-    justify-content: center;
-    align-items: center;
-
-    background: #6b432e;
-
-    border: 10px solid #4b3024;
-
-    font-size: 70px;
+    clip-path: polygon(
+        0 55%,
+        12% 38%,
+        25% 52%,
+        40% 25%,
+        55% 48%,
+        70% 30%,
+        84% 50%,
+        100% 32%,
+        100% 100%,
+        0 100%
+    );
 }
 
 
-/* ==============================
+/* ========================================
+   DARKER FOREGROUND
+======================================== */
+
+.title-ground {
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 75px;
+
+    background: #4d9d5d;
+
+    border-top: 8px solid #3f844e;
+}
+
+
+/* ========================================
    TITLE CONTENT
-============================== */
+======================================== */
 
 .title-content {
 
@@ -229,89 +203,89 @@ body {
 
     z-index: 10;
 
-    width: 600px;
+    width: 620px;
 
     padding: 35px;
 
-    margin-top: -180px;
+    margin-top: -20px;
 
     text-align: center;
-
-    background: rgba(45, 34, 27, 0.92);
-
-    border: 10px solid #4b3024;
-
-    box-shadow:
-        12px 12px 0 rgba(0,0,0,0.35);
 }
 
 
-/* ==============================
-   TITLE
-============================== */
+/* ========================================
+   GAME TITLE
+======================================== */
 
 .title-content h1 {
 
     margin: 0;
 
-    font-size: 38px;
+    font-size: 48px;
 
-    color: #fff4c7;
+    line-height: 1.3;
+
+    color: white;
+
+    letter-spacing: 2px;
 
     text-shadow:
-        5px 5px 0 #6b432e;
+
+        6px 6px 0 #24749a,
+
+        10px 10px 0 rgba(0, 0, 0, 0.15);
 }
 
 
 .title-content p {
 
-    margin-top: 15px;
+    margin-top: 18px;
 
     font-size: 9px;
 
-    color: #f3dca5;
+    color: #e8faff;
 
-    line-height: 1.8;
+    text-shadow:
+        2px 2px 0 #3687a5;
 }
 
 
-/* ==============================
+/* ========================================
    MENU
-============================== */
+======================================== */
 
 .menu {
+
+    width: 340px;
+
+    margin: 45px auto 0;
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 14px;
-
-    margin-top: 35px;
+    gap: 15px;
 }
 
 
-.menu button,
-#backButton,
-#customizeBackButton,
-#settingsBackButton {
+.menu button {
 
     width: 100%;
 
-    padding: 18px;
+    padding: 19px;
 
     font-family: "Press Start 2P", monospace;
 
     font-size: 12px;
 
-    color: #4b3024;
+    color: #27647d;
 
-    background: #f6c85f;
+    background: #ffffff;
 
-    border: 7px solid #4b3024;
+    border: 6px solid #27647d;
 
     box-shadow:
-        6px 6px 0 #241812;
+        7px 7px 0 #17465b;
 
     cursor: pointer;
 
@@ -321,34 +295,47 @@ body {
 }
 
 
-.menu button:hover,
-#backButton:hover,
-#customizeBackButton:hover,
-#settingsBackButton:hover {
+.menu button:hover {
 
-    background: #ffe08a;
+    background: #fff6bd;
 
     transform: translate(3px, 3px);
 
     box-shadow:
-        3px 3px 0 #241812;
+        4px 4px 0 #17465b;
 }
 
 
-.menu button:active,
-#backButton:active,
-#customizeBackButton:active,
-#settingsBackButton:active {
+.menu button:active {
 
-    transform: translate(6px, 6px);
+    transform: translate(7px, 7px);
 
     box-shadow: none;
 }
 
 
-/* ==============================
+/* ========================================
+   VERSION
+======================================== */
+
+.version {
+
+    position: absolute;
+
+    bottom: 15px;
+    right: 20px;
+
+    z-index: 20;
+
+    font-size: 7px;
+
+    color: rgba(255,255,255,0.75);
+}
+
+
+/* ========================================
    OTHER SCREENS
-============================== */
+======================================== */
 
 #gameScreen,
 #customizeScreen,
@@ -358,9 +345,9 @@ body {
 
     gap: 25px;
 
-    background: #75c9df;
+    background: #73d7f5;
 
-    color: #4b3024;
+    color: #27647d;
 
     text-align: center;
 }
@@ -375,7 +362,7 @@ body {
     color: white;
 
     text-shadow:
-        4px 4px 0 #4b3024;
+        4px 4px 0 #27647d;
 }
 
 
@@ -387,77 +374,45 @@ body {
 }
 
 
-/* ==============================
-   VERSION
-============================== */
+#backButton,
+#customizeBackButton,
+#settingsBackButton {
 
-.version {
+    padding: 16px 25px;
 
-    position: absolute;
+    font-family: "Press Start 2P", monospace;
 
-    bottom: 15px;
-    right: 20px;
+    font-size: 9px;
 
-    font-size: 7px;
+    color: white;
 
-    color: rgba(255,255,255,0.7);
+    background: #27647d;
+
+    border: 5px solid #17465b;
+
+    box-shadow:
+        5px 5px 0 #17465b;
+
+    cursor: pointer;
 }
 
 
-/* ==============================
+/* ========================================
    MOBILE
-============================== */
+======================================== */
 
 @media (max-width: 700px) {
 
-    .background-shop {
-
-        width: 90vw;
-        height: 350px;
-    }
-
-
-    .shop-sign {
-
-        width: 80vw;
-
-        font-size: 14px;
-    }
-
-
-    .shop-window {
-
-        left: 25px;
-
-        width: 55%;
-
-        height: 190px;
-    }
-
-
-    .shop-door {
-
-        right: 20px;
-
-        width: 28%;
-
-        height: 230px;
-    }
-
-
     .title-content {
-
-        width: 90vw;
-
-        margin-top: -130px;
-
-        padding: 25px;
+        width: 95vw;
     }
-
 
     .title-content h1 {
+        font-size: 30px;
+    }
 
-        font-size: 25px;
+    .menu {
+        width: 280px;
     }
 
 }
