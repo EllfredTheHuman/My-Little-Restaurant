@@ -1,0 +1,713 @@
+/* =========================================
+   MY LITTLE SHOP — CHARACTER EDITOR
+========================================= */
+
+@import url(
+    'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'
+);
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+    image-rendering: pixelated;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Press Start 2P", monospace;
+
+    background: #63cbed;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   MAIN EDITOR
+========================================= */
+
+.character-editor {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    padding: 35px 30px 50px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            #63cbed 0%,
+            #7bd4ef 70%,
+            #a2e3ee 100%
+        );
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.editor-header {
+
+    text-align: center;
+
+    z-index: 5;
+}
+
+.editor-header h1 {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 28px;
+
+    line-height: 1.5;
+
+    text-shadow:
+        4px 4px 0 #3187aa;
+}
+
+.editor-header p {
+
+    margin: 10px 0 0;
+
+    color: #eaffff;
+
+    font-size: 8px;
+
+    text-shadow:
+        2px 2px 0 #398aaa;
+}
+
+
+/* =========================================
+   CHARACTER PREVIEW
+========================================= */
+
+.character-preview {
+
+    margin-top: 25px;
+
+    z-index: 5;
+}
+
+.preview-box {
+
+    width: 300px;
+    height: 280px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-end;
+
+    position: relative;
+
+    background: #9bdc8d;
+
+    border: 7px solid #347b68;
+
+    box-shadow:
+        8px 8px 0 #24594d;
+
+    overflow: hidden;
+}
+
+
+/* Ground */
+
+.preview-box::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 45px;
+
+    background: #67b968;
+
+    border-top: 6px solid #4c9d59;
+}
+
+
+/* =========================================
+   CHARACTER
+========================================= */
+
+.character {
+
+    width: 100px;
+    height: 190px;
+
+    position: relative;
+
+    z-index: 3;
+
+    transform: scale(1.1);
+
+    transform-origin: bottom center;
+}
+
+
+/* =========================================
+   HEAD
+========================================= */
+
+.character-head {
+
+    position: absolute;
+
+    left: 18px;
+    top: 30px;
+
+    width: 64px;
+    height: 65px;
+
+    background: #f2bd8a;
+
+    border: 6px solid #553b32;
+
+    z-index: 5;
+}
+
+
+/* Hair */
+
+.character-hair {
+
+    position: absolute;
+
+    left: 14px;
+    top: 20px;
+
+    width: 72px;
+    height: 38px;
+
+    background: #6b452c;
+
+    border: 6px solid #493326;
+
+    z-index: 7;
+
+    box-shadow:
+        0 10px 0 #6b452c;
+}
+
+
+/* =========================================
+   EYES
+========================================= */
+
+.character-eyes {
+
+    position: absolute;
+
+    left: 12px;
+    top: 25px;
+
+    width: 40px;
+
+    display: flex;
+
+    justify-content: space-between;
+}
+
+
+.character-eyes span {
+
+    width: 8px;
+    height: 10px;
+
+    background: #292522;
+}
+
+
+/* =========================================
+   MOUTH
+========================================= */
+
+.character-mouth {
+
+    position: absolute;
+
+    left: 25px;
+    bottom: 11px;
+
+    width: 13px;
+    height: 5px;
+
+    background: #9b514e;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+.character-body {
+
+    position: absolute;
+
+    left: 10px;
+    top: 92px;
+
+    width: 80px;
+    height: 60px;
+
+    background: #4c8fd1;
+
+    border: 6px solid #3d536d;
+
+    z-index: 4;
+}
+
+
+/* =========================================
+   SHIRT
+========================================= */
+
+.character-shirt {
+
+    width: 100%;
+    height: 100%;
+
+    background: #4c8fd1;
+}
+
+
+/* =========================================
+   ARMS
+========================================= */
+
+.character-body::before,
+.character-body::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+
+    width: 20px;
+    height: 48px;
+
+    background: #f2bd8a;
+
+    border: 5px solid #553b32;
+}
+
+.character-body::before {
+
+    left: -25px;
+}
+
+.character-body::after {
+
+    right: -25px;
+}
+
+
+/* =========================================
+   LEGS
+========================================= */
+
+.character-legs {
+
+    position: absolute;
+
+    left: 22px;
+    top: 148px;
+
+    width: 56px;
+    height: 42px;
+
+    z-index: 3;
+}
+
+
+.character-leg {
+
+    position: absolute;
+
+    width: 22px;
+    height: 42px;
+
+    background: #292f4a;
+
+    border-left: 5px solid #202538;
+    border-right: 5px solid #202538;
+}
+
+
+.character-leg.left {
+
+    left: 0;
+}
+
+
+.character-leg.right {
+
+    right: 0;
+}
+
+
+/* =========================================
+   SHOES
+========================================= */
+
+.character-shoes {
+
+    position: absolute;
+
+    left: 13px;
+    top: 177px;
+
+    width: 74px;
+
+    z-index: 4;
+}
+
+
+.character-shoe {
+
+    position: absolute;
+
+    width: 35px;
+    height: 16px;
+
+    background: #49362c;
+
+    border: 5px solid #33251f;
+}
+
+
+.character-shoe.left {
+
+    left: 0;
+}
+
+
+.character-shoe.right {
+
+    right: 0;
+}
+
+
+/* =========================================
+   CUSTOMIZATION PANEL
+========================================= */
+
+.customization-panel {
+
+    width: 650px;
+
+    max-width: 95vw;
+
+    margin-top: 30px;
+
+    padding: 18px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    background: rgba(255,255,255,0.65);
+
+    border: 6px solid #347b92;
+
+    box-shadow:
+        7px 7px 0 #24586a;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   CUSTOMIZATION ROW
+========================================= */
+
+.customization-row {
+
+    min-height: 55px;
+
+    display: grid;
+
+    grid-template-columns: 90px 40px 1fr 40px;
+
+    align-items: center;
+
+    gap: 6px;
+
+    background: #ffffff;
+
+    border: 4px solid #347b92;
+
+    padding: 6px;
+}
+
+
+.customization-row h2 {
+
+    margin: 0;
+
+    font-size: 7px;
+
+    color: #27657d;
+}
+
+
+/* =========================================
+   SELECTION
+========================================= */
+
+.selection {
+
+    min-width: 70px;
+
+    text-align: center;
+
+    font-size: 7px;
+
+    color: #27657d;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   ARROW BUTTONS
+========================================= */
+
+.arrow-button {
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    color: white;
+
+    background: #4c9fbd;
+
+    border: 4px solid #28647b;
+
+    box-shadow:
+        3px 3px 0 #19495d;
+
+    cursor: pointer;
+}
+
+
+.arrow-button:hover {
+
+    background: #66b7d4;
+
+    transform: translate(2px, 2px);
+
+    box-shadow:
+        1px 1px 0 #19495d;
+}
+
+
+.arrow-button:active {
+
+    transform: translate(4px, 4px);
+
+    box-shadow: none;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.editor-actions {
+
+    margin-top: 20px;
+
+    display: flex;
+
+    gap: 18px;
+
+    z-index: 5;
+}
+
+
+.editor-actions button {
+
+    padding: 16px 20px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 8px;
+
+    cursor: pointer;
+}
+
+
+/* Randomize */
+
+.secondary-button {
+
+    color: #27657d;
+
+    background: white;
+
+    border: 5px solid #27657d;
+
+    box-shadow:
+        5px 5px 0 #19495d;
+}
+
+
+.secondary-button:hover {
+
+    background: #fff2a8;
+}
+
+
+/* Continue */
+
+.primary-button {
+
+    color: white;
+
+    background: #55aa62;
+
+    border: 5px solid #367842;
+
+    box-shadow:
+        5px 5px 0 #275b31;
+}
+
+
+.primary-button:hover {
+
+    background: #69c477;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-button {
+
+    position: fixed;
+
+    left: 20px;
+    bottom: 20px;
+
+    z-index: 20;
+
+    padding: 13px 18px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 8px;
+
+    color: white;
+
+    background: #3187aa;
+
+    border: 5px solid #19495d;
+
+    box-shadow:
+        5px 5px 0 #19495d;
+
+    cursor: pointer;
+}
+
+
+.back-button:hover {
+
+    background: #429cbe;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .character-editor {
+
+        padding-top: 25px;
+
+        overflow-y: auto;
+    }
+
+
+    .editor-header h1 {
+
+        font-size: 18px;
+    }
+
+
+    .preview-box {
+
+        width: 260px;
+        height: 230px;
+    }
+
+
+    .customization-panel {
+
+        grid-template-columns: 1fr;
+
+        width: 95vw;
+    }
+
+
+    .editor-actions {
+
+        flex-direction: column;
+
+        width: 280px;
+    }
+
+
+    .editor-actions button {
+
+        width: 100%;
+    }
+
+
+    .back-button {
+
+        position: static;
+
+        margin-top: 20px;
+    }
+
+}
