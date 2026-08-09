@@ -1,7 +1,12 @@
 /* =========================================
+   MY LITTLE SHOP
    CHARACTER CREATOR
 ========================================= */
 
+
+/* =========================================
+   OPTIONS
+========================================= */
 
 const options = {
 
@@ -49,78 +54,261 @@ const options = {
 };
 
 
+/* =========================================
+   CURRENT CHARACTER
+========================================= */
+
 let character = {
 
     hair: 0,
+
     shirt: 0,
+
     pants: 0,
+
     shoes: 0,
+
     accessory: 0
 
 };
 
 
-const characterElement =
-    document.getElementById("character");
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const hair =
+    document.querySelector(".hair");
+
+const shirt =
+    document.querySelector(".shirt");
+
+const legs =
+    document.querySelectorAll(".leg");
+
+const shoes =
+    document.querySelectorAll(".shoe");
+
+const accessory =
+    document.getElementById("accessory");
 
 
 const selections = {
 
     hair:
-        document.getElementById("hairSelection"),
+        document.getElementById(
+            "hairSelection"
+        ),
 
     shirt:
-        document.getElementById("shirtSelection"),
+        document.getElementById(
+            "shirtSelection"
+        ),
 
     pants:
-        document.getElementById("pantsSelection"),
+        document.getElementById(
+            "pantsSelection"
+        ),
 
     shoes:
-        document.getElementById("shoesSelection"),
+        document.getElementById(
+            "shoesSelection"
+        ),
 
     accessory:
-        document.getElementById("accessorySelection")
+        document.getElementById(
+            "accessorySelection"
+        )
 
 };
 
 
 /* =========================================
-   UPDATE
+   COLOURS
+========================================= */
+
+const hairColours = {
+
+    Brown: "#70452d",
+
+    Black: "#292321",
+
+    Blonde: "#e5bd55",
+
+    Ginger: "#b85b31",
+
+    Blue: "#4b82bd",
+
+    Pink: "#d7659b"
+
+};
+
+
+const shirtColours = {
+
+    Blue: "#4c8fd1",
+
+    Red: "#d95757",
+
+    Green: "#55a862",
+
+    Yellow: "#e5bd4f",
+
+    Purple: "#9464c0",
+
+    Orange: "#df8247"
+
+};
+
+
+const pantsColours = {
+
+    Black: "#292f4a",
+
+    Blue: "#3e6096",
+
+    Brown: "#765039",
+
+    Grey: "#737a80",
+
+    Green: "#46734f"
+
+};
+
+
+const shoeColours = {
+
+    Brown: "#49362c",
+
+    Black: "#292522",
+
+    White: "#eeeeee",
+
+    Red: "#b84242"
+
+};
+
+
+/* =========================================
+   UPDATE CHARACTER
 ========================================= */
 
 function updateCharacter() {
 
+
+    const hairName =
+        options.hair[
+            character.hair
+        ];
+
+
+    const shirtName =
+        options.shirt[
+            character.shirt
+        ];
+
+
+    const pantsName =
+        options.pants[
+            character.pants
+        ];
+
+
+    const shoesName =
+        options.shoes[
+            character.shoes
+        ];
+
+
+    const accessoryName =
+        options.accessory[
+            character.accessory
+        ];
+
+
+    /* TEXT */
+
     selections.hair.textContent =
-        options.hair[character.hair];
+        hairName;
 
     selections.shirt.textContent =
-        options.shirt[character.shirt];
+        shirtName;
 
     selections.pants.textContent =
-        options.pants[character.pants];
+        pantsName;
 
     selections.shoes.textContent =
-        options.shoes[character.shoes];
+        shoesName;
 
     selections.accessory.textContent =
-        options.accessory[character.accessory];
+        accessoryName;
 
 
-    updateAppearance();
+    /* COLOURS */
+
+    hair.style.backgroundColor =
+        hairColours[hairName];
+
+
+    hair.querySelector(
+        ".hair-top"
+    ).style.backgroundColor =
+        hairColours[hairName];
+
+
+    hair.querySelector(
+        ".hair-left"
+    ).style.backgroundColor =
+        hairColours[hairName];
+
+
+    hair.querySelector(
+        ".hair-right"
+    ).style.backgroundColor =
+        hairColours[hairName];
+
+
+    shirt.style.backgroundColor =
+        shirtColours[shirtName];
+
+
+    legs.forEach(function (leg) {
+
+        leg.style.backgroundColor =
+            pantsColours[pantsName];
+
+    });
+
+
+    shoes.forEach(function (shoe) {
+
+        shoe.style.backgroundColor =
+            shoeColours[shoesName];
+
+    });
+
+
+    updateAccessory();
 
 }
 
 
 /* =========================================
-   CHANGE OPTIONS
+   CHANGE OPTION
 ========================================= */
 
-function changeOption(type, amount) {
+function changeOption(
+    type,
+    amount
+) {
 
     character[type] += amount;
 
 
-    if (character[type] < 0) {
+    if (
+        character[type] <
+        0
+    ) {
 
         character[type] =
             options[type].length - 1;
@@ -144,97 +332,218 @@ function changeOption(type, amount) {
 
 
 /* =========================================
-   BUTTONS
+   HAIR BUTTONS
 ========================================= */
 
 document
-    .getElementById("hairPrevious")
-    .onclick = () => {
+    .getElementById(
+        "hairPrevious"
+    )
+    .onclick = function () {
 
-        changeOption("hair", -1);
-
-    };
-
-
-document
-    .getElementById("hairNext")
-    .onclick = () => {
-
-        changeOption("hair", 1);
+        changeOption(
+            "hair",
+            -1
+        );
 
     };
 
 
 document
-    .getElementById("shirtPrevious")
-    .onclick = () => {
+    .getElementById(
+        "hairNext"
+    )
+    .onclick = function () {
 
-        changeOption("shirt", -1);
+        changeOption(
+            "hair",
+            1
+        );
+
+    };
+
+
+/* =========================================
+   SHIRT BUTTONS
+========================================= */
+
+document
+    .getElementById(
+        "shirtPrevious"
+    )
+    .onclick = function () {
+
+        changeOption(
+            "shirt",
+            -1
+        );
 
     };
 
 
 document
-    .getElementById("shirtNext")
-    .onclick = () => {
+    .getElementById(
+        "shirtNext"
+    )
+    .onclick = function () {
 
-        changeOption("shirt", 1);
+        changeOption(
+            "shirt",
+            1
+        );
+
+    };
+
+
+/* =========================================
+   PANTS BUTTONS
+========================================= */
+
+document
+    .getElementById(
+        "pantsPrevious"
+    )
+    .onclick = function () {
+
+        changeOption(
+            "pants",
+            -1
+        );
 
     };
 
 
 document
-    .getElementById("pantsPrevious")
-    .onclick = () => {
+    .getElementById(
+        "pantsNext"
+    )
+    .onclick = function () {
 
-        changeOption("pants", -1);
+        changeOption(
+            "pants",
+            1
+        );
+
+    };
+
+
+/* =========================================
+   SHOES BUTTONS
+========================================= */
+
+document
+    .getElementById(
+        "shoesPrevious"
+    )
+    .onclick = function () {
+
+        changeOption(
+            "shoes",
+            -1
+        );
 
     };
 
 
 document
-    .getElementById("pantsNext")
-    .onclick = () => {
+    .getElementById(
+        "shoesNext"
+    )
+    .onclick = function () {
 
-        changeOption("pants", 1);
+        changeOption(
+            "shoes",
+            1
+        );
+
+    };
+
+
+/* =========================================
+   ACCESSORY BUTTONS
+========================================= */
+
+document
+    .getElementById(
+        "accessoryPrevious"
+    )
+    .onclick = function () {
+
+        changeOption(
+            "accessory",
+            -1
+        );
 
     };
 
 
 document
-    .getElementById("shoesPrevious")
-    .onclick = () => {
+    .getElementById(
+        "accessoryNext"
+    )
+    .onclick = function () {
 
-        changeOption("shoes", -1);
-
-    };
-
-
-document
-    .getElementById("shoesNext")
-    .onclick = () => {
-
-        changeOption("shoes", 1);
+        changeOption(
+            "accessory",
+            1
+        );
 
     };
 
 
-document
-    .getElementById("accessoryPrevious")
-    .onclick = () => {
+/* =========================================
+   ACCESSORIES
+========================================= */
 
-        changeOption("accessory", -1);
-
-    };
+function updateAccessory() {
 
 
-document
-    .getElementById("accessoryNext")
-    .onclick = () => {
+    accessory.className =
+        "accessory";
 
-        changeOption("accessory", 1);
 
-    };
+    const name =
+        options.accessory[
+            character.accessory
+        ];
+
+
+    if (name === "Cap") {
+
+        accessory.classList.add(
+            "pixel-cap"
+        );
+
+    }
+
+
+    if (name === "Chef Hat") {
+
+        accessory.classList.add(
+            "pixel-chef-hat"
+        );
+
+    }
+
+
+    if (name === "Beanie") {
+
+        accessory.classList.add(
+            "pixel-beanie"
+        );
+
+    }
+
+
+    if (name === "Glasses") {
+
+        accessory.classList.add(
+            "pixel-glasses"
+        );
+
+    }
+
+}
 
 
 /* =========================================
@@ -242,8 +551,11 @@ document
 ========================================= */
 
 document
-    .getElementById("randomizeButton")
-    .onclick = () => {
+    .getElementById(
+        "randomizeButton"
+    )
+    .onclick = function () {
+
 
         character.hair =
             Math.floor(
@@ -251,11 +563,13 @@ document
                 options.hair.length
             );
 
+
         character.shirt =
             Math.floor(
                 Math.random() *
                 options.shirt.length
             );
+
 
         character.pants =
             Math.floor(
@@ -263,11 +577,13 @@ document
                 options.pants.length
             );
 
+
         character.shoes =
             Math.floor(
                 Math.random() *
                 options.shoes.length
             );
+
 
         character.accessory =
             Math.floor(
@@ -282,203 +598,17 @@ document
 
 
 /* =========================================
-   APPEARANCE
-========================================= */
-
-function updateAppearance() {
-
-    const hair =
-        document.querySelector(
-            ".character-hair"
-        );
-
-    const shirt =
-        document.querySelector(
-            ".character-shirt"
-        );
-
-    const legs =
-        document.querySelectorAll(
-            ".character-leg"
-        );
-
-    const shoes =
-        document.querySelectorAll(
-            ".character-shoe"
-        );
-
-
-    const hairColours = {
-
-        Brown: "#70452d",
-        Black: "#252323",
-        Blonde: "#e7bd55",
-        Ginger: "#b85c32",
-        Blue: "#4d83c4",
-        Pink: "#d86a9b"
-
-    };
-
-
-    const shirtColours = {
-
-        Blue: "#4c8fd1",
-        Red: "#d95757",
-        Green: "#55aa62",
-        Yellow: "#e6bd4f",
-        Purple: "#9666c2",
-        Orange: "#df8247"
-
-    };
-
-
-    const pantsColours = {
-
-        Black: "#292f4a",
-        Blue: "#3d5f9b",
-        Brown: "#765039",
-        Grey: "#727b82",
-        Green: "#46734f"
-
-    };
-
-
-    const shoeColours = {
-
-        Brown: "#49362c",
-        Black: "#292522",
-        White: "#eeeeee",
-        Red: "#b84242"
-
-    };
-
-
-    hair.style.backgroundColor =
-        hairColours[
-            options.hair[character.hair]
-        ];
-
-
-    shirt.style.backgroundColor =
-        shirtColours[
-            options.shirt[character.shirt]
-        ];
-
-
-    legs.forEach(leg => {
-
-        leg.style.backgroundColor =
-            pantsColours[
-                options.pants[character.pants]
-            ];
-
-    });
-
-
-    shoes.forEach(shoe => {
-
-        shoe.style.backgroundColor =
-            shoeColours[
-                options.shoes[character.shoes]
-            ];
-
-    });
-
-
-    updateAccessory();
-
-}
-
-
-/* =========================================
-   ACCESSORIES
-========================================= */
-
-function updateAccessory() {
-
-    const old =
-        document.querySelector(
-            ".character-accessory"
-        );
-
-
-    if (old) {
-        old.remove();
-    }
-
-
-    const accessory =
-        options.accessory[
-            character.accessory
-        ];
-
-
-    if (accessory === "None") {
-        return;
-    }
-
-
-    const element =
-        document.createElement("div");
-
-
-    element.classList.add(
-        "character-accessory"
-    );
-
-
-    if (accessory === "Cap") {
-
-        element.classList.add(
-            "pixel-cap"
-        );
-
-    }
-
-
-    if (accessory === "Chef Hat") {
-
-        element.classList.add(
-            "pixel-chef-hat"
-        );
-
-    }
-
-
-    if (accessory === "Beanie") {
-
-        element.classList.add(
-            "pixel-beanie"
-        );
-
-    }
-
-
-    if (accessory === "Glasses") {
-
-        element.classList.add(
-            "pixel-glasses"
-        );
-
-    }
-
-
-    characterElement.appendChild(
-        element
-    );
-
-}
-
-
-/* =========================================
-   SAVE
+   SAVE CHARACTER
 ========================================= */
 
 function saveCharacter() {
 
     localStorage.setItem(
+
         "myLittleShopCharacter",
+
         JSON.stringify(character)
+
     );
 
 }
@@ -489,8 +619,10 @@ function saveCharacter() {
 ========================================= */
 
 document
-    .getElementById("continueButton")
-    .onclick = () => {
+    .getElementById(
+        "continueButton"
+    )
+    .onclick = function () {
 
         saveCharacter();
 
@@ -505,8 +637,10 @@ document
 ========================================= */
 
 document
-    .getElementById("backButton")
-    .onclick = () => {
+    .getElementById(
+        "backButton"
+    )
+    .onclick = function () {
 
         window.location.href =
             "../index.html";
@@ -515,10 +649,11 @@ document
 
 
 /* =========================================
-   LOAD
+   LOAD SAVED CHARACTER
 ========================================= */
 
 function loadCharacter() {
+
 
     const saved =
         localStorage.getItem(
@@ -535,18 +670,62 @@ function loadCharacter() {
 
 
             if (
-                typeof loaded.hair === "number" &&
-                typeof loaded.shirt === "number" &&
-                typeof loaded.pants === "number" &&
-                typeof loaded.shoes === "number" &&
-                typeof loaded.accessory === "number"
+                typeof loaded.hair ===
+                "number"
             ) {
 
-                character = loaded;
+                character.hair =
+                    loaded.hair;
 
             }
 
-        } catch {
+
+            if (
+                typeof loaded.shirt ===
+                "number"
+            ) {
+
+                character.shirt =
+                    loaded.shirt;
+
+            }
+
+
+            if (
+                typeof loaded.pants ===
+                "number"
+            ) {
+
+                character.pants =
+                    loaded.pants;
+
+            }
+
+
+            if (
+                typeof loaded.shoes ===
+                "number"
+            ) {
+
+                character.shoes =
+                    loaded.shoes;
+
+            }
+
+
+            if (
+                typeof loaded.accessory ===
+                "number"
+            ) {
+
+                character.accessory =
+                    loaded.accessory;
+
+            }
+
+        }
+
+        catch {
 
             console.log(
                 "Could not load character."
@@ -561,5 +740,9 @@ function loadCharacter() {
 
 }
 
+
+/* =========================================
+   START
+========================================= */
 
 loadCharacter();
