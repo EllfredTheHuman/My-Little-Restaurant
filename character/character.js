@@ -5,7 +5,7 @@
 
 
 /* =========================================
-   CHARACTER OPTIONS
+   OPTIONS
 ========================================= */
 
 const options = {
@@ -55,7 +55,7 @@ const options = {
 
 
 /* =========================================
-   CURRENT CHARACTER
+   CHARACTER DATA
 ========================================= */
 
 let character = {
@@ -70,47 +70,51 @@ let character = {
 
 
 /* =========================================
-   ELEMENTS
+   GET ELEMENTS
 ========================================= */
 
 const characterElement =
     document.getElementById("character");
 
-const hairSelection =
-    document.getElementById("hairSelection");
+const selections = {
 
-const shirtSelection =
-    document.getElementById("shirtSelection");
+    hair:
+        document.getElementById("hairSelection"),
 
-const pantsSelection =
-    document.getElementById("pantsSelection");
+    shirt:
+        document.getElementById("shirtSelection"),
 
-const shoesSelection =
-    document.getElementById("shoesSelection");
+    pants:
+        document.getElementById("pantsSelection"),
 
-const accessorySelection =
-    document.getElementById("accessorySelection");
+    shoes:
+        document.getElementById("shoesSelection"),
+
+    accessory:
+        document.getElementById("accessorySelection")
+
+};
 
 
 /* =========================================
-   UPDATE EVERYTHING
+   UPDATE DISPLAY
 ========================================= */
 
 function updateCharacter() {
 
-    hairSelection.textContent =
+    selections.hair.textContent =
         options.hair[character.hair];
 
-    shirtSelection.textContent =
+    selections.shirt.textContent =
         options.shirt[character.shirt];
 
-    pantsSelection.textContent =
+    selections.pants.textContent =
         options.pants[character.pants];
 
-    shoesSelection.textContent =
+    selections.shoes.textContent =
         options.shoes[character.shoes];
 
-    accessorySelection.textContent =
+    selections.accessory.textContent =
         options.accessory[character.accessory];
 
 
@@ -128,7 +132,10 @@ function changeOption(type, amount) {
     character[type] += amount;
 
 
-    if (character[type] < 0) {
+    if (
+        character[type] <
+        0
+    ) {
 
         character[type] =
             options[type].length - 1;
@@ -136,7 +143,10 @@ function changeOption(type, amount) {
     }
 
 
-    if (character[type] >= options[type].length) {
+    if (
+        character[type] >=
+        options[type].length
+    ) {
 
         character[type] = 0;
 
@@ -149,113 +159,97 @@ function changeOption(type, amount) {
 
 
 /* =========================================
-   HAIR
+   BUTTON CONNECTIONS
 ========================================= */
 
 document
     .getElementById("hairPrevious")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("hair", -1);
 
-    });
+    };
 
 
 document
     .getElementById("hairNext")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("hair", 1);
 
-    });
+    };
 
-
-/* =========================================
-   SHIRT
-========================================= */
 
 document
     .getElementById("shirtPrevious")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("shirt", -1);
 
-    });
+    };
 
 
 document
     .getElementById("shirtNext")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("shirt", 1);
 
-    });
+    };
 
-
-/* =========================================
-   PANTS
-========================================= */
 
 document
     .getElementById("pantsPrevious")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("pants", -1);
 
-    });
+    };
 
 
 document
     .getElementById("pantsNext")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("pants", 1);
 
-    });
+    };
 
-
-/* =========================================
-   SHOES
-========================================= */
 
 document
     .getElementById("shoesPrevious")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("shoes", -1);
 
-    });
+    };
 
 
 document
     .getElementById("shoesNext")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("shoes", 1);
 
-    });
+    };
 
-
-/* =========================================
-   ACCESSORIES
-========================================= */
 
 document
     .getElementById("accessoryPrevious")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("accessory", -1);
 
-    });
+    };
 
 
 document
     .getElementById("accessoryNext")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         changeOption("accessory", 1);
 
-    });
+    };
 
 
 /* =========================================
@@ -264,83 +258,60 @@ document
 
 document
     .getElementById("randomizeButton")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
-        character.hair =
-            Math.floor(
-                Math.random() *
-                options.hair.length
-            );
+        Object.keys(character).forEach(type => {
 
+            character[type] =
+                Math.floor(
+                    Math.random() *
+                    options[type].length
+                );
 
-        character.shirt =
-            Math.floor(
-                Math.random() *
-                options.shirt.length
-            );
-
-
-        character.pants =
-            Math.floor(
-                Math.random() *
-                options.pants.length
-            );
-
-
-        character.shoes =
-            Math.floor(
-                Math.random() *
-                options.shoes.length
-            );
-
-
-        character.accessory =
-            Math.floor(
-                Math.random() *
-                options.accessory.length
-            );
+        });
 
 
         updateCharacter();
 
-    });
+    };
 
 
 /* =========================================
-   UPDATE CHARACTER APPEARANCE
+   APPEARANCE
 ========================================= */
 
 function updateAppearance() {
 
     const hair =
-        document.querySelector(".character-hair");
+        document.querySelector(
+            ".character-hair"
+        );
 
     const shirt =
-        document.querySelector(".character-shirt");
+        document.querySelector(
+            ".character-shirt"
+        );
 
     const legs =
-        document.querySelectorAll(".character-leg");
+        document.querySelectorAll(
+            ".character-leg"
+        );
 
     const shoes =
-        document.querySelectorAll(".character-shoe");
+        document.querySelectorAll(
+            ".character-shoe"
+        );
 
 
-    /* =====================================
-       HAIR COLOURS
-    ====================================== */
+    /* HAIR */
 
     const hairColours = {
 
-        Brown: "#6b452c",
-
-        Black: "#292522",
-
+        Brown: "#70452d",
+        Black: "#252323",
         Blonde: "#e7bd55",
-
         Ginger: "#b85c32",
-
         Blue: "#4d83c4",
-
         Pink: "#d86a9b"
 
     };
@@ -352,22 +323,15 @@ function updateAppearance() {
         ];
 
 
-    /* =====================================
-       SHIRT COLOURS
-    ====================================== */
+    /* SHIRT */
 
     const shirtColours = {
 
         Blue: "#4c8fd1",
-
         Red: "#d95757",
-
         Green: "#55aa62",
-
         Yellow: "#e6bd4f",
-
         Purple: "#9666c2",
-
         Orange: "#df8247"
 
     };
@@ -379,66 +343,47 @@ function updateAppearance() {
         ];
 
 
-    /* =====================================
-       PANTS COLOURS
-    ====================================== */
+    /* PANTS */
 
     const pantsColours = {
 
         Black: "#292f4a",
-
         Blue: "#3d5f9b",
-
         Brown: "#765039",
-
         Grey: "#727b82",
-
         Green: "#46734f"
 
     };
 
 
-    const pantsColour =
-        pantsColours[
-            options.pants[character.pants]
-        ];
-
-
-    legs.forEach((leg) => {
+    legs.forEach(leg => {
 
         leg.style.backgroundColor =
-            pantsColour;
+            pantsColours[
+                options.pants[character.pants]
+            ];
 
     });
 
 
-    /* =====================================
-       SHOE COLOURS
-    ====================================== */
+    /* SHOES */
 
     const shoeColours = {
 
         Brown: "#49362c",
-
         Black: "#292522",
-
         White: "#eeeeee",
-
         Red: "#b84242"
 
     };
 
 
-    const shoeColour =
-        shoeColours[
-            options.shoes[character.shoes]
-        ];
-
-
-    shoes.forEach((shoe) => {
+    shoes.forEach(shoe => {
 
         shoe.style.backgroundColor =
-            shoeColour;
+            shoeColours[
+                options.shoes[character.shoes]
+            ];
 
     });
 
@@ -449,20 +394,20 @@ function updateAppearance() {
 
 
 /* =========================================
-   PIXEL ACCESSORIES
+   ACCESSORIES
 ========================================= */
 
 function updateAccessory() {
 
-    const oldAccessory =
+    const old =
         document.querySelector(
             ".character-accessory"
         );
 
 
-    if (oldAccessory) {
+    if (old) {
 
-        oldAccessory.remove();
+        old.remove();
 
     }
 
@@ -484,13 +429,10 @@ function updateAccessory() {
         document.createElement("div");
 
 
-    element.className =
-        "character-accessory";
+    element.classList.add(
+        "character-accessory"
+    );
 
-
-    /* =====================================
-       CAP
-    ====================================== */
 
     if (accessory === "Cap") {
 
@@ -501,10 +443,6 @@ function updateAccessory() {
     }
 
 
-    /* =====================================
-       CHEF HAT
-    ====================================== */
-
     if (accessory === "Chef Hat") {
 
         element.classList.add(
@@ -513,10 +451,6 @@ function updateAccessory() {
 
     }
 
-
-    /* =====================================
-       BEANIE
-    ====================================== */
 
     if (accessory === "Beanie") {
 
@@ -527,10 +461,6 @@ function updateAccessory() {
     }
 
 
-    /* =====================================
-       GLASSES
-    ====================================== */
-
     if (accessory === "Glasses") {
 
         element.classList.add(
@@ -540,13 +470,15 @@ function updateAccessory() {
     }
 
 
-    characterElement.appendChild(element);
+    characterElement.appendChild(
+        element
+    );
 
 }
 
 
 /* =========================================
-   SAVE CHARACTER
+   SAVE
 ========================================= */
 
 function saveCharacter() {
@@ -565,33 +497,32 @@ function saveCharacter() {
 
 document
     .getElementById("continueButton")
-    .addEventListener("click", () => {
+    .onclick = () => {
 
         saveCharacter();
-
-        alert(
-            "Character saved!"
-        );
-
-    });
-
-
-/* =========================================
-   BACK TO TITLE
-========================================= */
-
-document
-    .getElementById("backButton")
-    .addEventListener("click", () => {
 
         window.location.href =
             "../index.html";
 
-    });
+    };
 
 
 /* =========================================
-   LOAD SAVED CHARACTER
+   BACK
+========================================= */
+
+document
+    .getElementById("backButton")
+    .onclick = () => {
+
+        window.location.href =
+            "../index.html";
+
+    };
+
+
+/* =========================================
+   LOAD
 ========================================= */
 
 function loadCharacter() {
@@ -624,10 +555,10 @@ function loadCharacter() {
 
         }
 
-        catch (error) {
+        catch {
 
             console.log(
-                "No valid character save found."
+                "Save could not be loaded."
             );
 
         }
@@ -641,7 +572,7 @@ function loadCharacter() {
 
 
 /* =========================================
-   START CHARACTER EDITOR
+   START
 ========================================= */
 
 loadCharacter();
