@@ -1,5 +1,5 @@
 /* =========================================
-   MY LITTLE SHOP — CHARACTER EDITOR
+   MY LITTLE SHOP — PIXEL CHARACTER EDITOR
 ========================================= */
 
 @import url(
@@ -22,41 +22,35 @@ body {
     padding: 0;
 
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
     font-family: "Press Start 2P", monospace;
 
     background: #63cbed;
-
-    overflow-x: hidden;
 }
 
 
 /* =========================================
-   MAIN EDITOR
+   EDITOR
 ========================================= */
 
 .character-editor {
 
     min-height: 100vh;
 
-    position: relative;
-
-    padding: 35px 30px 50px;
+    padding: 30px 25px 50px;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
 
     background:
         linear-gradient(
             #63cbed 0%,
-            #7bd4ef 70%,
-            #a2e3ee 100%
+            #7bd4ef 65%,
+            #9ddfec 100%
         );
 }
 
@@ -66,10 +60,8 @@ body {
 ========================================= */
 
 .editor-header {
-
     text-align: center;
-
-    z-index: 5;
+    z-index: 10;
 }
 
 .editor-header h1 {
@@ -78,17 +70,17 @@ body {
 
     color: white;
 
-    font-size: 28px;
+    font-size: 27px;
 
     line-height: 1.5;
 
     text-shadow:
-        4px 4px 0 #3187aa;
+        5px 5px 0 #3187aa;
 }
 
 .editor-header p {
 
-    margin: 10px 0 0;
+    margin: 12px 0 0;
 
     color: #eaffff;
 
@@ -100,29 +92,26 @@ body {
 
 
 /* =========================================
-   CHARACTER PREVIEW
+   PREVIEW
 ========================================= */
 
 .character-preview {
-
     margin-top: 25px;
-
-    z-index: 5;
 }
 
 .preview-box {
 
-    width: 300px;
-    height: 280px;
+    width: 320px;
+    height: 300px;
+
+    position: relative;
 
     display: flex;
 
     justify-content: center;
     align-items: flex-end;
 
-    position: relative;
-
-    background: #9bdc8d;
+    background: #a7e28f;
 
     border: 7px solid #347b68;
 
@@ -133,9 +122,9 @@ body {
 }
 
 
-/* Ground */
+/* Pixel grass */
 
-.preview-box::after {
+.preview-box::before {
 
     content: "";
 
@@ -145,11 +134,39 @@ body {
     bottom: 0;
 
     width: 100%;
-    height: 45px;
+    height: 52px;
 
-    background: #67b968;
+    background: #62b866;
 
-    border-top: 6px solid #4c9d59;
+    border-top: 7px solid #4b9854;
+
+    z-index: 1;
+}
+
+
+/* Little pixel grass details */
+
+.preview-box::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 30px;
+    bottom: 25px;
+
+    width: 8px;
+    height: 12px;
+
+    background: #3f914c;
+
+    box-shadow:
+        40px 7px 0 #3f914c,
+        95px -4px 0 #3f914c,
+        155px 5px 0 #3f914c,
+        210px -3px 0 #3f914c;
+
+    z-index: 2;
 }
 
 
@@ -159,14 +176,16 @@ body {
 
 .character {
 
-    width: 100px;
-    height: 190px;
-
     position: relative;
 
-    z-index: 3;
+    width: 128px;
+    height: 220px;
 
-    transform: scale(1.1);
+    margin-bottom: 30px;
+
+    z-index: 5;
+
+    transform: scale(1.05);
 
     transform-origin: bottom center;
 }
@@ -180,40 +199,46 @@ body {
 
     position: absolute;
 
-    left: 18px;
+    left: 28px;
     top: 30px;
 
-    width: 64px;
-    height: 65px;
+    width: 72px;
+    height: 70px;
 
     background: #f2bd8a;
 
-    border: 6px solid #553b32;
+    border: 6px solid #4b342d;
 
     z-index: 5;
 }
 
 
-/* Hair */
+/* =========================================
+   HAIR
+========================================= */
 
 .character-hair {
 
     position: absolute;
 
-    left: 14px;
+    left: 23px;
     top: 20px;
 
-    width: 72px;
-    height: 38px;
+    width: 82px;
+    height: 42px;
 
     background: #6b452c;
 
     border: 6px solid #493326;
 
-    z-index: 7;
+    z-index: 8;
 
     box-shadow:
-        0 10px 0 #6b452c;
+
+        8px 8px 0 #6b452c,
+        22px 8px 0 #6b452c,
+        36px 8px 0 #6b452c,
+        50px 8px 0 #6b452c;
 }
 
 
@@ -225,10 +250,10 @@ body {
 
     position: absolute;
 
-    left: 12px;
-    top: 25px;
+    left: 14px;
+    top: 27px;
 
-    width: 40px;
+    width: 44px;
 
     display: flex;
 
@@ -239,9 +264,12 @@ body {
 .character-eyes span {
 
     width: 8px;
-    height: 10px;
+    height: 11px;
 
-    background: #292522;
+    background: #272321;
+
+    box-shadow:
+        2px 2px 0 rgba(0,0,0,0.15);
 }
 
 
@@ -253,13 +281,13 @@ body {
 
     position: absolute;
 
-    left: 25px;
-    bottom: 11px;
+    left: 28px;
+    bottom: 10px;
 
-    width: 13px;
+    width: 14px;
     height: 5px;
 
-    background: #9b514e;
+    background: #a74f4f;
 }
 
 
@@ -271,11 +299,11 @@ body {
 
     position: absolute;
 
-    left: 10px;
-    top: 92px;
+    left: 17px;
+    top: 98px;
 
-    width: 80px;
-    height: 60px;
+    width: 94px;
+    height: 68px;
 
     background: #4c8fd1;
 
@@ -291,8 +319,9 @@ body {
 
 .character-shirt {
 
-    width: 100%;
-    height: 100%;
+    position: absolute;
+
+    inset: 0;
 
     background: #4c8fd1;
 }
@@ -311,22 +340,39 @@ body {
 
     top: 3px;
 
-    width: 20px;
-    height: 48px;
+    width: 23px;
+    height: 50px;
 
     background: #f2bd8a;
 
-    border: 5px solid #553b32;
+    border: 5px solid #4b342d;
 }
+
+
+.character-body::before {
+    left: -30px;
+}
+
+
+.character-body::after {
+    right: -30px;
+}
+
+
+/* =========================================
+   HANDS
+========================================= */
 
 .character-body::before {
 
-    left: -25px;
+    box-shadow:
+        0 40px 0 -5px #f2bd8a;
 }
 
 .character-body::after {
 
-    right: -25px;
+    box-shadow:
+        0 40px 0 -5px #f2bd8a;
 }
 
 
@@ -338,10 +384,10 @@ body {
 
     position: absolute;
 
-    left: 22px;
-    top: 148px;
+    left: 31px;
+    top: 164px;
 
-    width: 56px;
+    width: 66px;
     height: 42px;
 
     z-index: 3;
@@ -352,7 +398,7 @@ body {
 
     position: absolute;
 
-    width: 22px;
+    width: 26px;
     height: 42px;
 
     background: #292f4a;
@@ -363,13 +409,11 @@ body {
 
 
 .character-leg.left {
-
     left: 0;
 }
 
 
 .character-leg.right {
-
     right: 0;
 }
 
@@ -382,12 +426,12 @@ body {
 
     position: absolute;
 
-    left: 13px;
-    top: 177px;
+    left: 21px;
+    top: 194px;
 
-    width: 74px;
+    width: 86px;
 
-    z-index: 4;
+    z-index: 6;
 }
 
 
@@ -395,8 +439,8 @@ body {
 
     position: absolute;
 
-    width: 35px;
-    height: 16px;
+    width: 39px;
+    height: 18px;
 
     background: #49362c;
 
@@ -405,14 +449,59 @@ body {
 
 
 .character-shoe.left {
-
     left: 0;
 }
 
 
 .character-shoe.right {
-
     right: 0;
+}
+
+
+/* =========================================
+   ACCESSORIES
+========================================= */
+
+.character-accessory {
+
+    position: absolute;
+
+    left: 43px;
+    top: 2px;
+
+    width: 45px;
+    height: 30px;
+
+    z-index: 15;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 0;
+
+    pointer-events: none;
+}
+
+
+/* Pixel cap */
+
+.character-accessory::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 12px;
+
+    width: 45px;
+    height: 14px;
+
+    background: #e34f4f;
+
+    border: 5px solid #713737;
+
+    box-shadow:
+        15px -9px 0 #e34f4f;
 }
 
 
@@ -422,8 +511,7 @@ body {
 
 .customization-panel {
 
-    width: 650px;
-
+    width: 680px;
     max-width: 95vw;
 
     margin-top: 30px;
@@ -436,14 +524,14 @@ body {
 
     gap: 12px;
 
-    background: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.72);
 
     border: 6px solid #347b92;
 
     box-shadow:
         7px 7px 0 #24586a;
 
-    z-index: 5;
+    z-index: 10;
 }
 
 
@@ -453,21 +541,25 @@ body {
 
 .customization-row {
 
-    min-height: 55px;
+    min-height: 58px;
 
     display: grid;
 
-    grid-template-columns: 90px 40px 1fr 40px;
+    grid-template-columns:
+        90px
+        40px
+        1fr
+        40px;
 
     align-items: center;
 
     gap: 6px;
 
-    background: #ffffff;
+    padding: 6px;
+
+    background: white;
 
     border: 4px solid #347b92;
-
-    padding: 6px;
 }
 
 
@@ -475,9 +567,9 @@ body {
 
     margin: 0;
 
-    font-size: 7px;
-
     color: #27657d;
+
+    font-size: 7px;
 }
 
 
@@ -487,20 +579,18 @@ body {
 
 .selection {
 
-    min-width: 70px;
-
     text-align: center;
 
-    font-size: 7px;
-
     color: #27657d;
+
+    font-size: 7px;
 
     white-space: nowrap;
 }
 
 
 /* =========================================
-   ARROW BUTTONS
+   ARROWS
 ========================================= */
 
 .arrow-button {
@@ -531,7 +621,8 @@ body {
 
     background: #66b7d4;
 
-    transform: translate(2px, 2px);
+    transform:
+        translate(2px, 2px);
 
     box-shadow:
         1px 1px 0 #19495d;
@@ -540,14 +631,15 @@ body {
 
 .arrow-button:active {
 
-    transform: translate(4px, 4px);
+    transform:
+        translate(4px, 4px);
 
     box-shadow: none;
 }
 
 
 /* =========================================
-   ACTION BUTTONS
+   ACTIONS
 ========================================= */
 
 .editor-actions {
@@ -558,7 +650,7 @@ body {
 
     gap: 18px;
 
-    z-index: 5;
+    z-index: 10;
 }
 
 
@@ -590,7 +682,6 @@ body {
 
 
 .secondary-button:hover {
-
     background: #fff2a8;
 }
 
@@ -611,13 +702,12 @@ body {
 
 
 .primary-button:hover {
-
     background: #69c477;
 }
 
 
 /* =========================================
-   BACK BUTTON
+   BACK
 ========================================= */
 
 .back-button {
@@ -649,7 +739,6 @@ body {
 
 
 .back-button:hover {
-
     background: #429cbe;
 }
 
@@ -661,23 +750,18 @@ body {
 @media (max-width: 700px) {
 
     .character-editor {
-
         padding-top: 25px;
-
-        overflow-y: auto;
     }
 
 
     .editor-header h1 {
-
         font-size: 18px;
     }
 
 
     .preview-box {
-
-        width: 260px;
-        height: 230px;
+        width: 270px;
+        height: 250px;
     }
 
 
@@ -698,7 +782,6 @@ body {
 
 
     .editor-actions button {
-
         width: 100%;
     }
 
