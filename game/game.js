@@ -5,7 +5,7 @@
 
 
 // =========================================
-// PLAYER
+// ELEMENTS
 // =========================================
 
 const player =
@@ -17,18 +17,15 @@ const canvas =
 const ctx =
     canvas.getContext("2d");
 
+const restaurant =
+    document.getElementById("restaurant");
+
 ctx.imageSmoothingEnabled = false;
 
 
 // =========================================
-// CHARACTER SAVE
+// CHARACTER
 // =========================================
-
-const savedCharacter =
-    localStorage.getItem(
-        "myLittleShopCharacter"
-    );
-
 
 let character = {
 
@@ -41,6 +38,16 @@ let character = {
 };
 
 
+// =========================================
+// LOAD CHARACTER
+// =========================================
+
+const savedCharacter =
+    localStorage.getItem(
+        "myLittleShopCharacter"
+    );
+
+
 if (savedCharacter) {
 
     try {
@@ -49,27 +56,66 @@ if (savedCharacter) {
             JSON.parse(savedCharacter);
 
 
-        if (typeof loaded.hair === "number")
-            character.hair = loaded.hair;
+        if (
+            typeof loaded.hair ===
+            "number"
+        ) {
 
-        if (typeof loaded.shirt === "number")
-            character.shirt = loaded.shirt;
+            character.hair =
+                loaded.hair;
 
-        if (typeof loaded.pants === "number")
-            character.pants = loaded.pants;
+        }
 
-        if (typeof loaded.shoes === "number")
-            character.shoes = loaded.shoes;
 
-        if (typeof loaded.accessory === "number")
-            character.accessory = loaded.accessory;
+        if (
+            typeof loaded.shirt ===
+            "number"
+        ) {
+
+            character.shirt =
+                loaded.shirt;
+
+        }
+
+
+        if (
+            typeof loaded.pants ===
+            "number"
+        ) {
+
+            character.pants =
+                loaded.pants;
+
+        }
+
+
+        if (
+            typeof loaded.shoes ===
+            "number"
+        ) {
+
+            character.shoes =
+                loaded.shoes;
+
+        }
+
+
+        if (
+            typeof loaded.accessory ===
+            "number"
+        ) {
+
+            character.accessory =
+                loaded.accessory;
+
+        }
 
     }
 
     catch (error) {
 
         console.log(
-            "Could not load character."
+            "Character save could not be loaded."
         );
 
     }
@@ -126,28 +172,59 @@ const shoeColours = [
 ];
 
 
-const hairColour =
-    hairColours[character.hair];
-
-const shirtColour =
-    shirtColours[character.shirt];
-
-const pantsColour =
-    pantsColours[character.pants];
-
-const shoeColour =
-    shoeColours[character.shoes];
-
-
-const skin =
+const skinColour =
     "#f3bd88";
 
-const outline =
+const outlineColour =
     "#49342d";
 
 
 // =========================================
-// PIXEL
+// PLAYER POSITION
+// =========================================
+
+let playerX = 430;
+
+let playerY = 470;
+
+
+// =========================================
+// PLAYER SIZE
+// =========================================
+
+const playerWidth = 34;
+
+const playerHeight = 48;
+
+
+// =========================================
+// MOVEMENT
+// =========================================
+
+const speed = 3;
+
+
+const keys = {
+
+    up: false,
+    down: false,
+    left: false,
+    right: false
+
+};
+
+
+// =========================================
+// WALK ANIMATION
+// =========================================
+
+let legFrame = 0;
+
+let walkTimer = 0;
+
+
+// =========================================
+// PIXEL DRAWING
 // =========================================
 
 function pixel(
@@ -158,7 +235,8 @@ function pixel(
     colour
 ) {
 
-    ctx.fillStyle = colour;
+    ctx.fillStyle =
+        colour;
 
     ctx.fillRect(
         x,
@@ -175,7 +253,7 @@ function pixel(
 // =========================================
 
 function drawCharacter(
-    legFrame = 0
+    frame = 0
 ) {
 
     ctx.clearRect(
@@ -190,7 +268,7 @@ function drawCharacter(
     // LEGS
     // =====================================
 
-    if (legFrame === 0) {
+    if (frame === 0) {
 
         // LEFT LEG
 
@@ -199,7 +277,7 @@ function drawCharacter(
             33,
             7,
             10,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -207,7 +285,9 @@ function drawCharacter(
             34,
             3,
             8,
-            pantsColour
+            pantsColours[
+                character.pants
+            ]
         );
 
 
@@ -218,7 +298,7 @@ function drawCharacter(
             33,
             7,
             10,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -226,7 +306,9 @@ function drawCharacter(
             34,
             3,
             8,
-            pantsColour
+            pantsColours[
+                character.pants
+            ]
         );
 
 
@@ -237,7 +319,7 @@ function drawCharacter(
             41,
             9,
             5,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -245,7 +327,9 @@ function drawCharacter(
             40,
             6,
             3,
-            shoeColour
+            shoeColours[
+                character.shoes
+            ]
         );
 
 
@@ -256,7 +340,7 @@ function drawCharacter(
             41,
             9,
             5,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -264,26 +348,26 @@ function drawCharacter(
             40,
             6,
             3,
-            shoeColour
+            shoeColours[
+                character.shoes
+            ]
         );
 
     }
 
 
     // =====================================
-    // LEG FRAME 1
+    // LEFT LEG RAISED
     // =====================================
 
-    if (legFrame === 1) {
-
-        // LEFT RAISED
+    if (frame === 1) {
 
         pixel(
             9,
             31,
             7,
             10,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -291,18 +375,20 @@ function drawCharacter(
             32,
             3,
             8,
-            pantsColour
+            pantsColours[
+                character.pants
+            ]
         );
 
 
-        // RIGHT DOWN
+        // RIGHT LEG DOWN
 
         pixel(
             17,
             33,
             7,
             10,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -310,7 +396,9 @@ function drawCharacter(
             34,
             3,
             8,
-            pantsColour
+            pantsColours[
+                character.pants
+            ]
         );
 
 
@@ -321,7 +409,7 @@ function drawCharacter(
             39,
             9,
             5,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -329,7 +417,9 @@ function drawCharacter(
             38,
             6,
             3,
-            shoeColour
+            shoeColours[
+                character.shoes
+            ]
         );
 
 
@@ -340,7 +430,7 @@ function drawCharacter(
             41,
             9,
             5,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -348,26 +438,28 @@ function drawCharacter(
             40,
             6,
             3,
-            shoeColour
+            shoeColours[
+                character.shoes
+            ]
         );
 
     }
 
 
     // =====================================
-    // LEG FRAME 2
+    // RIGHT LEG RAISED
     // =====================================
 
-    if (legFrame === 2) {
+    if (frame === 2) {
 
-        // LEFT DOWN
+        // LEFT LEG DOWN
 
         pixel(
             9,
             33,
             7,
             10,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -375,18 +467,20 @@ function drawCharacter(
             34,
             3,
             8,
-            pantsColour
+            pantsColours[
+                character.pants
+            ]
         );
 
 
-        // RIGHT RAISED
+        // RIGHT LEG UP
 
         pixel(
             17,
             31,
             7,
             10,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -394,7 +488,9 @@ function drawCharacter(
             32,
             3,
             8,
-            pantsColour
+            pantsColours[
+                character.pants
+            ]
         );
 
 
@@ -405,7 +501,7 @@ function drawCharacter(
             41,
             9,
             5,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -413,7 +509,9 @@ function drawCharacter(
             40,
             6,
             3,
-            shoeColour
+            shoeColours[
+                character.shoes
+            ]
         );
 
 
@@ -424,7 +522,7 @@ function drawCharacter(
             39,
             9,
             5,
-            outline
+            outlineColour
         );
 
         pixel(
@@ -432,7 +530,9 @@ function drawCharacter(
             38,
             6,
             3,
-            shoeColour
+            shoeColours[
+                character.shoes
+            ]
         );
 
     }
@@ -447,20 +547,23 @@ function drawCharacter(
         18,
         18,
         18,
-        outline
+        outlineColour
     );
+
 
     pixel(
         9,
         20,
         14,
         14,
-        shirtColour
+        shirtColours[
+            character.shirt
+        ]
     );
 
 
     // =====================================
-    // ARMS
+    // LEFT ARM
     // =====================================
 
     pixel(
@@ -468,32 +571,38 @@ function drawCharacter(
         22,
         6,
         13,
-        outline
+        outlineColour
     );
+
 
     pixel(
         6,
         24,
         3,
         9,
-        skin
+        skinColour
     );
 
+
+    // =====================================
+    // RIGHT ARM
+    // =====================================
 
     pixel(
         23,
         22,
         6,
         13,
-        outline
+        outlineColour
     );
+
 
     pixel(
         23,
         24,
         3,
         9,
-        skin
+        skinColour
     );
 
 
@@ -506,15 +615,16 @@ function drawCharacter(
         3,
         18,
         18,
-        outline
+        outlineColour
     );
+
 
     pixel(
         9,
         5,
         14,
         14,
-        skin
+        skinColour
     );
 
 
@@ -527,15 +637,18 @@ function drawCharacter(
         2,
         18,
         7,
-        outline
+        outlineColour
     );
+
 
     pixel(
         9,
         4,
         14,
         5,
-        hairColour
+        hairColours[
+            character.hair
+        ]
     );
 
 
@@ -544,15 +657,20 @@ function drawCharacter(
         7,
         4,
         6,
-        hairColour
+        hairColours[
+            character.hair
+        ]
     );
+
 
     pixel(
         21,
         7,
         4,
         6,
-        hairColour
+        hairColours[
+            character.hair
+        ]
     );
 
 
@@ -567,6 +685,7 @@ function drawCharacter(
         3,
         "#292321"
     );
+
 
     pixel(
         19,
@@ -607,7 +726,9 @@ function drawAccessory() {
 
     // CAP
 
-    if (character.accessory === 1) {
+    if (
+        character.accessory === 1
+    ) {
 
         pixel(
             6,
@@ -616,6 +737,7 @@ function drawAccessory() {
             5,
             "#394d66"
         );
+
 
         pixel(
             20,
@@ -630,7 +752,9 @@ function drawAccessory() {
 
     // CHEF HAT
 
-    if (character.accessory === 2) {
+    if (
+        character.accessory === 2
+    ) {
 
         pixel(
             10,
@@ -639,6 +763,7 @@ function drawAccessory() {
             3,
             "#ffffff"
         );
+
 
         pixel(
             8,
@@ -653,7 +778,9 @@ function drawAccessory() {
 
     // BEANIE
 
-    if (character.accessory === 3) {
+    if (
+        character.accessory === 3
+    ) {
 
         pixel(
             7,
@@ -662,6 +789,7 @@ function drawAccessory() {
             7,
             "#d95757"
         );
+
 
         pixel(
             7,
@@ -676,7 +804,9 @@ function drawAccessory() {
 
     // GLASSES
 
-    if (character.accessory === 4) {
+    if (
+        character.accessory === 4
+    ) {
 
         const glasses =
             "#292321";
@@ -689,6 +819,7 @@ function drawAccessory() {
             5,
             glasses
         );
+
 
         pixel(
             17,
@@ -704,15 +835,16 @@ function drawAccessory() {
             12,
             2,
             2,
-            skin
+            skinColour
         );
+
 
         pixel(
             19,
             12,
             2,
             2,
-            skin
+            skinColour
         );
 
 
@@ -730,51 +862,7 @@ function drawAccessory() {
 
 
 // =========================================
-// PLAYER SIZE
-// =========================================
-
-const playerWidth = 34;
-
-const playerHeight = 48;
-
-
-// =========================================
-// PLAYER POSITION
-// =========================================
-
-let playerX = 430;
-
-let playerY = 470;
-
-
-// =========================================
-// MOVEMENT
-// =========================================
-
-const speed = 3;
-
-
-const keys = {
-
-    up: false,
-    down: false,
-    left: false,
-    right: false
-
-};
-
-
-// =========================================
-// WALK ANIMATION
-// =========================================
-
-let legFrame = 0;
-
-let walkTimer = 0;
-
-
-// =========================================
-// COLLISION RECTANGLE
+// PLAYER COLLISION BOX
 // =========================================
 
 function getPlayerRect(
@@ -784,13 +872,17 @@ function getPlayerRect(
 
     return {
 
-        left: x + 12,
+        left:
+            x + 12,
 
-        right: x + playerWidth - 8,
+        right:
+            x + 22,
 
-        top: y + 20,
+        top:
+            y + 28,
 
-        bottom: y + playerHeight
+        bottom:
+            y + 47
 
     };
 
@@ -798,7 +890,7 @@ function getPlayerRect(
 
 
 // =========================================
-// RECTANGLE COLLISION
+// COLLISION
 // =========================================
 
 function rectanglesOverlap(
@@ -809,11 +901,8 @@ function rectanglesOverlap(
     return (
 
         a.left < b.right &&
-
         a.right > b.left &&
-
         a.top < b.bottom &&
-
         a.bottom > b.top
 
     );
@@ -822,107 +911,12 @@ function rectanglesOverlap(
 
 
 // =========================================
-// GET SOLID OBJECTS
-// =========================================
-
-function getSolidObjects() {
-
-    const objects = [];
-
-
-    const table =
-        document.querySelector(".table");
-
-
-    const chairs =
-        document.querySelectorAll(
-            ".chair"
-        );
-
-
-    const kitchenDoor =
-        document.getElementById(
-            "kitchenDoor"
-        );
-
-
-    const officeDoor =
-        document.getElementById(
-            "officeDoor"
-        );
-
-
-    const frontDoor =
-        document.getElementById(
-            "frontDoor"
-        );
-
-
-    if (table) {
-
-        objects.push(
-            table
-        );
-
-    }
-
-
-    chairs.forEach(
-        function(chair) {
-
-            objects.push(
-                chair
-            );
-
-        }
-    );
-
-
-    if (kitchenDoor) {
-
-        objects.push(
-            kitchenDoor
-        );
-
-    }
-
-
-    if (officeDoor) {
-
-        objects.push(
-            officeDoor
-        );
-
-    }
-
-
-    if (frontDoor) {
-
-        objects.push(
-            frontDoor
-        );
-
-    }
-
-
-    return objects;
-
-}
-
-
-// =========================================
-// GET RECTANGLE RELATIVE TO RESTAURANT
+// GET ELEMENT RECTANGLE
 // =========================================
 
 function getElementRect(
     element
 ) {
-
-    const restaurant =
-        document.getElementById(
-            "restaurant"
-        );
-
 
     const elementRect =
         element.getBoundingClientRect();
@@ -956,19 +950,213 @@ function getElementRect(
 
 
 // =========================================
-// COLLISION CHECK
+// SOLID OBJECTS
+// =========================================
+
+function getSolidObjects() {
+
+    const objects = [];
+
+
+    // =====================================
+    // TAN WALL
+    // =====================================
+
+    objects.push({
+
+        left: 0,
+
+        right:
+            restaurant.clientWidth,
+
+        top: 0,
+
+        bottom:
+            restaurant.clientHeight *
+            0.42
+
+    });
+
+
+    // =====================================
+    // TABLETOP
+    // =====================================
+
+    const table =
+        document.querySelector(
+            ".table-top"
+        );
+
+
+    if (table) {
+
+        const rect =
+            getElementRect(table);
+
+
+        objects.push({
+
+            left:
+                rect.left,
+
+            right:
+                rect.right,
+
+            top:
+                rect.top,
+
+            bottom:
+                rect.bottom
+
+        });
+
+    }
+
+
+    // =====================================
+    // TABLE LEG
+    // =====================================
+
+    const tableLeg =
+        document.querySelector(
+            ".table-leg"
+        );
+
+
+    if (tableLeg) {
+
+        const rect =
+            getElementRect(
+                tableLeg
+            );
+
+
+        objects.push({
+
+            left:
+                rect.left,
+
+            right:
+                rect.right,
+
+            top:
+                rect.top,
+
+            bottom:
+                rect.bottom
+
+        });
+
+    }
+
+
+    // =====================================
+    // CHAIRS
+    // =====================================
+
+    const chairs =
+        document.querySelectorAll(
+            ".chair"
+        );
+
+
+    chairs.forEach(
+        function(chair) {
+
+            const rect =
+                getElementRect(
+                    chair
+                );
+
+
+            objects.push({
+
+                left:
+                    rect.left,
+
+                right:
+                    rect.right,
+
+                top:
+                    rect.top,
+
+                bottom:
+                    rect.bottom
+
+            });
+
+        }
+    );
+
+
+    // =====================================
+    // DOORS
+    // =====================================
+
+    const kitchenDoor =
+        document.getElementById(
+            "kitchenDoor"
+        );
+
+
+    const officeDoor =
+        document.getElementById(
+            "officeDoor"
+        );
+
+
+    const frontDoor =
+        document.getElementById(
+            "frontDoor"
+        );
+
+
+    if (kitchenDoor) {
+
+        objects.push(
+            getElementRect(
+                kitchenDoor
+            )
+        );
+
+    }
+
+
+    if (officeDoor) {
+
+        objects.push(
+            getElementRect(
+                officeDoor
+            )
+        );
+
+    }
+
+
+    if (frontDoor) {
+
+        objects.push(
+            getElementRect(
+                frontDoor
+            )
+        );
+
+    }
+
+
+    return objects;
+
+}
+
+
+// =========================================
+// CAN MOVE
 // =========================================
 
 function canMoveTo(
     newX,
     newY
 ) {
-
-    const restaurant =
-        document.getElementById(
-            "restaurant"
-        );
-
 
     const playerRect =
         getPlayerRect(
@@ -978,7 +1166,7 @@ function canMoveTo(
 
 
     // =====================================
-    // RESTAURANT BOUNDARIES
+    // OUTER BOUNDARIES
     // =====================================
 
     if (
@@ -1011,7 +1199,7 @@ function canMoveTo(
 
     if (
         playerRect.bottom >
-        restaurant.clientHeight
+        restaurant.clientHeight - 5
     ) {
 
         return false;
@@ -1020,7 +1208,7 @@ function canMoveTo(
 
 
     // =====================================
-    // OBJECT COLLISION
+    // SOLID OBJECTS
     // =====================================
 
     const objects =
@@ -1033,36 +1221,10 @@ function canMoveTo(
         i++
     ) {
 
-        const objectRect =
-            getElementRect(
-                objects[i]
-            );
-
-
-        // Add a little padding
-        // so collision feels natural.
-
-        const paddedRect = {
-
-            left:
-                objectRect.left - 4,
-
-            right:
-                objectRect.right + 4,
-
-            top:
-                objectRect.top - 4,
-
-            bottom:
-                objectRect.bottom + 4
-
-        };
-
-
         if (
             rectanglesOverlap(
                 playerRect,
-                paddedRect
+                objects[i]
             )
         ) {
 
@@ -1197,7 +1359,7 @@ document.addEventListener(
 
 
 // =========================================
-// MOVEMENT
+// MOVE PLAYER
 // =========================================
 
 function movePlayer() {
@@ -1236,7 +1398,7 @@ function movePlayer() {
 
 
     // =====================================
-    // DIAGONAL SPEED
+    // DIAGONAL MOVEMENT
     // =====================================
 
     if (
@@ -1252,43 +1414,43 @@ function movePlayer() {
 
 
     // =====================================
-    // HORIZONTAL COLLISION
+    // HORIZONTAL
     // =====================================
 
-    const nextX =
+    const newX =
         playerX + moveX;
 
 
     if (
         canMoveTo(
-            nextX,
+            newX,
             playerY
         )
     ) {
 
         playerX =
-            nextX;
+            newX;
 
     }
 
 
     // =====================================
-    // VERTICAL COLLISION
+    // VERTICAL
     // =====================================
 
-    const nextY =
+    const newY =
         playerY + moveY;
 
 
     if (
         canMoveTo(
             playerX,
-            nextY
+            newY
         )
     ) {
 
         playerY =
-            nextY;
+            newY;
 
     }
 
@@ -1310,7 +1472,7 @@ function movePlayer() {
 
 
     // =====================================
-    // ANIMATION
+    // WALKING
     // =====================================
 
     const moving =
@@ -1354,9 +1516,7 @@ function movePlayer() {
 
 
     drawCharacter(
-        moving
-            ? legFrame
-            : 0
+        legFrame
     );
 
 }
@@ -1378,9 +1538,15 @@ function gameLoop() {
 
 
 // =========================================
-// START
+// START GAME
 // =========================================
 
 drawCharacter(0);
+
+player.style.left =
+    playerX + "px";
+
+player.style.top =
+    playerY + "px";
 
 gameLoop();
