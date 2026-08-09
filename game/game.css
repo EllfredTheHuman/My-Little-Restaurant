@@ -1,6 +1,6 @@
 /* =========================================
    MY LITTLE RESTAURANT
-   RESTAURANT SETUP
+   RESTAURANT
 ========================================= */
 
 
@@ -136,6 +136,7 @@ body {
     position: absolute;
 
     top: 65px;
+
     left: 50%;
 
     width: 900px;
@@ -195,8 +196,8 @@ body {
 
     position: absolute;
 
-    bottom: 0;
     left: 0;
+    bottom: 0;
 
     width: 100%;
 
@@ -297,41 +298,102 @@ body {
 
     width: 90px;
 
-    height: 125px;
+    height: 150px;
 
-    z-index: 20;
+    z-index: 30;
 
 }
+
+
+/*
+    IMPORTANT:
+
+    The floor begins at 42% of the room.
+
+    Doors are positioned so their bottoms
+    sit directly ON the floor.
+*/
 
 
 .door {
 
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
     width: 90px;
 
-    height: 105px;
+    height: 115px;
 
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: #63402e;
+    background: #69442f;
 
     border: 7px solid #432c22;
 
-    font-size: 30px;
+    box-shadow:
+        5px 5px 0 #38251c;
 
 }
 
+
+/* =========================================
+   DOOR WINDOW
+========================================= */
+
+.door-window {
+
+    position: absolute;
+
+    left: 17px;
+
+    top: 15px;
+
+    width: 42px;
+
+    height: 42px;
+
+    background: #80c5d1;
+
+    border: 6px solid #3d6f77;
+
+}
+
+
+/* =========================================
+   DOOR HANDLE
+========================================= */
+
+.door-handle {
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 65px;
+
+    width: 7px;
+
+    height: 7px;
+
+    background: #e5b64e;
+
+    border: 2px solid #805b27;
+
+}
+
+
+/* =========================================
+   DOOR LABEL
+========================================= */
 
 .door-label {
 
     position: absolute;
 
-    top: 108px;
-
     left: 50%;
+
+    bottom: -30px;
 
     transform: translateX(-50%);
 
@@ -362,27 +424,27 @@ body {
 
 
 /* =========================================
-   KITCHEN DOOR
+   KITCHEN
 ========================================= */
 
 .kitchen-door {
 
     left: 35px;
 
-    top: 170px;
+    top: calc(42% - 115px);
 
 }
 
 
 /* =========================================
-   OFFICE DOOR
+   OFFICE
 ========================================= */
 
 .office-door {
 
     right: 35px;
 
-    top: 170px;
+    top: calc(42% - 115px);
 
 }
 
@@ -402,9 +464,14 @@ body {
 
 .front-door .door {
 
-    background: #82c8d8;
+    background: #4e7580;
 
-    border-color: #4d8491;
+}
+
+
+.front-door .door-window {
+
+    background: #9ad9e3;
 
 }
 
@@ -423,22 +490,26 @@ body {
 
     width: 210px;
 
-    height: 150px;
+    height: 160px;
 
     transform: translateX(-50%);
 
-    z-index: 15;
+    z-index: 20;
 
 }
 
+
+/* =========================================
+   TABLE TOP
+========================================= */
 
 .table-top {
 
     position: absolute;
 
-    top: 25px;
-
     left: 30px;
+
+    top: 20px;
 
     width: 150px;
 
@@ -454,19 +525,21 @@ body {
 }
 
 
-.table-top::after {
+/* =========================================
+   TABLE LEG
+========================================= */
 
-    content: "";
+.table-leg {
 
     position: absolute;
 
-    left: 55px;
+    left: 86px;
 
-    top: 68px;
+    top: 88px;
 
-    width: 25px;
+    width: 35px;
 
-    height: 45px;
+    height: 55px;
 
     background: #70432d;
 
@@ -485,6 +558,8 @@ body {
 
     position: absolute;
 
+    top: 40px;
+
     width: 42px;
 
     height: 42px;
@@ -500,16 +575,12 @@ body {
 
     left: 0;
 
-    top: 42px;
-
 }
 
 
 .chair-right {
 
     right: 0;
-
-    top: 42px;
 
 }
 
@@ -552,12 +623,6 @@ body {
     padding: 0;
 
     image-rendering: pixelated;
-
-    image-rendering:
-        -moz-crisp-edges;
-
-    image-rendering:
-        crisp-edges;
 
 }
 
