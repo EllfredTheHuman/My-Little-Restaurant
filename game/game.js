@@ -21,7 +21,7 @@ ctx.imageSmoothingEnabled = false;
 
 
 // =========================================
-// CHARACTER SAVE
+// LOAD CHARACTER
 // =========================================
 
 const savedCharacter =
@@ -147,6 +147,7 @@ const pantsColour =
 const shoeColour =
     shoeColours[character.shoes];
 
+
 const skin =
     "#f3bd88";
 
@@ -155,7 +156,7 @@ const outline =
 
 
 // =========================================
-// PIXEL
+// DRAW PIXEL
 // =========================================
 
 function pixel(
@@ -183,12 +184,10 @@ function pixel(
 // =========================================
 
 function drawCharacter(
-    walkFrame = 0
+    legFrame = 0
 ) {
 
-    // Clear EVERYTHING first.
-    // This prevents old animation
-    // frames from remaining behind.
+    // Clear the entire sprite
 
     ctx.clearRect(
         0,
@@ -202,17 +201,29 @@ function drawCharacter(
     // LEGS
     // =====================================
 
-    if (walkFrame === 0) {
+    /*
+        Frame 0:
+        Both legs down.
 
-        // Standing / idle
+        Frame 1:
+        One leg raised.
 
-        // Left leg
+        Frame 2:
+        Other leg raised.
+
+        The legs only move vertically.
+    */
+
+
+    if (legFrame === 0) {
+
+        // LEFT LEG
 
         pixel(
             9,
             33,
             7,
-            9,
+            10,
             outline
         );
 
@@ -225,13 +236,13 @@ function drawCharacter(
         );
 
 
-        // Right leg
+        // RIGHT LEG
 
         pixel(
             17,
             33,
             7,
-            9,
+            10,
             outline
         );
 
@@ -243,60 +254,144 @@ function drawCharacter(
             pantsColour
         );
 
-    }
 
-
-    if (walkFrame === 1) {
-
-        // Left leg forward
+        // LEFT SHOE
 
         pixel(
             7,
-            33,
-            8,
+            41,
             9,
+            5,
             outline
         );
 
         pixel(
             9,
-            34,
-            4,
+            40,
+            6,
+            3,
+            shoeColour
+        );
+
+
+        // RIGHT SHOE
+
+        pixel(
+            17,
+            41,
+            9,
+            5,
+            outline
+        );
+
+        pixel(
+            19,
+            40,
+            6,
+            3,
+            shoeColour
+        );
+
+    }
+
+
+    // =====================================
+    // LEG FRAME 1
+    // =====================================
+
+    if (legFrame === 1) {
+
+        // LEFT LEG RAISED
+
+        pixel(
+            9,
+            31,
+            7,
+            10,
+            outline
+        );
+
+        pixel(
+            11,
+            32,
+            3,
             8,
             pantsColour
         );
 
 
-        // Right leg backward
+        // RIGHT LEG DOWN
 
         pixel(
-            18,
+            17,
             33,
             7,
-            9,
+            10,
             outline
         );
 
         pixel(
-            20,
+            19,
             34,
             3,
             8,
             pantsColour
         );
 
+
+        // LEFT SHOE RAISED
+
+        pixel(
+            7,
+            39,
+            9,
+            5,
+            outline
+        );
+
+        pixel(
+            9,
+            38,
+            6,
+            3,
+            shoeColour
+        );
+
+
+        // RIGHT SHOE DOWN
+
+        pixel(
+            17,
+            41,
+            9,
+            5,
+            outline
+        );
+
+        pixel(
+            19,
+            40,
+            6,
+            3,
+            shoeColour
+        );
+
     }
 
 
-    if (walkFrame === 2) {
+    // =====================================
+    // LEG FRAME 2
+    // =====================================
 
-        // Left leg backward
+    if (legFrame === 2) {
+
+        // LEFT LEG DOWN
 
         pixel(
             9,
             33,
             7,
-            9,
+            10,
             outline
         );
 
@@ -309,32 +404,26 @@ function drawCharacter(
         );
 
 
-        // Right leg forward
+        // RIGHT LEG RAISED
 
         pixel(
             17,
-            33,
-            8,
-            9,
+            31,
+            7,
+            10,
             outline
         );
 
         pixel(
             19,
-            34,
-            4,
+            32,
+            3,
             8,
             pantsColour
         );
 
-    }
 
-
-    // =====================================
-    // SHOES
-    // =====================================
-
-    if (walkFrame === 0) {
+        // LEFT SHOE DOWN
 
         pixel(
             7,
@@ -352,10 +441,12 @@ function drawCharacter(
             shoeColour
         );
 
+
+        // RIGHT SHOE RAISED
 
         pixel(
             17,
-            41,
+            39,
             9,
             5,
             outline
@@ -363,84 +454,8 @@ function drawCharacter(
 
         pixel(
             19,
-            40,
+            38,
             6,
-            3,
-            shoeColour
-        );
-
-    }
-
-
-    if (walkFrame === 1) {
-
-        pixel(
-            5,
-            41,
-            10,
-            5,
-            outline
-        );
-
-        pixel(
-            7,
-            40,
-            7,
-            3,
-            shoeColour
-        );
-
-
-        pixel(
-            19,
-            41,
-            9,
-            5,
-            outline
-        );
-
-        pixel(
-            21,
-            40,
-            6,
-            3,
-            shoeColour
-        );
-
-    }
-
-
-    if (walkFrame === 2) {
-
-        pixel(
-            7,
-            41,
-            9,
-            5,
-            outline
-        );
-
-        pixel(
-            9,
-            40,
-            6,
-            3,
-            shoeColour
-        );
-
-
-        pixel(
-            19,
-            41,
-            10,
-            5,
-            outline
-        );
-
-        pixel(
-            21,
-            40,
-            7,
             3,
             shoeColour
         );
@@ -449,7 +464,7 @@ function drawCharacter(
 
 
     // =====================================
-    // BODY OUTLINE
+    // BODY
     // =====================================
 
     pixel(
@@ -460,10 +475,6 @@ function drawCharacter(
         outline
     );
 
-
-    // =====================================
-    // SHIRT
-    // =====================================
 
     pixel(
         9,
@@ -478,130 +489,42 @@ function drawCharacter(
     // ARMS
     // =====================================
 
-    if (walkFrame === 1) {
+    pixel(
+        3,
+        22,
+        6,
+        13,
+        outline
+    );
 
-        // Left arm forward
-
-        pixel(
-            3,
-            21,
-            6,
-            14,
-            outline
-        );
-
-        pixel(
-            5,
-            24,
-            3,
-            9,
-            skin
-        );
+    pixel(
+        6,
+        24,
+        3,
+        9,
+        skin
+    );
 
 
-        // Right arm backward
+    pixel(
+        23,
+        22,
+        6,
+        13,
+        outline
+    );
 
-        pixel(
-            23,
-            22,
-            6,
-            13,
-            outline
-        );
-
-        pixel(
-            23,
-            25,
-            3,
-            8,
-            skin
-        );
-
-    }
-
-    else if (walkFrame === 2) {
-
-        // Left arm backward
-
-        pixel(
-            3,
-            22,
-            6,
-            13,
-            outline
-        );
-
-        pixel(
-            6,
-            25,
-            3,
-            8,
-            skin
-        );
-
-
-        // Right arm forward
-
-        pixel(
-            23,
-            21,
-            6,
-            14,
-            outline
-        );
-
-        pixel(
-            23,
-            24,
-            3,
-            9,
-            skin
-        );
-
-    }
-
-    else {
-
-        // Idle arms
-
-        pixel(
-            3,
-            22,
-            6,
-            13,
-            outline
-        );
-
-        pixel(
-            6,
-            24,
-            3,
-            9,
-            skin
-        );
-
-
-        pixel(
-            23,
-            22,
-            6,
-            13,
-            outline
-        );
-
-        pixel(
-            23,
-            24,
-            3,
-            9,
-            skin
-        );
-
-    }
+    pixel(
+        23,
+        24,
+        3,
+        9,
+        skin
+    );
 
 
     // =====================================
-    // HEAD OUTLINE
+    // HEAD
     // =====================================
 
     pixel(
@@ -613,9 +536,7 @@ function drawCharacter(
     );
 
 
-    // =====================================
     // FACE
-    // =====================================
 
     pixel(
         9,
@@ -701,7 +622,7 @@ function drawCharacter(
 
 
     // =====================================
-    // ACCESSORIES
+    // ACCESSORY
     // =====================================
 
     drawAccessory();
@@ -717,7 +638,9 @@ function drawAccessory() {
 
     // CAP
 
-    if (character.accessory === 1) {
+    if (
+        character.accessory === 1
+    ) {
 
         pixel(
             6,
@@ -740,7 +663,9 @@ function drawAccessory() {
 
     // CHEF HAT
 
-    if (character.accessory === 2) {
+    if (
+        character.accessory === 2
+    ) {
 
         pixel(
             10,
@@ -763,7 +688,9 @@ function drawAccessory() {
 
     // BEANIE
 
-    if (character.accessory === 3) {
+    if (
+        character.accessory === 3
+    ) {
 
         pixel(
             7,
@@ -786,7 +713,9 @@ function drawAccessory() {
 
     // GLASSES
 
-    if (character.accessory === 4) {
+    if (
+        character.accessory === 4
+    ) {
 
         const glasses =
             "#292321";
@@ -814,7 +743,7 @@ function drawAccessory() {
         );
 
 
-        // Lens openings
+        // LEFT LENS OPENING
 
         pixel(
             11,
@@ -823,6 +752,9 @@ function drawAccessory() {
             2,
             skin
         );
+
+
+        // RIGHT LENS OPENING
 
         pixel(
             19,
@@ -833,7 +765,7 @@ function drawAccessory() {
         );
 
 
-        // Bridge
+        // BRIDGE
 
         pixel(
             15,
@@ -849,7 +781,7 @@ function drawAccessory() {
 
 
 // =========================================
-// PLAYER POSITION
+// POSITION
 // =========================================
 
 let playerX = 430;
@@ -878,7 +810,7 @@ const keys = {
 // WALK ANIMATION
 // =========================================
 
-let walkFrame = 0;
+let legFrame = 0;
 
 let walkTimer = 0;
 
@@ -1040,7 +972,9 @@ function movePlayer() {
     }
 
 
-    // Prevent diagonal speed boost
+    // =====================================
+    // DIAGONAL MOVEMENT
+    // =====================================
 
     if (
         moveX !== 0 &&
@@ -1119,7 +1053,7 @@ function movePlayer() {
 
 
     // =====================================
-    // ANIMATION
+    // WALKING
     // =====================================
 
     const moving =
@@ -1132,16 +1066,15 @@ function movePlayer() {
         walkTimer++;
 
 
-        if (walkTimer >= 8) {
+        if (walkTimer >= 10) {
 
             walkTimer = 0;
 
-            walkFrame++;
+            legFrame++;
 
+            if (legFrame > 2) {
 
-            if (walkFrame > 2) {
-
-                walkFrame = 0;
+                legFrame = 0;
 
             }
 
@@ -1153,16 +1086,18 @@ function movePlayer() {
 
         walkTimer = 0;
 
-        walkFrame = 0;
+        legFrame = 0;
 
     }
 
 
-    // Draw ONE complete frame
+    // =====================================
+    // DRAW
+    // =====================================
 
     drawCharacter(
         moving
-            ? walkFrame
+            ? legFrame
             : 0
     );
 
@@ -1183,6 +1118,10 @@ function gameLoop() {
 
 }
 
+
+// =========================================
+// START
+// =========================================
 
 drawCharacter(0);
 
