@@ -1,11 +1,8 @@
-// =========================================
-// MY LITTLE SHOP
-// =========================================
+/* =========================================
+   MY LITTLE SHOP
+   MAIN MENU
+========================================= */
 
-
-// =========================================
-// SCREENS
-// =========================================
 
 const titleScreen =
     document.getElementById("titleScreen");
@@ -13,16 +10,9 @@ const titleScreen =
 const gameScreen =
     document.getElementById("gameScreen");
 
-const customizeScreen =
-    document.getElementById("customizeScreen");
-
 const settingsScreen =
     document.getElementById("settingsScreen");
 
-
-// =========================================
-// BUTTONS
-// =========================================
 
 const playButton =
     document.getElementById("playButton");
@@ -33,88 +23,72 @@ const customizeButton =
 const settingsButton =
     document.getElementById("settingsButton");
 
+
 const backButton =
     document.getElementById("backButton");
-
-const customizeBackButton =
-    document.getElementById("customizeBackButton");
 
 const settingsBackButton =
     document.getElementById("settingsBackButton");
 
 
-// =========================================
-// SHOW SCREEN
-// =========================================
-
-function showScreen(screen) {
-
-    titleScreen.classList.add("hidden");
-
-    gameScreen.classList.add("hidden");
-
-    customizeScreen.classList.add("hidden");
-
-    settingsScreen.classList.add("hidden");
-
-
-    screen.classList.remove("hidden");
-}
-
-
-// =========================================
-// PLAY
-// =========================================
+/* =========================================
+   PLAY
+========================================= */
 
 playButton.addEventListener("click", function () {
 
-    showScreen(gameScreen);
+    titleScreen.classList.add("hidden");
+
+    gameScreen.classList.remove("hidden");
 
 });
 
 
-// =========================================
-// CUSTOMIZE
-// =========================================
+/* =========================================
+   CUSTOMIZE
+========================================= */
 
 customizeButton.addEventListener("click", function () {
 
-    showScreen(customizeScreen);
+    window.location.href = "character/index.html";
 
 });
 
 
-// =========================================
-// SETTINGS
-// =========================================
+/* =========================================
+   SETTINGS
+========================================= */
 
 settingsButton.addEventListener("click", function () {
 
-    showScreen(settingsScreen);
+    titleScreen.classList.add("hidden");
+
+    settingsScreen.classList.remove("hidden");
 
 });
 
 
-// =========================================
-// BACK BUTTONS
-// =========================================
+/* =========================================
+   GAME BACK
+========================================= */
 
 backButton.addEventListener("click", function () {
 
-    showScreen(titleScreen);
+    gameScreen.classList.add("hidden");
+
+    titleScreen.classList.remove("hidden");
 
 });
 
 
-customizeBackButton.addEventListener("click", function () {
-
-    showScreen(titleScreen);
-
-});
-
+/* =========================================
+   SETTINGS BACK
+========================================= */
 
 settingsBackButton.addEventListener("click", function () {
 
-    showScreen(titleScreen);
+    settingsScreen.classList.add("hidden");
+
+    titleScreen.classList.remove("hidden");
 
 });
