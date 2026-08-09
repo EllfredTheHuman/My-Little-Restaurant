@@ -586,8 +586,10 @@ body {
     left: 38px;
     top: 44px;
 
-    width: 18px;
-    height: 14px;
+    width: 24px;
+    height: 20px;
+
+    box-sizing: border-box;
 
     border: 3px solid #292321;
 
@@ -604,8 +606,10 @@ body {
     left: 22px;
     top: -3px;
 
-    width: 18px;
-    height: 14px;
+    width: 24px;
+    height: 20px;
+
+    box-sizing: border-box;
 
     border: 3px solid #292321;
 
@@ -617,8 +621,8 @@ body {
 
     position: absolute;
 
-    left: 17px;
-    top: 2px;
+    left: 19px;
+    top: 5px;
 
     width: 8px;
     height: 3px;
