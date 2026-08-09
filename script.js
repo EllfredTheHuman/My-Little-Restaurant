@@ -1,8 +1,12 @@
-/* =========================================
-   MY LITTLE SHOP
-   MAIN MENU
-========================================= */
+// =========================================
+// MY LITTLE RESTAURANT
+// MAIN MENU
+// =========================================
 
+
+// =========================================
+// SCREENS
+// =========================================
 
 const titleScreen =
     document.getElementById("titleScreen");
@@ -10,85 +14,110 @@ const titleScreen =
 const gameScreen =
     document.getElementById("gameScreen");
 
+const customizeScreen =
+    document.getElementById("customizeScreen");
+
 const settingsScreen =
     document.getElementById("settingsScreen");
 
 
+// =========================================
+// PLAY
+// =========================================
+
 const playButton =
     document.getElementById("playButton");
+
+if (playButton) {
+
+    playButton.addEventListener(
+        "click",
+        function() {
+
+            window.location.href =
+                "game/index.html";
+
+        }
+    );
+
+}
+
+
+// =========================================
+// CUSTOMIZE
+// =========================================
 
 const customizeButton =
     document.getElementById("customizeButton");
 
+if (customizeButton) {
+
+    customizeButton.addEventListener(
+        "click",
+        function() {
+
+            window.location.href =
+                "character/index.html";
+
+        }
+    );
+
+}
+
+
+// =========================================
+// SETTINGS
+// =========================================
+
 const settingsButton =
     document.getElementById("settingsButton");
 
+if (settingsButton) {
 
-const backButton =
-    document.getElementById("backButton");
+    settingsButton.addEventListener(
+        "click",
+        function() {
+
+            titleScreen.classList.add("hidden");
+
+            if (settingsScreen) {
+
+                settingsScreen.classList.remove(
+                    "hidden"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+// =========================================
+// SETTINGS BACK
+// =========================================
 
 const settingsBackButton =
-    document.getElementById("settingsBackButton");
+    document.getElementById(
+        "settingsBackButton"
+    );
 
+if (settingsBackButton) {
 
-/* =========================================
-   PLAY
-========================================= */
+    settingsBackButton.addEventListener(
+        "click",
+        function() {
 
-playButton.addEventListener("click", function () {
+            settingsScreen.classList.add(
+                "hidden"
+            );
 
-    titleScreen.classList.add("hidden");
+            titleScreen.classList.remove(
+                "hidden"
+            );
 
-    gameScreen.classList.remove("hidden");
+        }
+    );
 
-});
-
-
-/* =========================================
-   CUSTOMIZE
-========================================= */
-
-customizeButton.addEventListener("click", function () {
-
-    window.location.href = "character/index.html";
-
-});
-
-
-/* =========================================
-   SETTINGS
-========================================= */
-
-settingsButton.addEventListener("click", function () {
-
-    titleScreen.classList.add("hidden");
-
-    settingsScreen.classList.remove("hidden");
-
-});
-
-
-/* =========================================
-   GAME BACK
-========================================= */
-
-backButton.addEventListener("click", function () {
-
-    gameScreen.classList.add("hidden");
-
-    titleScreen.classList.remove("hidden");
-
-});
-
-
-/* =========================================
-   SETTINGS BACK
-========================================= */
-
-settingsBackButton.addEventListener("click", function () {
-
-    settingsScreen.classList.add("hidden");
-
-    titleScreen.classList.remove("hidden");
-
-});
+}
