@@ -23,10 +23,6 @@
 <body>
 
 
-<!-- =========================================
-     GAME
-========================================= -->
-
 <div id="game">
 
 
@@ -40,7 +36,10 @@
             🍔 MY LITTLE RESTAURANT
         </div>
 
-        <div class="money">
+        <div
+            id="money"
+            class="money"
+        >
             💰 $100
         </div>
 
@@ -72,59 +71,88 @@
 
 
         <!-- =================================
-             ENTRANCE
+             FRONT DOOR
         ================================== -->
 
-        <div class="entrance">
+        <div
+            id="frontDoor"
+            class="door-area front-door"
+        >
 
             <div class="door">
+
                 🚪
+
+            </div>
+
+            <div class="door-label">
+
+                E — EXIT
+
             </div>
 
         </div>
 
 
         <!-- =================================
-             COUNTER
+             KITCHEN DOOR
         ================================== -->
 
-        <div class="counter">
+        <div
+            id="kitchenDoor"
+            class="door-area kitchen-door"
+        >
 
-            <div class="counter-top"></div>
+            <div class="door">
 
-            <div class="counter-front">
-                🍔 KITCHEN
+                🍳
+
+            </div>
+
+            <div class="door-label">
+
+                E — KITCHEN
+
             </div>
 
         </div>
 
 
         <!-- =================================
-             TABLE 1
+             OFFICE DOOR
+        ================================== -->
+
+        <div
+            id="officeDoor"
+            class="door-area office-door"
+        >
+
+            <div class="door">
+
+                🧑‍💼
+
+            </div>
+
+            <div class="door-label">
+
+                E — OFFICE
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             ONE STARTING TABLE
         ================================== -->
 
         <div class="table table-one">
 
             <div class="table-top"></div>
 
-            <div class="chair chair-one"></div>
+            <div class="chair chair-left"></div>
 
-            <div class="chair chair-two"></div>
-
-        </div>
-
-
-        <!-- =================================
-             TABLE 2
-        ================================== -->
-
-        <div class="table table-two">
-
-            <div class="table-top"></div>
-
-            <div class="chair chair-one"></div>
-
-            <div class="chair chair-two"></div>
+            <div class="chair chair-right"></div>
 
         </div>
 
@@ -157,10 +185,6 @@
 
     </div>
 
-
-    <!-- =====================================
-         GAME JAVASCRIPT
-    ====================================== -->
 
     <script src="game.js"></script>
 
