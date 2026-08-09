@@ -8,17 +8,11 @@
 // ELEMENTS
 // =========================================
 
-const player =
-    document.getElementById("player");
+const player = document.getElementById("player");
+const canvas = document.getElementById("playerCanvas");
+const restaurant = document.getElementById("restaurant");
 
-const canvas =
-    document.getElementById("playerCanvas");
-
-const ctx =
-    canvas.getContext("2d");
-
-const restaurant =
-    document.getElementById("restaurant");
+const ctx = canvas.getContext("2d");
 
 ctx.imageSmoothingEnabled = false;
 
@@ -28,25 +22,20 @@ ctx.imageSmoothingEnabled = false;
 // =========================================
 
 let character = {
-
     hair: 0,
     shirt: 0,
     pants: 0,
     shoes: 0,
     accessory: 0
-
 };
 
 
 // =========================================
-// LOAD CHARACTER
+// LOAD SAVED CHARACTER
 // =========================================
 
 const savedCharacter =
-    localStorage.getItem(
-        "myLittleShopCharacter"
-    );
-
+    localStorage.getItem("myLittleShopCharacter");
 
 if (savedCharacter) {
 
@@ -55,67 +44,30 @@ if (savedCharacter) {
         const loaded =
             JSON.parse(savedCharacter);
 
-
-        if (
-            typeof loaded.hair ===
-            "number"
-        ) {
-
-            character.hair =
-                loaded.hair;
-
+        if (typeof loaded.hair === "number") {
+            character.hair = loaded.hair;
         }
 
-
-        if (
-            typeof loaded.shirt ===
-            "number"
-        ) {
-
-            character.shirt =
-                loaded.shirt;
-
+        if (typeof loaded.shirt === "number") {
+            character.shirt = loaded.shirt;
         }
 
-
-        if (
-            typeof loaded.pants ===
-            "number"
-        ) {
-
-            character.pants =
-                loaded.pants;
-
+        if (typeof loaded.pants === "number") {
+            character.pants = loaded.pants;
         }
 
-
-        if (
-            typeof loaded.shoes ===
-            "number"
-        ) {
-
-            character.shoes =
-                loaded.shoes;
-
+        if (typeof loaded.shoes === "number") {
+            character.shoes = loaded.shoes;
         }
 
-
-        if (
-            typeof loaded.accessory ===
-            "number"
-        ) {
-
-            character.accessory =
-                loaded.accessory;
-
+        if (typeof loaded.accessory === "number") {
+            character.accessory = loaded.accessory;
         }
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.log(
-            "Character save could not be loaded."
+            "Could not load character."
         );
 
     }
@@ -128,81 +80,58 @@ if (savedCharacter) {
 // =========================================
 
 const hairColours = [
-
     "#70462e",
     "#292321",
     "#e6bd55",
     "#b85b31",
     "#4c82bd",
     "#d7659b"
-
 ];
 
-
 const shirtColours = [
-
     "#4d91d1",
     "#d95757",
     "#55a862",
     "#e5bd4f",
     "#9464c0",
     "#df8247"
-
 ];
 
-
 const pantsColours = [
-
     "#3d5d91",
     "#292f4a",
     "#765039",
     "#737a80",
     "#46734f"
-
 ];
 
-
 const shoeColours = [
-
     "#50382c",
     "#292522",
     "#eeeeee",
     "#b84242"
-
 ];
 
-
-const skinColour =
-    "#f3bd88";
-
-const outlineColour =
-    "#49342d";
+const skinColour = "#f3bd88";
+const outlineColour = "#49342d";
 
 
 // =========================================
-// PLAYER POSITION
+// PLAYER
 // =========================================
 
 let playerX = 430;
-
 let playerY = 470;
 
-
-// =========================================
-// PLAYER SIZE
-// =========================================
-
 const playerWidth = 34;
-
 const playerHeight = 48;
-
-
-// =========================================
-// MOVEMENT
-// =========================================
 
 const speed = 3;
 
+
+// =========================================
+// KEYS
+// =========================================
 
 const keys = {
 
@@ -219,12 +148,11 @@ const keys = {
 // =========================================
 
 let legFrame = 0;
-
 let walkTimer = 0;
 
 
 // =========================================
-// PIXEL DRAWING
+// PIXEL DRAW
 // =========================================
 
 function pixel(
@@ -235,8 +163,7 @@ function pixel(
     colour
 ) {
 
-    ctx.fillStyle =
-        colour;
+    ctx.fillStyle = colour;
 
     ctx.fillRect(
         x,
@@ -252,9 +179,7 @@ function pixel(
 // DRAW CHARACTER
 // =========================================
 
-function drawCharacter(
-    frame = 0
-) {
+function drawCharacter(frame = 0) {
 
     ctx.clearRect(
         0,
@@ -285,9 +210,7 @@ function drawCharacter(
             34,
             3,
             8,
-            pantsColours[
-                character.pants
-            ]
+            pantsColours[character.pants]
         );
 
 
@@ -306,9 +229,7 @@ function drawCharacter(
             34,
             3,
             8,
-            pantsColours[
-                character.pants
-            ]
+            pantsColours[character.pants]
         );
 
 
@@ -327,9 +248,7 @@ function drawCharacter(
             40,
             6,
             3,
-            shoeColours[
-                character.shoes
-            ]
+            shoeColours[character.shoes]
         );
 
 
@@ -348,19 +267,19 @@ function drawCharacter(
             40,
             6,
             3,
-            shoeColours[
-                character.shoes
-            ]
+            shoeColours[character.shoes]
         );
 
     }
 
 
     // =====================================
-    // LEFT LEG RAISED
+    // WALK FRAME 1
     // =====================================
 
     if (frame === 1) {
+
+        // LEFT LEG UP
 
         pixel(
             9,
@@ -375,9 +294,7 @@ function drawCharacter(
             32,
             3,
             8,
-            pantsColours[
-                character.pants
-            ]
+            pantsColours[character.pants]
         );
 
 
@@ -396,9 +313,7 @@ function drawCharacter(
             34,
             3,
             8,
-            pantsColours[
-                character.pants
-            ]
+            pantsColours[character.pants]
         );
 
 
@@ -417,9 +332,7 @@ function drawCharacter(
             38,
             6,
             3,
-            shoeColours[
-                character.shoes
-            ]
+            shoeColours[character.shoes]
         );
 
 
@@ -438,16 +351,14 @@ function drawCharacter(
             40,
             6,
             3,
-            shoeColours[
-                character.shoes
-            ]
+            shoeColours[character.shoes]
         );
 
     }
 
 
     // =====================================
-    // RIGHT LEG RAISED
+    // WALK FRAME 2
     // =====================================
 
     if (frame === 2) {
@@ -467,9 +378,7 @@ function drawCharacter(
             34,
             3,
             8,
-            pantsColours[
-                character.pants
-            ]
+            pantsColours[character.pants]
         );
 
 
@@ -488,9 +397,7 @@ function drawCharacter(
             32,
             3,
             8,
-            pantsColours[
-                character.pants
-            ]
+            pantsColours[character.pants]
         );
 
 
@@ -509,9 +416,7 @@ function drawCharacter(
             40,
             6,
             3,
-            shoeColours[
-                character.shoes
-            ]
+            shoeColours[character.shoes]
         );
 
 
@@ -530,9 +435,7 @@ function drawCharacter(
             38,
             6,
             3,
-            shoeColours[
-                character.shoes
-            ]
+            shoeColours[character.shoes]
         );
 
     }
@@ -550,15 +453,12 @@ function drawCharacter(
         outlineColour
     );
 
-
     pixel(
         9,
         20,
         14,
         14,
-        shirtColours[
-            character.shirt
-        ]
+        shirtColours[character.shirt]
     );
 
 
@@ -573,7 +473,6 @@ function drawCharacter(
         13,
         outlineColour
     );
-
 
     pixel(
         6,
@@ -596,7 +495,6 @@ function drawCharacter(
         outlineColour
     );
 
-
     pixel(
         23,
         24,
@@ -617,7 +515,6 @@ function drawCharacter(
         18,
         outlineColour
     );
-
 
     pixel(
         9,
@@ -640,37 +537,28 @@ function drawCharacter(
         outlineColour
     );
 
-
     pixel(
         9,
         4,
         14,
         5,
-        hairColours[
-            character.hair
-        ]
+        hairColours[character.hair]
     );
-
 
     pixel(
         7,
         7,
         4,
         6,
-        hairColours[
-            character.hair
-        ]
+        hairColours[character.hair]
     );
-
 
     pixel(
         21,
         7,
         4,
         6,
-        hairColours[
-            character.hair
-        ]
+        hairColours[character.hair]
     );
 
 
@@ -685,7 +573,6 @@ function drawCharacter(
         3,
         "#292321"
     );
-
 
     pixel(
         19,
@@ -719,16 +606,14 @@ function drawCharacter(
 
 
 // =========================================
-// ACCESSORY
+// ACCESSORIES
 // =========================================
 
 function drawAccessory() {
 
     // CAP
 
-    if (
-        character.accessory === 1
-    ) {
+    if (character.accessory === 1) {
 
         pixel(
             6,
@@ -737,7 +622,6 @@ function drawAccessory() {
             5,
             "#394d66"
         );
-
 
         pixel(
             20,
@@ -752,9 +636,7 @@ function drawAccessory() {
 
     // CHEF HAT
 
-    if (
-        character.accessory === 2
-    ) {
+    if (character.accessory === 2) {
 
         pixel(
             10,
@@ -763,7 +645,6 @@ function drawAccessory() {
             3,
             "#ffffff"
         );
-
 
         pixel(
             8,
@@ -778,9 +659,7 @@ function drawAccessory() {
 
     // BEANIE
 
-    if (
-        character.accessory === 3
-    ) {
+    if (character.accessory === 3) {
 
         pixel(
             7,
@@ -789,7 +668,6 @@ function drawAccessory() {
             7,
             "#d95757"
         );
-
 
         pixel(
             7,
@@ -804,13 +682,13 @@ function drawAccessory() {
 
     // GLASSES
 
-    if (
-        character.accessory === 4
-    ) {
+    if (character.accessory === 4) {
 
         const glasses =
             "#292321";
 
+
+        // LEFT LENS
 
         pixel(
             9,
@@ -821,6 +699,8 @@ function drawAccessory() {
         );
 
 
+        // RIGHT LENS
+
         pixel(
             17,
             10,
@@ -829,6 +709,8 @@ function drawAccessory() {
             glasses
         );
 
+
+        // LEFT EYE
 
         pixel(
             11,
@@ -839,6 +721,8 @@ function drawAccessory() {
         );
 
 
+        // RIGHT EYE
+
         pixel(
             19,
             12,
@@ -847,6 +731,8 @@ function drawAccessory() {
             skinColour
         );
 
+
+        // BRIDGE
 
         pixel(
             15,
@@ -872,17 +758,11 @@ function getPlayerRect(
 
     return {
 
-        left:
-            x + 12,
+        left: x + 12,
+        right: x + 22,
 
-        right:
-            x + 22,
-
-        top:
-            y + 28,
-
-        bottom:
-            y + 47
+        top: y + 28,
+        bottom: y + 47
 
     };
 
@@ -890,7 +770,7 @@ function getPlayerRect(
 
 
 // =========================================
-// COLLISION
+// COLLISION CHECK
 // =========================================
 
 function rectanglesOverlap(
@@ -911,7 +791,7 @@ function rectanglesOverlap(
 
 
 // =========================================
-// GET ELEMENT RECTANGLE
+// ELEMENT POSITION
 // =========================================
 
 function getElementRect(
@@ -920,7 +800,6 @@ function getElementRect(
 
     const elementRect =
         element.getBoundingClientRect();
-
 
     const restaurantRect =
         restaurant.getBoundingClientRect();
@@ -972,82 +851,50 @@ function getSolidObjects() {
         top: 0,
 
         bottom:
-            restaurant.clientHeight *
-            0.42
+            restaurant.clientHeight * 0.42
 
     });
 
 
     // =====================================
-    // TABLETOP
+    // TABLE
+    // =====================================
+    //
+    // This hitbox is deliberately smaller
+    // than the visible table container.
+    //
+    // Adjust these four numbers if the
+    // visual table itself changes position.
     // =====================================
 
-    const table =
-        document.querySelector(
-            ".table-top"
-        );
+    objects.push({
 
+        left: 390,
 
-    if (table) {
+        right: 510,
 
-        const rect =
-            getElementRect(table);
+        top: 350,
 
+        bottom: 385
 
-        objects.push({
-
-            left:
-                rect.left,
-
-            right:
-                rect.right,
-
-            top:
-                rect.top,
-
-            bottom:
-                rect.bottom
-
-        });
-
-    }
+    });
 
 
     // =====================================
     // TABLE LEG
     // =====================================
 
-    const tableLeg =
-        document.querySelector(
-            ".table-leg"
-        );
+    objects.push({
 
+        left: 435,
 
-    if (tableLeg) {
+        right: 465,
 
-        const rect =
-            getElementRect(
-                tableLeg
-            );
+        top: 385,
 
+        bottom: 430
 
-        objects.push({
-
-            left:
-                rect.left,
-
-            right:
-                rect.right,
-
-            top:
-                rect.top,
-
-            bottom:
-                rect.bottom
-
-        });
-
-    }
+    });
 
 
     // =====================================
@@ -1063,27 +910,9 @@ function getSolidObjects() {
     chairs.forEach(
         function(chair) {
 
-            const rect =
-                getElementRect(
-                    chair
-                );
-
-
-            objects.push({
-
-                left:
-                    rect.left,
-
-                right:
-                    rect.right,
-
-                top:
-                    rect.top,
-
-                bottom:
-                    rect.bottom
-
-            });
+            objects.push(
+                getElementRect(chair)
+            );
 
         }
     );
@@ -1098,12 +927,10 @@ function getSolidObjects() {
             "kitchenDoor"
         );
 
-
     const officeDoor =
         document.getElementById(
             "officeDoor"
         );
-
 
     const frontDoor =
         document.getElementById(
@@ -1114,9 +941,7 @@ function getSolidObjects() {
     if (kitchenDoor) {
 
         objects.push(
-            getElementRect(
-                kitchenDoor
-            )
+            getElementRect(kitchenDoor)
         );
 
     }
@@ -1125,9 +950,7 @@ function getSolidObjects() {
     if (officeDoor) {
 
         objects.push(
-            getElementRect(
-                officeDoor
-            )
+            getElementRect(officeDoor)
         );
 
     }
@@ -1136,9 +959,7 @@ function getSolidObjects() {
     if (frontDoor) {
 
         objects.push(
-            getElementRect(
-                frontDoor
-            )
+            getElementRect(frontDoor)
         );
 
     }
@@ -1150,7 +971,7 @@ function getSolidObjects() {
 
 
 // =========================================
-// CAN MOVE
+// CAN MOVE?
 // =========================================
 
 function canMoveTo(
@@ -1166,7 +987,7 @@ function canMoveTo(
 
 
     // =====================================
-    // OUTER BOUNDARIES
+    // RESTAURANT BOUNDARIES
     // =====================================
 
     if (
@@ -1208,7 +1029,7 @@ function canMoveTo(
 
 
     // =====================================
-    // SOLID OBJECTS
+    // OBJECTS
     // =====================================
 
     const objects =
@@ -1365,40 +1186,28 @@ document.addEventListener(
 function movePlayer() {
 
     let moveX = 0;
-
     let moveY = 0;
 
 
     if (keys.up) {
-
         moveY -= speed;
-
     }
-
 
     if (keys.down) {
-
         moveY += speed;
-
     }
-
 
     if (keys.left) {
-
         moveX -= speed;
-
     }
 
-
     if (keys.right) {
-
         moveX += speed;
-
     }
 
 
     // =====================================
-    // DIAGONAL MOVEMENT
+    // DIAGONAL SPEED
     // =====================================
 
     if (
@@ -1407,72 +1216,66 @@ function movePlayer() {
     ) {
 
         moveX *= 0.707;
-
         moveY *= 0.707;
 
     }
 
 
     // =====================================
-    // HORIZONTAL
+    // HORIZONTAL MOVEMENT
     // =====================================
 
-    const newX =
+    const nextX =
         playerX + moveX;
 
 
     if (
         canMoveTo(
-            newX,
+            nextX,
             playerY
         )
     ) {
 
         playerX =
-            newX;
+            nextX;
 
     }
 
 
     // =====================================
-    // VERTICAL
+    // VERTICAL MOVEMENT
     // =====================================
 
-    const newY =
+    const nextY =
         playerY + moveY;
 
 
     if (
         canMoveTo(
             playerX,
-            newY
+            nextY
         )
     ) {
 
         playerY =
-            newY;
+            nextY;
 
     }
 
 
     // =====================================
-    // POSITION
+    // UPDATE PLAYER POSITION
     // =====================================
 
     player.style.left =
-        Math.round(
-            playerX
-        ) + "px";
-
+        Math.round(playerX) + "px";
 
     player.style.top =
-        Math.round(
-            playerY
-        ) + "px";
+        Math.round(playerY) + "px";
 
 
     // =====================================
-    // WALKING
+    // WALK ANIMATION
     // =====================================
 
     const moving =
@@ -1538,7 +1341,7 @@ function gameLoop() {
 
 
 // =========================================
-// START GAME
+// START
 // =========================================
 
 drawCharacter(0);
