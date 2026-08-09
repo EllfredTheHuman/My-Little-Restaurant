@@ -1,12 +1,3 @@
-@import url(
-    'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'
-);
-
-
-/* =========================================
-   RESET
-========================================= */
-
 * {
 
     box-sizing: border-box;
@@ -20,11 +11,9 @@ html,
 body {
 
     margin: 0;
-
     padding: 0;
 
     width: 100%;
-
     min-height: 100%;
 
 }
@@ -32,9 +21,7 @@ body {
 
 body {
 
-    font-family:
-        "Press Start 2P",
-        monospace;
+    font-family: monospace;
 
     background: #63cbed;
 
@@ -42,14 +29,14 @@ body {
 
 
 /* =========================================
-   EDITOR
+   MAIN
 ========================================= */
 
 .character-editor {
 
     min-height: 100vh;
 
-    padding: 30px 25px 60px;
+    padding: 30px 20px 60px;
 
     display: flex;
 
@@ -58,11 +45,9 @@ body {
     align-items: center;
 
     background:
-
         linear-gradient(
-            #63cbed 0%,
-            #7bd4ef 60%,
-            #a3dfed 100%
+            #63cbed,
+            #8bd8ef
         );
 
 }
@@ -85,7 +70,11 @@ body {
 
     color: white;
 
-    font-size: 26px;
+    font-size: 30px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
 
     text-shadow:
         5px 5px 0 #3187aa;
@@ -95,11 +84,9 @@ body {
 
 .editor-header p {
 
-    margin-top: 14px;
-
     color: white;
 
-    font-size: 8px;
+    font-size: 14px;
 
 }
 
@@ -110,7 +97,7 @@ body {
 
 .character-preview {
 
-    margin-top: 30px;
+    margin-top: 25px;
 
 }
 
@@ -118,7 +105,6 @@ body {
 .preview-box {
 
     width: 330px;
-
     height: 310px;
 
     position: relative;
@@ -141,20 +127,16 @@ body {
 }
 
 
-/* Grass */
-
 .preview-box::before {
 
     content: "";
 
     position: absolute;
 
+    bottom: 0;
     left: 0;
 
-    bottom: 0;
-
     width: 100%;
-
     height: 55px;
 
     background: #61b966;
@@ -170,11 +152,10 @@ body {
 
 .character {
 
-    position: relative;
-
     width: 128px;
-
     height: 220px;
+
+    position: relative;
 
     margin-bottom: 30px;
 
@@ -192,11 +173,9 @@ body {
     position: absolute;
 
     left: 28px;
-
     top: 30px;
 
     width: 72px;
-
     height: 70px;
 
     background: #f2bd8a;
@@ -217,11 +196,9 @@ body {
     position: absolute;
 
     left: 23px;
-
     top: 20px;
 
     width: 82px;
-
     height: 42px;
 
     background: #70452d;
@@ -231,7 +208,6 @@ body {
     z-index: 8;
 
     box-shadow:
-
         8px 8px 0 #70452d,
         22px 8px 0 #70452d,
         36px 8px 0 #70452d,
@@ -249,7 +225,6 @@ body {
     position: absolute;
 
     left: 14px;
-
     top: 27px;
 
     width: 44px;
@@ -264,7 +239,6 @@ body {
 .character-eyes span {
 
     width: 8px;
-
     height: 11px;
 
     background: #272321;
@@ -281,11 +255,9 @@ body {
     position: absolute;
 
     left: 28px;
-
     bottom: 10px;
 
     width: 14px;
-
     height: 5px;
 
     background: #a74f4f;
@@ -302,11 +274,9 @@ body {
     position: absolute;
 
     left: 17px;
-
     top: 98px;
 
     width: 94px;
-
     height: 68px;
 
     background: #4c8fd1;
@@ -341,7 +311,6 @@ body {
     top: 3px;
 
     width: 23px;
-
     height: 50px;
 
     background: #f2bd8a;
@@ -352,16 +321,12 @@ body {
 
 
 .character-body::before {
-
     left: -30px;
-
 }
 
 
 .character-body::after {
-
     right: -30px;
-
 }
 
 
@@ -374,11 +339,9 @@ body {
     position: absolute;
 
     left: 31px;
-
     top: 164px;
 
     width: 66px;
-
     height: 42px;
 
 }
@@ -389,29 +352,23 @@ body {
     position: absolute;
 
     width: 26px;
-
     height: 42px;
 
     background: #292f4a;
 
     border-left: 5px solid #202538;
-
     border-right: 5px solid #202538;
 
 }
 
 
 .character-leg.left {
-
     left: 0;
-
 }
 
 
 .character-leg.right {
-
     right: 0;
-
 }
 
 
@@ -424,7 +381,6 @@ body {
     position: absolute;
 
     left: 21px;
-
     top: 194px;
 
     width: 86px;
@@ -437,7 +393,6 @@ body {
     position: absolute;
 
     width: 39px;
-
     height: 18px;
 
     background: #49362c;
@@ -448,16 +403,12 @@ body {
 
 
 .character-shoe.left {
-
     left: 0;
-
 }
 
 
 .character-shoe.right {
-
     right: 0;
-
 }
 
 
@@ -481,11 +432,9 @@ body {
 .pixel-cap {
 
     left: 38px;
-
     top: 9px;
 
     width: 55px;
-
     height: 18px;
 
     background: #d94f4f;
@@ -493,7 +442,6 @@ body {
     border: 5px solid #743838;
 
     box-shadow:
-
         12px -8px 0 #d94f4f,
         24px -8px 0 #d94f4f,
         36px -8px 0 #d94f4f;
@@ -508,11 +456,9 @@ body {
     position: absolute;
 
     left: -8px;
-
     bottom: -9px;
 
     width: 45px;
-
     height: 9px;
 
     background: #d94f4f;
@@ -527,11 +473,9 @@ body {
 .pixel-chef-hat {
 
     left: 35px;
-
     top: -8px;
 
     width: 60px;
-
     height: 40px;
 
     background: white;
@@ -539,7 +483,6 @@ body {
     border: 5px solid #777;
 
     box-shadow:
-
         8px -8px 0 white,
         18px -12px 0 white,
         30px -8px 0 white;
@@ -554,11 +497,9 @@ body {
     position: absolute;
 
     left: -5px;
-
     bottom: -12px;
 
     width: 60px;
-
     height: 12px;
 
     background: white;
@@ -573,11 +514,9 @@ body {
 .pixel-beanie {
 
     left: 28px;
-
     top: 8px;
 
     width: 70px;
-
     height: 35px;
 
     background: #8c5bc4;
@@ -585,7 +524,6 @@ body {
     border: 5px solid #523675;
 
     box-shadow:
-
         8px -8px 0 #8c5bc4,
         20px -10px 0 #8c5bc4,
         32px -8px 0 #8c5bc4;
@@ -600,11 +538,9 @@ body {
     position: absolute;
 
     left: -5px;
-
     bottom: -10px;
 
     width: 70px;
-
     height: 10px;
 
     background: #7147a4;
@@ -619,11 +555,9 @@ body {
 .pixel-glasses {
 
     left: 42px;
-
     top: 63px;
 
     width: 18px;
-
     height: 15px;
 
     background: #222;
@@ -631,7 +565,6 @@ body {
     border: 4px solid #111;
 
     box-shadow:
-
         30px 0 0 #222,
         30px 0 0 4px #111;
 
@@ -645,11 +578,9 @@ body {
     position: absolute;
 
     left: 14px;
-
     top: 2px;
 
     width: 22px;
-
     height: 5px;
 
     background: #111;
@@ -658,7 +589,7 @@ body {
 
 
 /* =========================================
-   CUSTOMIZATION PANEL
+   CUSTOMIZATION
 ========================================= */
 
 .customization-panel {
@@ -677,7 +608,7 @@ body {
 
     gap: 12px;
 
-    background: rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.8);
 
     border: 6px solid #347b92;
 
@@ -687,13 +618,9 @@ body {
 }
 
 
-/* =========================================
-   ROW
-========================================= */
-
 .customization-row {
 
-    min-height: 58px;
+    min-height: 60px;
 
     display: grid;
 
@@ -719,14 +646,10 @@ body {
 
     color: #27657d;
 
-    font-size: 7px;
+    font-size: 9px;
 
 }
 
-
-/* =========================================
-   SELECTION
-========================================= */
 
 .selection {
 
@@ -734,9 +657,7 @@ body {
 
     color: #27657d;
 
-    font-size: 7px;
-
-    white-space: nowrap;
+    font-size: 9px;
 
 }
 
@@ -748,16 +669,15 @@ body {
 .arrow-button {
 
     width: 34px;
-
     height: 34px;
 
     padding: 0;
 
-    font-family:
-        "Press Start 2P",
-        monospace;
+    font-family: monospace;
 
-    font-size: 9px;
+    font-size: 12px;
+
+    font-weight: bold;
 
     color: white;
 
@@ -796,7 +716,7 @@ body {
 
 .editor-actions {
 
-    margin-top: 20px;
+    margin-top: 22px;
 
     display: flex;
 
@@ -807,20 +727,18 @@ body {
 
 .editor-actions button {
 
-    padding: 16px 20px;
+    padding: 16px 22px;
 
-    font-family:
-        "Press Start 2P",
-        monospace;
+    font-family: monospace;
 
-    font-size: 8px;
+    font-size: 10px;
+
+    font-weight: bold;
 
     cursor: pointer;
 
 }
 
-
-/* RANDOMIZE */
 
 .secondary-button {
 
@@ -835,8 +753,6 @@ body {
 
 }
 
-
-/* CONTINUE */
 
 .primary-button {
 
@@ -861,16 +777,15 @@ body {
     position: fixed;
 
     left: 20px;
-
     bottom: 20px;
 
     padding: 13px 18px;
 
-    font-family:
-        "Press Start 2P",
-        monospace;
+    font-family: monospace;
 
-    font-size: 8px;
+    font-size: 10px;
+
+    font-weight: bold;
 
     color: white;
 
@@ -894,16 +809,15 @@ body {
 
     .editor-header h1 {
 
-        font-size: 18px;
+        font-size: 20px;
 
     }
 
 
     .preview-box {
 
-        width: 270px;
-
-        height: 260px;
+        width: 280px;
+        height: 270px;
 
     }
 
