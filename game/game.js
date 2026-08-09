@@ -1,6 +1,6 @@
 // =========================================
 // MY LITTLE RESTAURANT
-// GAME JAVASCRIPT
+// GAME.JS
 // =========================================
 
 
@@ -21,7 +21,7 @@ ctx.imageSmoothingEnabled = false;
 
 
 // =========================================
-// LOAD CHARACTER
+// CHARACTER SAVE
 // =========================================
 
 const savedCharacter =
@@ -48,30 +48,21 @@ if (savedCharacter) {
         const loaded =
             JSON.parse(savedCharacter);
 
-        character.hair =
-            typeof loaded.hair === "number"
-                ? loaded.hair
-                : 0;
 
-        character.shirt =
-            typeof loaded.shirt === "number"
-                ? loaded.shirt
-                : 0;
+        if (typeof loaded.hair === "number")
+            character.hair = loaded.hair;
 
-        character.pants =
-            typeof loaded.pants === "number"
-                ? loaded.pants
-                : 0;
+        if (typeof loaded.shirt === "number")
+            character.shirt = loaded.shirt;
 
-        character.shoes =
-            typeof loaded.shoes === "number"
-                ? loaded.shoes
-                : 0;
+        if (typeof loaded.pants === "number")
+            character.pants = loaded.pants;
 
-        character.accessory =
-            typeof loaded.accessory === "number"
-                ? loaded.accessory
-                : 0;
+        if (typeof loaded.shoes === "number")
+            character.shoes = loaded.shoes;
+
+        if (typeof loaded.accessory === "number")
+            character.accessory = loaded.accessory;
 
     }
 
@@ -156,7 +147,7 @@ const outline =
 
 
 // =========================================
-// DRAW PIXEL
+// PIXEL
 // =========================================
 
 function pixel(
@@ -187,8 +178,6 @@ function drawCharacter(
     legFrame = 0
 ) {
 
-    // Clear the entire sprite
-
     ctx.clearRect(
         0,
         0,
@@ -200,20 +189,6 @@ function drawCharacter(
     // =====================================
     // LEGS
     // =====================================
-
-    /*
-        Frame 0:
-        Both legs down.
-
-        Frame 1:
-        One leg raised.
-
-        Frame 2:
-        Other leg raised.
-
-        The legs only move vertically.
-    */
-
 
     if (legFrame === 0) {
 
@@ -301,7 +276,7 @@ function drawCharacter(
 
     if (legFrame === 1) {
 
-        // LEFT LEG RAISED
+        // LEFT RAISED
 
         pixel(
             9,
@@ -320,7 +295,7 @@ function drawCharacter(
         );
 
 
-        // RIGHT LEG DOWN
+        // RIGHT DOWN
 
         pixel(
             17,
@@ -339,7 +314,7 @@ function drawCharacter(
         );
 
 
-        // LEFT SHOE RAISED
+        // LEFT SHOE
 
         pixel(
             7,
@@ -358,7 +333,7 @@ function drawCharacter(
         );
 
 
-        // RIGHT SHOE DOWN
+        // RIGHT SHOE
 
         pixel(
             17,
@@ -385,7 +360,7 @@ function drawCharacter(
 
     if (legFrame === 2) {
 
-        // LEFT LEG DOWN
+        // LEFT DOWN
 
         pixel(
             9,
@@ -404,7 +379,7 @@ function drawCharacter(
         );
 
 
-        // RIGHT LEG RAISED
+        // RIGHT RAISED
 
         pixel(
             17,
@@ -423,7 +398,7 @@ function drawCharacter(
         );
 
 
-        // LEFT SHOE DOWN
+        // LEFT SHOE
 
         pixel(
             7,
@@ -442,7 +417,7 @@ function drawCharacter(
         );
 
 
-        // RIGHT SHOE RAISED
+        // RIGHT SHOE
 
         pixel(
             17,
@@ -474,7 +449,6 @@ function drawCharacter(
         18,
         outline
     );
-
 
     pixel(
         9,
@@ -535,9 +509,6 @@ function drawCharacter(
         outline
     );
 
-
-    // FACE
-
     pixel(
         9,
         5,
@@ -567,8 +538,6 @@ function drawCharacter(
         hairColour
     );
 
-
-    // Hair sides
 
     pixel(
         7,
@@ -631,16 +600,14 @@ function drawCharacter(
 
 
 // =========================================
-// ACCESSORIES
+// ACCESSORY
 // =========================================
 
 function drawAccessory() {
 
     // CAP
 
-    if (
-        character.accessory === 1
-    ) {
+    if (character.accessory === 1) {
 
         pixel(
             6,
@@ -663,9 +630,7 @@ function drawAccessory() {
 
     // CHEF HAT
 
-    if (
-        character.accessory === 2
-    ) {
+    if (character.accessory === 2) {
 
         pixel(
             10,
@@ -688,9 +653,7 @@ function drawAccessory() {
 
     // BEANIE
 
-    if (
-        character.accessory === 3
-    ) {
+    if (character.accessory === 3) {
 
         pixel(
             7,
@@ -713,15 +676,11 @@ function drawAccessory() {
 
     // GLASSES
 
-    if (
-        character.accessory === 4
-    ) {
+    if (character.accessory === 4) {
 
         const glasses =
             "#292321";
 
-
-        // LEFT LENS
 
         pixel(
             9,
@@ -730,9 +689,6 @@ function drawAccessory() {
             5,
             glasses
         );
-
-
-        // RIGHT LENS
 
         pixel(
             17,
@@ -743,8 +699,6 @@ function drawAccessory() {
         );
 
 
-        // LEFT LENS OPENING
-
         pixel(
             11,
             12,
@@ -752,9 +706,6 @@ function drawAccessory() {
             2,
             skin
         );
-
-
-        // RIGHT LENS OPENING
 
         pixel(
             19,
@@ -764,8 +715,6 @@ function drawAccessory() {
             skin
         );
 
-
-        // BRIDGE
 
         pixel(
             15,
@@ -781,12 +730,21 @@ function drawAccessory() {
 
 
 // =========================================
-// POSITION
+// PLAYER SIZE
+// =========================================
+
+const playerWidth = 34;
+
+const playerHeight = 48;
+
+
+// =========================================
+// PLAYER POSITION
 // =========================================
 
 let playerX = 430;
 
-let playerY = 410;
+let playerY = 470;
 
 
 // =========================================
@@ -813,6 +771,311 @@ const keys = {
 let legFrame = 0;
 
 let walkTimer = 0;
+
+
+// =========================================
+// COLLISION RECTANGLE
+// =========================================
+
+function getPlayerRect(
+    x,
+    y
+) {
+
+    return {
+
+        left: x + 12,
+
+        right: x + playerWidth - 8,
+
+        top: y + 20,
+
+        bottom: y + playerHeight
+
+    };
+
+}
+
+
+// =========================================
+// RECTANGLE COLLISION
+// =========================================
+
+function rectanglesOverlap(
+    a,
+    b
+) {
+
+    return (
+
+        a.left < b.right &&
+
+        a.right > b.left &&
+
+        a.top < b.bottom &&
+
+        a.bottom > b.top
+
+    );
+
+}
+
+
+// =========================================
+// GET SOLID OBJECTS
+// =========================================
+
+function getSolidObjects() {
+
+    const objects = [];
+
+
+    const table =
+        document.querySelector(".table");
+
+
+    const chairs =
+        document.querySelectorAll(
+            ".chair"
+        );
+
+
+    const kitchenDoor =
+        document.getElementById(
+            "kitchenDoor"
+        );
+
+
+    const officeDoor =
+        document.getElementById(
+            "officeDoor"
+        );
+
+
+    const frontDoor =
+        document.getElementById(
+            "frontDoor"
+        );
+
+
+    if (table) {
+
+        objects.push(
+            table
+        );
+
+    }
+
+
+    chairs.forEach(
+        function(chair) {
+
+            objects.push(
+                chair
+            );
+
+        }
+    );
+
+
+    if (kitchenDoor) {
+
+        objects.push(
+            kitchenDoor
+        );
+
+    }
+
+
+    if (officeDoor) {
+
+        objects.push(
+            officeDoor
+        );
+
+    }
+
+
+    if (frontDoor) {
+
+        objects.push(
+            frontDoor
+        );
+
+    }
+
+
+    return objects;
+
+}
+
+
+// =========================================
+// GET RECTANGLE RELATIVE TO RESTAURANT
+// =========================================
+
+function getElementRect(
+    element
+) {
+
+    const restaurant =
+        document.getElementById(
+            "restaurant"
+        );
+
+
+    const elementRect =
+        element.getBoundingClientRect();
+
+
+    const restaurantRect =
+        restaurant.getBoundingClientRect();
+
+
+    return {
+
+        left:
+            elementRect.left -
+            restaurantRect.left,
+
+        right:
+            elementRect.right -
+            restaurantRect.left,
+
+        top:
+            elementRect.top -
+            restaurantRect.top,
+
+        bottom:
+            elementRect.bottom -
+            restaurantRect.top
+
+    };
+
+}
+
+
+// =========================================
+// COLLISION CHECK
+// =========================================
+
+function canMoveTo(
+    newX,
+    newY
+) {
+
+    const restaurant =
+        document.getElementById(
+            "restaurant"
+        );
+
+
+    const playerRect =
+        getPlayerRect(
+            newX,
+            newY
+        );
+
+
+    // =====================================
+    // RESTAURANT BOUNDARIES
+    // =====================================
+
+    if (
+        playerRect.left < 8
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        playerRect.right >
+        restaurant.clientWidth - 8
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        playerRect.top < 5
+    ) {
+
+        return false;
+
+    }
+
+
+    if (
+        playerRect.bottom >
+        restaurant.clientHeight
+    ) {
+
+        return false;
+
+    }
+
+
+    // =====================================
+    // OBJECT COLLISION
+    // =====================================
+
+    const objects =
+        getSolidObjects();
+
+
+    for (
+        let i = 0;
+        i < objects.length;
+        i++
+    ) {
+
+        const objectRect =
+            getElementRect(
+                objects[i]
+            );
+
+
+        // Add a little padding
+        // so collision feels natural.
+
+        const paddedRect = {
+
+            left:
+                objectRect.left - 4,
+
+            right:
+                objectRect.right + 4,
+
+            top:
+                objectRect.top - 4,
+
+            bottom:
+                objectRect.bottom + 4
+
+        };
+
+
+        if (
+            rectanglesOverlap(
+                playerRect,
+                paddedRect
+            )
+        ) {
+
+            return false;
+
+        }
+
+    }
+
+
+    return true;
+
+}
 
 
 // =========================================
@@ -973,7 +1236,7 @@ function movePlayer() {
 
 
     // =====================================
-    // DIAGONAL MOVEMENT
+    // DIAGONAL SPEED
     // =====================================
 
     if (
@@ -988,55 +1251,44 @@ function movePlayer() {
     }
 
 
-    playerX += moveX;
+    // =====================================
+    // HORIZONTAL COLLISION
+    // =====================================
 
-    playerY += moveY;
+    const nextX =
+        playerX + moveX;
+
+
+    if (
+        canMoveTo(
+            nextX,
+            playerY
+        )
+    ) {
+
+        playerX =
+            nextX;
+
+    }
 
 
     // =====================================
-    // BOUNDARIES
+    // VERTICAL COLLISION
     // =====================================
 
-    const restaurant =
-        document.getElementById(
-            "restaurant"
-        );
+    const nextY =
+        playerY + moveY;
 
 
-    const maxX =
-        restaurant.clientWidth -
-        player.offsetWidth;
+    if (
+        canMoveTo(
+            playerX,
+            nextY
+        )
+    ) {
 
-
-    const maxY =
-        restaurant.clientHeight -
-        player.offsetHeight;
-
-
-    if (playerX < 0) {
-
-        playerX = 0;
-
-    }
-
-
-    if (playerX > maxX) {
-
-        playerX = maxX;
-
-    }
-
-
-    if (playerY < 0) {
-
-        playerY = 0;
-
-    }
-
-
-    if (playerY > maxY) {
-
-        playerY = maxY;
+        playerY =
+            nextY;
 
     }
 
@@ -1046,14 +1298,19 @@ function movePlayer() {
     // =====================================
 
     player.style.left =
-        Math.round(playerX) + "px";
+        Math.round(
+            playerX
+        ) + "px";
+
 
     player.style.top =
-        Math.round(playerY) + "px";
+        Math.round(
+            playerY
+        ) + "px";
 
 
     // =====================================
-    // WALKING
+    // ANIMATION
     // =====================================
 
     const moving =
@@ -1066,13 +1323,18 @@ function movePlayer() {
         walkTimer++;
 
 
-        if (walkTimer >= 10) {
+        if (
+            walkTimer >= 10
+        ) {
 
             walkTimer = 0;
 
             legFrame++;
 
-            if (legFrame > 2) {
+
+            if (
+                legFrame > 2
+            ) {
 
                 legFrame = 0;
 
@@ -1090,10 +1352,6 @@ function movePlayer() {
 
     }
 
-
-    // =====================================
-    // DRAW
-    // =====================================
 
     drawCharacter(
         moving
