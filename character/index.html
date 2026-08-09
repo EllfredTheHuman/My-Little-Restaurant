@@ -2,29 +2,21 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Character Creator - My Little Shop</title>
 
     <link rel="stylesheet" href="character.css">
-
 </head>
-
 
 <body>
 
-    <main class="character-editor">
-
+    <div class="creator">
 
         <!-- HEADER -->
 
-        <header class="editor-header">
+        <header class="creator-header">
 
             <h1>CREATE YOUR SHOPKEEPER</h1>
 
@@ -35,74 +27,63 @@
 
         <!-- CHARACTER PREVIEW -->
 
-        <section class="character-preview">
+        <section class="preview-area">
 
-            <div class="preview-box">
+            <div class="preview-background">
 
-                <div id="character" class="character">
+                <div class="ground"></div>
 
-                    <!-- HAIR -->
+                <div class="character">
 
-                    <div class="hair">
+                    <!-- HAIR BACK -->
 
-                        <div class="hair-top"></div>
-
-                        <div class="hair-left"></div>
-
-                        <div class="hair-right"></div>
-
-                    </div>
-
-
-                    <!-- HEAD -->
-
-                    <div class="head">
-
-                        <div class="eye left-eye"></div>
-
-                        <div class="eye right-eye"></div>
-
-                        <div class="mouth"></div>
-
-                    </div>
-
+                    <div class="hair-back"></div>
 
                     <!-- BODY -->
 
                     <div class="body">
 
-                        <div class="shirt"></div>
+                        <div class="shirt-detail"></div>
 
                     </div>
 
+                    <!-- HEAD -->
+
+                    <div class="head">
+
+                        <div class="face">
+
+                            <div class="eye eye-left"></div>
+                            <div class="eye eye-right"></div>
+
+                            <div class="mouth"></div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- HAIR FRONT -->
+
+                    <div class="hair-front"></div>
 
                     <!-- ARMS -->
 
-                    <div class="arm left-arm"></div>
-
-                    <div class="arm right-arm"></div>
-
+                    <div class="arm arm-left"></div>
+                    <div class="arm arm-right"></div>
 
                     <!-- LEGS -->
 
-                    <div class="leg left-leg"></div>
-
-                    <div class="leg right-leg"></div>
-
+                    <div class="leg leg-left"></div>
+                    <div class="leg leg-right"></div>
 
                     <!-- SHOES -->
 
-                    <div class="shoe left-shoe"></div>
-
-                    <div class="shoe right-shoe"></div>
-
+                    <div class="shoe shoe-left"></div>
+                    <div class="shoe shoe-right"></div>
 
                     <!-- ACCESSORY -->
 
-                    <div
-                        id="accessory"
-                        class="accessory"
-                    ></div>
+                    <div id="accessory"></div>
 
                 </div>
 
@@ -113,194 +94,95 @@
 
         <!-- CUSTOMIZATION -->
 
-        <section class="customization-panel">
+        <section class="customization">
 
+            <div class="custom-row">
 
-            <!-- HAIR -->
+                <span>HAIR</span>
 
-            <div class="customization-row">
+                <button id="hairPrevious">◀</button>
 
-                <h2>HAIR</h2>
+                <div id="hairName">Brown</div>
 
-                <button
-                    id="hairPrevious"
-                    class="arrow-button"
-                >
-                    ◀
-                </button>
-
-                <div
-                    id="hairSelection"
-                    class="selection"
-                >
-                    Brown
-                </div>
-
-                <button
-                    id="hairNext"
-                    class="arrow-button"
-                >
-                    ▶
-                </button>
+                <button id="hairNext">▶</button>
 
             </div>
 
 
-            <!-- SHIRT -->
+            <div class="custom-row">
 
-            <div class="customization-row">
+                <span>SHIRT</span>
 
-                <h2>SHIRT</h2>
+                <button id="shirtPrevious">◀</button>
 
-                <button
-                    id="shirtPrevious"
-                    class="arrow-button"
-                >
-                    ◀
-                </button>
+                <div id="shirtName">Blue</div>
 
-                <div
-                    id="shirtSelection"
-                    class="selection"
-                >
-                    Blue
-                </div>
-
-                <button
-                    id="shirtNext"
-                    class="arrow-button"
-                >
-                    ▶
-                </button>
+                <button id="shirtNext">▶</button>
 
             </div>
 
 
-            <!-- PANTS -->
+            <div class="custom-row">
 
-            <div class="customization-row">
+                <span>PANTS</span>
 
-                <h2>PANTS</h2>
+                <button id="pantsPrevious">◀</button>
 
-                <button
-                    id="pantsPrevious"
-                    class="arrow-button"
-                >
-                    ◀
-                </button>
+                <div id="pantsName">Blue</div>
 
-                <div
-                    id="pantsSelection"
-                    class="selection"
-                >
-                    Black
-                </div>
-
-                <button
-                    id="pantsNext"
-                    class="arrow-button"
-                >
-                    ▶
-                </button>
+                <button id="pantsNext">▶</button>
 
             </div>
 
 
-            <!-- SHOES -->
+            <div class="custom-row">
 
-            <div class="customization-row">
+                <span>SHOES</span>
 
-                <h2>SHOES</h2>
+                <button id="shoesPrevious">◀</button>
 
-                <button
-                    id="shoesPrevious"
-                    class="arrow-button"
-                >
-                    ◀
-                </button>
+                <div id="shoesName">Brown</div>
 
-                <div
-                    id="shoesSelection"
-                    class="selection"
-                >
-                    Brown
-                </div>
-
-                <button
-                    id="shoesNext"
-                    class="arrow-button"
-                >
-                    ▶
-                </button>
+                <button id="shoesNext">▶</button>
 
             </div>
 
 
-            <!-- ACCESSORY -->
+            <div class="custom-row">
 
-            <div class="customization-row">
+                <span>ACCESSORY</span>
 
-                <h2>ACCESSORY</h2>
+                <button id="accessoryPrevious">◀</button>
 
-                <button
-                    id="accessoryPrevious"
-                    class="arrow-button"
-                >
-                    ◀
-                </button>
+                <div id="accessoryName">None</div>
 
-                <div
-                    id="accessorySelection"
-                    class="selection"
-                >
-                    None
-                </div>
-
-                <button
-                    id="accessoryNext"
-                    class="arrow-button"
-                >
-                    ▶
-                </button>
+                <button id="accessoryNext">▶</button>
 
             </div>
-
 
         </section>
 
 
-        <!-- ACTIONS -->
+        <!-- BUTTONS -->
 
-        <div class="editor-actions">
+        <div class="buttons">
 
-            <button
-                id="randomizeButton"
-                class="secondary-button"
-            >
-                RANDOMIZE
+            <button id="randomizeButton" class="random-button">
+                🎲 RANDOMIZE
             </button>
 
-            <button
-                id="continueButton"
-                class="primary-button"
-            >
+            <button id="continueButton" class="continue-button">
                 CONTINUE ▶
             </button>
 
         </div>
 
 
-        <!-- BACK -->
-
-        <button
-            id="backButton"
-            class="back-button"
-        >
+        <button id="backButton" class="back-button">
             ◀ BACK
         </button>
 
-
-    </main>
+    </div>
 
 
     <script src="character.js"></script>
