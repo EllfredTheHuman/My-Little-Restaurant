@@ -2,81 +2,134 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>My Little Shop</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 
 <body>
 
+
     <!-- =========================================
          TITLE SCREEN
     ========================================== -->
 
-    <div id="titleScreen" class="screen">
+    <div
+        id="titleScreen"
+        class="screen"
+    >
 
-        <!-- Sky decorations -->
+
+        <!-- =====================================
+             SKY
+        ====================================== -->
 
         <div class="sun"></div>
 
+
         <div class="cloud cloud-one">
+
             <div></div>
             <div></div>
             <div></div>
+
         </div>
+
 
         <div class="cloud cloud-two">
+
             <div></div>
             <div></div>
             <div></div>
+
         </div>
 
 
-        <!-- Background hills -->
+        <!-- =====================================
+             BACKGROUND HILLS
+        ====================================== -->
 
-        <div class="hill hill-back"></div>
-        <div class="hill hill-front"></div>
+        <div
+            class="hill hill-back"
+        ></div>
+
+        <div
+            class="hill hill-front"
+        ></div>
 
 
-        <!-- Main title -->
+        <!-- =====================================
+             TITLE
+        ====================================== -->
 
         <div class="title-content">
+
 
             <h1>
                 MY LITTLE SHOP
             </h1>
+
 
             <p>
                 A TINY SHOP. A BIG DREAM.
             </p>
 
 
+            <!-- =================================
+                 MENU
+            ================================== -->
+
             <div class="menu">
 
-                <button id="playButton">
+
+                <button
+                    id="playButton"
+                >
                     ▶ PLAY
                 </button>
 
-                <button id="customizeButton">
+
+                <button
+                    id="customizeButton"
+                >
                     🧍 CUSTOMIZE
                 </button>
 
-                <button id="settingsButton">
+
+                <button
+                    id="settingsButton"
+                >
                     ⚙ SETTINGS
                 </button>
 
+
             </div>
+
 
         </div>
 
+
+        <!-- =====================================
+             VERSION
+        ====================================== -->
 
         <div class="version">
             v0.1.0
         </div>
+
 
     </div>
 
@@ -86,47 +139,30 @@
          GAME SCREEN
     ========================================== -->
 
-    <div id="gameScreen" class="screen hidden">
+    <div
+        id="gameScreen"
+        class="screen hidden"
+    >
 
         <div class="placeholder">
+
 
             <h2>
                 YOUR SHOP
             </h2>
 
+
             <p>
                 The shop will be built here.
             </p>
 
-            <button id="backButton">
+
+            <button
+                id="backButton"
+            >
                 ← BACK
             </button>
 
-        </div>
-
-    </div>
-
-
-
-    <!-- =========================================
-         CUSTOMIZATION SCREEN
-    ========================================== -->
-
-    <div id="customizeScreen" class="screen hidden">
-
-        <div class="placeholder">
-
-            <h2>
-                CREATE YOUR SHOPKEEPER
-            </h2>
-
-            <p>
-                Character customization is coming soon!
-            </p>
-
-            <button id="customizeBackButton">
-                ← BACK
-            </button>
 
         </div>
 
@@ -138,21 +174,30 @@
          SETTINGS SCREEN
     ========================================== -->
 
-    <div id="settingsScreen" class="screen hidden">
+    <div
+        id="settingsScreen"
+        class="screen hidden"
+    >
 
         <div class="placeholder">
+
 
             <h2>
                 SETTINGS
             </h2>
 
+
             <p>
                 Settings are coming soon!
             </p>
 
-            <button id="settingsBackButton">
+
+            <button
+                id="settingsBackButton"
+            >
                 ← BACK
             </button>
+
 
         </div>
 
@@ -160,7 +205,12 @@
 
 
 
+    <!-- =========================================
+         MAIN SCRIPT
+    ========================================== -->
+
     <script src="script.js"></script>
+
 
 </body>
 
