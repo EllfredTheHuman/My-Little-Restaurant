@@ -55,7 +55,7 @@ const options = {
 
 
 /* =========================================
-   CHARACTER DATA
+   CHARACTER
 ========================================= */
 
 let character = {
@@ -72,9 +72,6 @@ let character = {
 /* =========================================
    ELEMENTS
 ========================================= */
-
-const hairBack =
-    document.querySelector(".hair-back");
 
 const hairFront =
     document.querySelector(".hair-front");
@@ -119,15 +116,10 @@ const names = {
 const hairColours = {
 
     Brown: "#70462e",
-
     Black: "#292321",
-
     Blonde: "#e6bd55",
-
     Ginger: "#b85b31",
-
     Blue: "#4c82bd",
-
     Pink: "#d7659b"
 
 };
@@ -136,15 +128,10 @@ const hairColours = {
 const shirtColours = {
 
     Blue: "#4d91d1",
-
     Red: "#d95757",
-
     Green: "#55a862",
-
     Yellow: "#e5bd4f",
-
     Purple: "#9464c0",
-
     Orange: "#df8247"
 
 };
@@ -153,13 +140,9 @@ const shirtColours = {
 const pantsColours = {
 
     Blue: "#3d5d91",
-
     Black: "#292f4a",
-
     Brown: "#765039",
-
     Grey: "#737a80",
-
     Green: "#46734f"
 
 };
@@ -168,18 +151,15 @@ const pantsColours = {
 const shoeColours = {
 
     Brown: "#50382c",
-
     Black: "#292522",
-
     White: "#eeeeee",
-
     Red: "#b84242"
 
 };
 
 
 /* =========================================
-   UPDATE CHARACTER
+   UPDATE
 ========================================= */
 
 function updateCharacter() {
@@ -222,9 +202,6 @@ function updateCharacter() {
 
     /* HAIR */
 
-    hairBack.style.backgroundColor =
-        hairColours[hairName];
-
     hairFront.style.backgroundColor =
         hairColours[hairName];
 
@@ -259,15 +236,13 @@ function updateCharacter() {
     );
 
 
-    /* ACCESSORY */
-
     updateAccessory();
 
 }
 
 
 /* =========================================
-   ACCESSORIES
+   ACCESSORY
 ========================================= */
 
 function updateAccessory() {
@@ -286,24 +261,27 @@ function updateAccessory() {
 
     }
 
+    else if (name === "Chef Hat") {
 
-    if (name === "Chef Hat") {
-
-        accessory.classList.add("chef-hat");
-
-    }
-
-
-    if (name === "Beanie") {
-
-        accessory.classList.add("beanie");
+        accessory.classList.add(
+            "chef-hat"
+        );
 
     }
 
+    else if (name === "Beanie") {
 
-    if (name === "Glasses") {
+        accessory.classList.add(
+            "beanie"
+        );
 
-        accessory.classList.add("glasses");
+    }
+
+    else if (name === "Glasses") {
+
+        accessory.classList.add(
+            "glasses"
+        );
 
     }
 
@@ -348,7 +326,7 @@ function changeOption(
 
 
 /* =========================================
-   BUTTON HELPER
+   BUTTON SETUP
 ========================================= */
 
 function setupButtons(type) {
@@ -389,18 +367,10 @@ function setupButtons(type) {
 }
 
 
-/* =========================================
-   SETUP
-========================================= */
-
 setupButtons("hair");
-
 setupButtons("shirt");
-
 setupButtons("pants");
-
 setupButtons("shoes");
-
 setupButtons("accessory");
 
 
@@ -445,7 +415,6 @@ document
                     Math.random() *
                     options.accessory.length
                 );
-
 
             updateCharacter();
 
@@ -508,7 +477,7 @@ document
 
 
 /* =========================================
-   LOAD SAVED CHARACTER
+   LOAD
 ========================================= */
 
 function loadCharacter() {
@@ -531,10 +500,8 @@ function loadCharacter() {
                 typeof loaded.hair ===
                 "number"
             ) {
-
                 character.hair =
                     loaded.hair;
-
             }
 
 
@@ -542,10 +509,8 @@ function loadCharacter() {
                 typeof loaded.shirt ===
                 "number"
             ) {
-
                 character.shirt =
                     loaded.shirt;
-
             }
 
 
@@ -553,10 +518,8 @@ function loadCharacter() {
                 typeof loaded.pants ===
                 "number"
             ) {
-
                 character.pants =
                     loaded.pants;
-
             }
 
 
@@ -564,10 +527,8 @@ function loadCharacter() {
                 typeof loaded.shoes ===
                 "number"
             ) {
-
                 character.shoes =
                     loaded.shoes;
-
             }
 
 
@@ -575,16 +536,14 @@ function loadCharacter() {
                 typeof loaded.accessory ===
                 "number"
             ) {
-
                 character.accessory =
                     loaded.accessory;
-
             }
 
         } catch (error) {
 
             console.log(
-                "Could not load character."
+                "Character save could not be loaded."
             );
 
         }
@@ -596,9 +555,5 @@ function loadCharacter() {
 
 }
 
-
-/* =========================================
-   START
-========================================= */
 
 loadCharacter();
