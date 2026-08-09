@@ -8,20 +8,20 @@
 // PLAYER
 // =========================================
 
-const player = document.getElementById("player");
+const player =
+    document.getElementById("player");
 
-const canvas = document.getElementById("playerCanvas");
+const canvas =
+    document.getElementById("playerCanvas");
 
-const ctx = canvas.getContext("2d");
-
-
-// Make every pixel stay sharp
+const ctx =
+    canvas.getContext("2d");
 
 ctx.imageSmoothingEnabled = false;
 
 
 // =========================================
-// LOAD CHARACTER
+// CHARACTER SAVE
 // =========================================
 
 const savedCharacter =
@@ -48,34 +48,30 @@ if (savedCharacter) {
         const loaded =
             JSON.parse(savedCharacter);
 
-        character = {
+        character.hair =
+            typeof loaded.hair === "number"
+                ? loaded.hair
+                : 0;
 
-            hair:
-                typeof loaded.hair === "number"
-                    ? loaded.hair
-                    : 0,
+        character.shirt =
+            typeof loaded.shirt === "number"
+                ? loaded.shirt
+                : 0;
 
-            shirt:
-                typeof loaded.shirt === "number"
-                    ? loaded.shirt
-                    : 0,
+        character.pants =
+            typeof loaded.pants === "number"
+                ? loaded.pants
+                : 0;
 
-            pants:
-                typeof loaded.pants === "number"
-                    ? loaded.pants
-                    : 0,
+        character.shoes =
+            typeof loaded.shoes === "number"
+                ? loaded.shoes
+                : 0;
 
-            shoes:
-                typeof loaded.shoes === "number"
-                    ? loaded.shoes
-                    : 0,
-
-            accessory:
-                typeof loaded.accessory === "number"
-                    ? loaded.accessory
-                    : 0
-
-        };
+        character.accessory =
+            typeof loaded.accessory === "number"
+                ? loaded.accessory
+                : 0;
 
     }
 
@@ -91,57 +87,53 @@ if (savedCharacter) {
 
 
 // =========================================
-// CHARACTER OPTIONS
+// COLOURS
 // =========================================
 
 const hairColours = [
 
-    "#70462e", // Brown
-    "#292321", // Black
-    "#e6bd55", // Blonde
-    "#b85b31", // Ginger
-    "#4c82bd", // Blue
-    "#d7659b"  // Pink
+    "#70462e",
+    "#292321",
+    "#e6bd55",
+    "#b85b31",
+    "#4c82bd",
+    "#d7659b"
 
 ];
 
 
 const shirtColours = [
 
-    "#4d91d1", // Blue
-    "#d95757", // Red
-    "#55a862", // Green
-    "#e5bd4f", // Yellow
-    "#9464c0", // Purple
-    "#df8247"  // Orange
+    "#4d91d1",
+    "#d95757",
+    "#55a862",
+    "#e5bd4f",
+    "#9464c0",
+    "#df8247"
 
 ];
 
 
 const pantsColours = [
 
-    "#3d5d91", // Blue
-    "#292f4a", // Black
-    "#765039", // Brown
-    "#737a80", // Grey
-    "#46734f"  // Green
+    "#3d5d91",
+    "#292f4a",
+    "#765039",
+    "#737a80",
+    "#46734f"
 
 ];
 
 
 const shoeColours = [
 
-    "#50382c", // Brown
-    "#292522", // Black
-    "#eeeeee", // White
-    "#b84242"  // Red
+    "#50382c",
+    "#292522",
+    "#eeeeee",
+    "#b84242"
 
 ];
 
-
-// =========================================
-// CHARACTER COLOURS
-// =========================================
 
 const hairColour =
     hairColours[character.hair];
@@ -155,9 +147,15 @@ const pantsColour =
 const shoeColour =
     shoeColours[character.shoes];
 
+const skin =
+    "#f3bd88";
+
+const outline =
+    "#49342d";
+
 
 // =========================================
-// PIXEL DRAWING
+// PIXEL
 // =========================================
 
 function pixel(
@@ -184,7 +182,13 @@ function pixel(
 // DRAW CHARACTER
 // =========================================
 
-function drawCharacter() {
+function drawCharacter(
+    walkFrame = 0
+) {
+
+    // Clear EVERYTHING first.
+    // This prevents old animation
+    // frames from remaining behind.
 
     ctx.clearRect(
         0,
@@ -195,78 +199,253 @@ function drawCharacter() {
 
 
     // =====================================
-    // SKIN
-    // =====================================
-
-    const skin =
-        "#f3bd88";
-
-    const outline =
-        "#49342d";
-
-
-    // =====================================
     // LEGS
     // =====================================
 
-    // Left leg
+    if (walkFrame === 0) {
 
-    pixel(
-        10,
-        34,
-        5,
-        8,
-        pantsColour
-    );
+        // Standing / idle
+
+        // Left leg
+
+        pixel(
+            9,
+            33,
+            7,
+            9,
+            outline
+        );
+
+        pixel(
+            11,
+            34,
+            3,
+            8,
+            pantsColour
+        );
 
 
-    // Right leg
+        // Right leg
 
-    pixel(
-        17,
-        34,
-        5,
-        8,
-        pantsColour
-    );
+        pixel(
+            17,
+            33,
+            7,
+            9,
+            outline
+        );
+
+        pixel(
+            19,
+            34,
+            3,
+            8,
+            pantsColour
+        );
+
+    }
+
+
+    if (walkFrame === 1) {
+
+        // Left leg forward
+
+        pixel(
+            7,
+            33,
+            8,
+            9,
+            outline
+        );
+
+        pixel(
+            9,
+            34,
+            4,
+            8,
+            pantsColour
+        );
+
+
+        // Right leg backward
+
+        pixel(
+            18,
+            33,
+            7,
+            9,
+            outline
+        );
+
+        pixel(
+            20,
+            34,
+            3,
+            8,
+            pantsColour
+        );
+
+    }
+
+
+    if (walkFrame === 2) {
+
+        // Left leg backward
+
+        pixel(
+            9,
+            33,
+            7,
+            9,
+            outline
+        );
+
+        pixel(
+            11,
+            34,
+            3,
+            8,
+            pantsColour
+        );
+
+
+        // Right leg forward
+
+        pixel(
+            17,
+            33,
+            8,
+            9,
+            outline
+        );
+
+        pixel(
+            19,
+            34,
+            4,
+            8,
+            pantsColour
+        );
+
+    }
 
 
     // =====================================
     // SHOES
     // =====================================
 
-    pixel(
-        8,
-        41,
-        8,
-        4,
-        outline
-    );
+    if (walkFrame === 0) {
 
-    pixel(
-        17,
-        41,
-        8,
-        4,
-        outline
-    );
+        pixel(
+            7,
+            41,
+            9,
+            5,
+            outline
+        );
+
+        pixel(
+            9,
+            40,
+            6,
+            3,
+            shoeColour
+        );
 
 
-    pixel(
-        10,
-        40,
-        6,
-        3,
-        shoeColour
-    );
+        pixel(
+            17,
+            41,
+            9,
+            5,
+            outline
+        );
 
-    pixel(
-        18,
-        40,
-        6,
-        3,
-        shoeColour
-    );
+        pixel(
+            19,
+            40,
+            6,
+            3,
+            shoeColour
+        );
+
+    }
+
+
+    if (walkFrame === 1) {
+
+        pixel(
+            5,
+            41,
+            10,
+            5,
+            outline
+        );
+
+        pixel(
+            7,
+            40,
+            7,
+            3,
+            shoeColour
+        );
+
+
+        pixel(
+            19,
+            41,
+            9,
+            5,
+            outline
+        );
+
+        pixel(
+            21,
+            40,
+            6,
+            3,
+            shoeColour
+        );
+
+    }
+
+
+    if (walkFrame === 2) {
+
+        pixel(
+            7,
+            41,
+            9,
+            5,
+            outline
+        );
+
+        pixel(
+            9,
+            40,
+            6,
+            3,
+            shoeColour
+        );
+
+
+        pixel(
+            19,
+            41,
+            10,
+            5,
+            outline
+        );
+
+        pixel(
+            21,
+            40,
+            7,
+            3,
+            shoeColour
+        );
+
+    }
 
 
     // =====================================
@@ -275,9 +454,9 @@ function drawCharacter() {
 
     pixel(
         7,
-        19,
         18,
-        17,
+        18,
+        18,
         outline
     );
 
@@ -288,9 +467,9 @@ function drawCharacter() {
 
     pixel(
         9,
-        21,
+        20,
         14,
-        13,
+        14,
         shirtColour
     );
 
@@ -299,38 +478,126 @@ function drawCharacter() {
     // ARMS
     // =====================================
 
-    pixel(
-        4,
-        22,
-        5,
-        12,
-        outline
-    );
+    if (walkFrame === 1) {
 
-    pixel(
-        23,
-        22,
-        5,
-        12,
-        outline
-    );
+        // Left arm forward
+
+        pixel(
+            3,
+            21,
+            6,
+            14,
+            outline
+        );
+
+        pixel(
+            5,
+            24,
+            3,
+            9,
+            skin
+        );
 
 
-    pixel(
-        6,
-        24,
-        3,
-        8,
-        skin
-    );
+        // Right arm backward
 
-    pixel(
-        23,
-        24,
-        3,
-        8,
-        skin
-    );
+        pixel(
+            23,
+            22,
+            6,
+            13,
+            outline
+        );
+
+        pixel(
+            23,
+            25,
+            3,
+            8,
+            skin
+        );
+
+    }
+
+    else if (walkFrame === 2) {
+
+        // Left arm backward
+
+        pixel(
+            3,
+            22,
+            6,
+            13,
+            outline
+        );
+
+        pixel(
+            6,
+            25,
+            3,
+            8,
+            skin
+        );
+
+
+        // Right arm forward
+
+        pixel(
+            23,
+            21,
+            6,
+            14,
+            outline
+        );
+
+        pixel(
+            23,
+            24,
+            3,
+            9,
+            skin
+        );
+
+    }
+
+    else {
+
+        // Idle arms
+
+        pixel(
+            3,
+            22,
+            6,
+            13,
+            outline
+        );
+
+        pixel(
+            6,
+            24,
+            3,
+            9,
+            skin
+        );
+
+
+        pixel(
+            23,
+            22,
+            6,
+            13,
+            outline
+        );
+
+        pixel(
+            23,
+            24,
+            3,
+            9,
+            skin
+        );
+
+    }
 
 
     // =====================================
@@ -339,7 +606,7 @@ function drawCharacter() {
 
     pixel(
         7,
-        4,
+        3,
         18,
         18,
         outline
@@ -352,7 +619,7 @@ function drawCharacter() {
 
     pixel(
         9,
-        6,
+        5,
         14,
         14,
         skin
@@ -365,15 +632,15 @@ function drawCharacter() {
 
     pixel(
         7,
-        3,
+        2,
         18,
-        6,
+        7,
         outline
     );
 
     pixel(
         9,
-        5,
+        4,
         14,
         5,
         hairColour
@@ -405,7 +672,7 @@ function drawCharacter() {
 
     pixel(
         11,
-        12,
+        11,
         2,
         3,
         "#292321"
@@ -413,7 +680,7 @@ function drawCharacter() {
 
     pixel(
         19,
-        12,
+        11,
         2,
         3,
         "#292321"
@@ -426,7 +693,7 @@ function drawCharacter() {
 
     pixel(
         14,
-        17,
+        16,
         4,
         2,
         "#9d4b4b"
@@ -448,22 +715,15 @@ function drawCharacter() {
 
 function drawAccessory() {
 
-    // 0 = None
-    // 1 = Cap
-    // 2 = Chef Hat
-    // 3 = Beanie
-    // 4 = Glasses
-
+    // CAP
 
     if (character.accessory === 1) {
 
-        // Cap
-
         pixel(
             6,
-            3,
+            2,
             20,
-            4,
+            5,
             "#394d66"
         );
 
@@ -478,36 +738,36 @@ function drawAccessory() {
     }
 
 
+    // CHEF HAT
+
     if (character.accessory === 2) {
 
-        // Chef hat
-
         pixel(
-            9,
-            1,
-            14,
-            4,
+            10,
+            0,
+            12,
+            3,
             "#ffffff"
         );
 
         pixel(
-            7,
-            4,
-            18,
-            4,
+            8,
+            2,
+            16,
+            6,
             "#ffffff"
         );
 
     }
 
 
-    if (character.accessory === 3) {
+    // BEANIE
 
-        // Beanie
+    if (character.accessory === 3) {
 
         pixel(
             7,
-            2,
+            1,
             18,
             7,
             "#d95757"
@@ -524,52 +784,52 @@ function drawAccessory() {
     }
 
 
-    if (character.accessory === 4) {
+    // GLASSES
 
-        // Glasses
+    if (character.accessory === 4) {
 
         const glasses =
             "#292321";
 
 
-        // Left lens
+        // LEFT LENS
 
         pixel(
             9,
-            11,
+            10,
             6,
             5,
             glasses
         );
 
 
-        // Right lens
+        // RIGHT LENS
 
         pixel(
             17,
-            11,
+            10,
             6,
             5,
             glasses
         );
 
 
-        // Lens interiors
+        // Lens openings
 
         pixel(
             11,
-            13,
+            12,
             2,
-            1,
-            skinColour()
+            2,
+            skin
         );
 
         pixel(
             19,
-            13,
+            12,
             2,
-            1,
-            skinColour()
+            2,
+            skin
         );
 
 
@@ -577,7 +837,7 @@ function drawAccessory() {
 
         pixel(
             15,
-            13,
+            12,
             2,
             2,
             glasses
@@ -586,24 +846,6 @@ function drawAccessory() {
     }
 
 }
-
-
-// =========================================
-// SKIN COLOUR
-// =========================================
-
-function skinColour() {
-
-    return "#f3bd88";
-
-}
-
-
-// =========================================
-// DRAW
-// =========================================
-
-drawCharacter();
 
 
 // =========================================
@@ -633,14 +875,12 @@ const keys = {
 
 
 // =========================================
-// WALKING
+// WALK ANIMATION
 // =========================================
 
-let walking = false;
+let walkFrame = 0;
 
-let stepTimer = 0;
-
-let step = false;
+let walkTimer = 0;
 
 
 // =========================================
@@ -879,120 +1119,52 @@ function movePlayer() {
 
 
     // =====================================
-    // WALK ANIMATION
+    // ANIMATION
     // =====================================
 
-    const isMoving =
+    const moving =
         moveX !== 0 ||
         moveY !== 0;
 
 
-    if (isMoving) {
+    if (moving) {
 
-        if (!walking) {
-
-            walking = true;
-
-            stepTimer = 0;
-
-        }
+        walkTimer++;
 
 
-        stepTimer++;
+        if (walkTimer >= 8) {
+
+            walkTimer = 0;
+
+            walkFrame++;
 
 
-        if (stepTimer >= 10) {
+            if (walkFrame > 2) {
 
-            stepTimer = 0;
+                walkFrame = 0;
 
-            step = !step;
-
-            animateWalk();
+            }
 
         }
-
-
-        player.classList.add(
-            "walking"
-        );
 
     }
 
     else {
 
-        walking = false;
+        walkTimer = 0;
 
-        stepTimer = 0;
-
-        step = false;
-
-        player.classList.remove(
-            "walking"
-        );
-
-        drawCharacter();
+        walkFrame = 0;
 
     }
 
-}
 
+    // Draw ONE complete frame
 
-// =========================================
-// WALK ANIMATION
-// =========================================
-
-function animateWalk() {
-
-    drawCharacter();
-
-
-    if (!walking) {
-        return;
-    }
-
-
-    // Redraw tiny pixel legs
-    // to create the walking frame
-
-    if (step) {
-
-        pixel(
-            8,
-            34,
-            5,
-            8,
-            pantsColour
-        );
-
-        pixel(
-            18,
-            34,
-            5,
-            8,
-            pantsColour
-        );
-
-    }
-
-    else {
-
-        pixel(
-            10,
-            34,
-            5,
-            8,
-            pantsColour
-        );
-
-        pixel(
-            17,
-            34,
-            5,
-            8,
-            pantsColour
-        );
-
-    }
+    drawCharacter(
+        moving
+            ? walkFrame
+            : 0
+    );
 
 }
 
@@ -1011,5 +1183,7 @@ function gameLoop() {
 
 }
 
+
+drawCharacter(0);
 
 gameLoop();
