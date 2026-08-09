@@ -1,3 +1,7 @@
+/* =========================================
+   PIXEL CHARACTER CREATOR
+========================================= */
+
 * {
 
     box-sizing: border-box;
@@ -29,14 +33,14 @@ body {
 
 
 /* =========================================
-   MAIN
+   MAIN EDITOR
 ========================================= */
 
 .character-editor {
 
     min-height: 100vh;
 
-    padding: 30px 20px 60px;
+    padding: 30px 20px 70px;
 
     display: flex;
 
@@ -46,8 +50,9 @@ body {
 
     background:
         linear-gradient(
-            #63cbed,
-            #8bd8ef
+            #63cbed 0%,
+            #7bd3e9 65%,
+            #a5dfc5 100%
         );
 
 }
@@ -72,21 +77,23 @@ body {
 
     font-size: 30px;
 
-    font-weight: 900;
-
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
     text-shadow:
-        5px 5px 0 #3187aa;
+        4px 4px 0 #3286a4;
 
 }
 
 
 .editor-header p {
 
+    margin-top: 10px;
+
     color: white;
 
     font-size: 14px;
+
+    font-weight: bold;
 
 }
 
@@ -104,30 +111,32 @@ body {
 
 .preview-box {
 
-    width: 330px;
-    height: 310px;
-
     position: relative;
+
+    width: 360px;
+    height: 330px;
 
     display: flex;
 
-    justify-content: center;
-
     align-items: flex-end;
 
-    background: #a9e48e;
+    justify-content: center;
 
-    border: 7px solid #347b68;
+    overflow: hidden;
+
+    background: #a9e48b;
+
+    border: 8px solid #347b68;
 
     box-shadow:
         8px 8px 0 #24594d;
 
-    overflow: hidden;
-
 }
 
 
-.preview-box::before {
+/* PIXEL GRASS */
+
+.preview-box::after {
 
     content: "";
 
@@ -139,9 +148,9 @@ body {
     width: 100%;
     height: 55px;
 
-    background: #61b966;
+    background: #62b866;
 
-    border-top: 7px solid #4a9653;
+    border-top: 8px solid #4b9851;
 
 }
 
@@ -152,12 +161,12 @@ body {
 
 .character {
 
-    width: 128px;
-    height: 220px;
-
     position: relative;
 
-    margin-bottom: 30px;
+    width: 128px;
+    height: 230px;
+
+    margin-bottom: 28px;
 
     z-index: 5;
 
@@ -168,21 +177,21 @@ body {
    HEAD
 ========================================= */
 
-.character-head {
+.head {
 
     position: absolute;
 
-    left: 28px;
+    left: 32px;
     top: 30px;
 
-    width: 72px;
-    height: 70px;
+    width: 64px;
+    height: 64px;
 
     background: #f2bd8a;
 
-    border: 6px solid #4b342d;
+    border:
 
-    z-index: 5;
+        6px solid #49342d;
 
 }
 
@@ -191,27 +200,85 @@ body {
    HAIR
 ========================================= */
 
-.character-hair {
+/*
+   Hair is now attached directly to the head.
+   No more floating hat 😭
+*/
+
+.hair {
 
     position: absolute;
 
-    left: 23px;
+    left: 26px;
     top: 20px;
 
-    width: 82px;
+    width: 76px;
+    height: 60px;
+
+    z-index: 10;
+
+    pointer-events: none;
+
+}
+
+
+/* MAIN HAIR BLOCK */
+
+.hair-top {
+
+    position: absolute;
+
+    left: 6px;
+    top: 0;
+
+    width: 64px;
+    height: 30px;
+
+    background: #70452d;
+
+    border:
+
+        6px solid #49342d;
+
+}
+
+
+/* LEFT HAIR */
+
+.hair-left {
+
+    position: absolute;
+
+    left: 0;
+    top: 20px;
+
+    width: 20px;
     height: 42px;
 
     background: #70452d;
 
-    border: 6px solid #493326;
+    border-left: 6px solid #49342d;
+    border-bottom: 6px solid #49342d;
 
-    z-index: 8;
+}
 
-    box-shadow:
-        8px 8px 0 #70452d,
-        22px 8px 0 #70452d,
-        36px 8px 0 #70452d,
-        50px 8px 0 #70452d;
+
+/* RIGHT HAIR */
+
+.hair-right {
+
+    position: absolute;
+
+    right: 0;
+    top: 20px;
+
+    width: 20px;
+    height: 42px;
+
+    background: #70452d;
+
+    border-right: 6px solid #49342d;
+    border-bottom: 6px solid #49342d;
 
 }
 
@@ -220,28 +287,30 @@ body {
    EYES
 ========================================= */
 
-.character-eyes {
+.eye {
 
     position: absolute;
 
-    left: 14px;
-    top: 27px;
+    top: 30px;
 
-    width: 44px;
+    width: 8px;
+    height: 12px;
 
-    display: flex;
-
-    justify-content: space-between;
+    background: #292321;
 
 }
 
 
-.character-eyes span {
+.left-eye {
 
-    width: 8px;
-    height: 11px;
+    left: 14px;
 
-    background: #272321;
+}
+
+
+.right-eye {
+
+    right: 14px;
 
 }
 
@@ -250,17 +319,17 @@ body {
    MOUTH
 ========================================= */
 
-.character-mouth {
+.mouth {
 
     position: absolute;
 
-    left: 28px;
+    left: 25px;
     bottom: 10px;
 
     width: 14px;
-    height: 5px;
+    height: 6px;
 
-    background: #a74f4f;
+    background: #9f4c4c;
 
 }
 
@@ -269,30 +338,21 @@ body {
    BODY
 ========================================= */
 
-.character-body {
+.body {
 
     position: absolute;
 
-    left: 17px;
-    top: 98px;
+    left: 20px;
+    top: 94px;
 
-    width: 94px;
+    width: 88px;
     height: 68px;
 
     background: #4c8fd1;
 
-    border: 6px solid #3d536d;
+    border:
 
-    z-index: 4;
-
-}
-
-
-.character-shirt {
-
-    position: absolute;
-
-    inset: 0;
+        6px solid #394d66;
 
 }
 
@@ -301,32 +361,35 @@ body {
    ARMS
 ========================================= */
 
-.character-body::before,
-.character-body::after {
-
-    content: "";
+.arm {
 
     position: absolute;
 
-    top: 3px;
+    top: 100px;
 
-    width: 23px;
-    height: 50px;
+    width: 22px;
+    height: 55px;
 
     background: #f2bd8a;
 
-    border: 5px solid #4b342d;
+    border:
+
+        5px solid #49342d;
 
 }
 
 
-.character-body::before {
-    left: -30px;
+.left-arm {
+
+    left: -2px;
+
 }
 
 
-.character-body::after {
-    right: -30px;
+.right-arm {
+
+    right: -2px;
+
 }
 
 
@@ -334,41 +397,37 @@ body {
    LEGS
 ========================================= */
 
-.character-legs {
+.leg {
 
     position: absolute;
 
-    left: 31px;
-    top: 164px;
+    top: 156px;
 
-    width: 66px;
-    height: 42px;
-
-}
-
-
-.character-leg {
-
-    position: absolute;
-
-    width: 26px;
-    height: 42px;
+    width: 27px;
+    height: 47px;
 
     background: #292f4a;
 
-    border-left: 5px solid #202538;
-    border-right: 5px solid #202538;
+    border-left:
+        5px solid #202538;
+
+    border-right:
+        5px solid #202538;
 
 }
 
 
-.character-leg.left {
-    left: 0;
+.left-leg {
+
+    left: 33px;
+
 }
 
 
-.character-leg.right {
-    right: 0;
+.right-leg {
+
+    right: 33px;
+
 }
 
 
@@ -376,39 +435,35 @@ body {
    SHOES
 ========================================= */
 
-.character-shoes {
+.shoe {
 
     position: absolute;
 
-    left: 21px;
-    top: 194px;
+    top: 195px;
 
-    width: 86px;
-
-}
-
-
-.character-shoe {
-
-    position: absolute;
-
-    width: 39px;
-    height: 18px;
+    width: 38px;
+    height: 20px;
 
     background: #49362c;
 
-    border: 5px solid #33251f;
+    border:
+
+        5px solid #30231e;
 
 }
 
 
-.character-shoe.left {
-    left: 0;
+.left-shoe {
+
+    left: 23px;
+
 }
 
 
-.character-shoe.right {
-    right: 0;
+.right-shoe {
+
+    right: 23px;
+
 }
 
 
@@ -416,35 +471,60 @@ body {
    ACCESSORIES
 ========================================= */
 
-.character-accessory {
+.accessory {
 
     position: absolute;
 
-    pointer-events: none;
-
     z-index: 20;
+
+    pointer-events: none;
 
 }
 
 
-/* CAP */
+/* =========================================
+   CAP
+========================================= */
 
 .pixel-cap {
 
-    left: 38px;
-    top: 9px;
+    left: 30px;
+    top: 8px;
 
-    width: 55px;
+    width: 68px;
     height: 18px;
 
     background: #d94f4f;
 
-    border: 5px solid #743838;
+    border:
 
-    box-shadow:
-        12px -8px 0 #d94f4f,
-        24px -8px 0 #d94f4f,
-        36px -8px 0 #d94f4f;
+        5px solid #733636;
+
+}
+
+
+.pixel-cap::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 8px;
+    top: -12px;
+
+    width: 40px;
+    height: 12px;
+
+    background: #d94f4f;
+
+    border-left:
+        5px solid #733636;
+
+    border-top:
+        5px solid #733636;
+
+    border-right:
+        5px solid #733636;
 
 }
 
@@ -455,37 +535,64 @@ body {
 
     position: absolute;
 
-    left: -8px;
+    left: -10px;
     bottom: -9px;
 
     width: 45px;
-    height: 9px;
+    height: 8px;
 
     background: #d94f4f;
 
-    border: 5px solid #743838;
+    border:
+
+        5px solid #733636;
 
 }
 
 
-/* CHEF HAT */
+/* =========================================
+   CHEF HAT
+========================================= */
 
 .pixel-chef-hat {
 
-    left: 35px;
+    left: 28px;
     top: -8px;
 
-    width: 60px;
+    width: 72px;
     height: 40px;
 
     background: white;
 
-    border: 5px solid #777;
+    border:
 
-    box-shadow:
-        8px -8px 0 white,
-        18px -12px 0 white,
-        30px -8px 0 white;
+        5px solid #777;
+
+}
+
+
+.pixel-chef-hat::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+    top: -12px;
+
+    width: 15px;
+    height: 12px;
+
+    background: white;
+
+    border-top:
+        5px solid #777;
+
+    border-left:
+        5px solid #777;
+
+    border-right:
+        5px solid #777;
 
 }
 
@@ -496,77 +603,107 @@ body {
 
     position: absolute;
 
-    left: -5px;
-    bottom: -12px;
+    right: 10px;
+    top: -12px;
 
-    width: 60px;
+    width: 15px;
     height: 12px;
 
     background: white;
 
-    border: 5px solid #777;
+    border-top:
+        5px solid #777;
+
+    border-left:
+        5px solid #777;
+
+    border-right:
+        5px solid #777;
 
 }
 
 
-/* BEANIE */
+/* =========================================
+   BEANIE
+========================================= */
 
 .pixel-beanie {
 
     left: 28px;
-    top: 8px;
+    top: 10px;
 
-    width: 70px;
-    height: 35px;
+    width: 72px;
+    height: 32px;
 
-    background: #8c5bc4;
+    background: #895bc2;
 
-    border: 5px solid #523675;
+    border:
 
-    box-shadow:
-        8px -8px 0 #8c5bc4,
-        20px -10px 0 #8c5bc4,
-        32px -8px 0 #8c5bc4;
+        5px solid #503675;
 
 }
 
 
-.pixel-beanie::after {
+.pixel-beanie::before {
 
     content: "";
 
     position: absolute;
 
-    left: -5px;
-    bottom: -10px;
+    left: 10px;
+    top: -10px;
 
-    width: 70px;
+    width: 40px;
     height: 10px;
 
-    background: #7147a4;
+    background: #895bc2;
 
-    border: 5px solid #523675;
+    border-top:
+        5px solid #503675;
+
+    border-left:
+        5px solid #503675;
+
+    border-right:
+        5px solid #503675;
 
 }
 
 
-/* GLASSES */
+/* =========================================
+   GLASSES
+========================================= */
 
 .pixel-glasses {
 
-    left: 42px;
-    top: 63px;
+    left: 40px;
+    top: 57px;
 
-    width: 18px;
-    height: 15px;
+    width: 20px;
+    height: 17px;
 
-    background: #222;
+    border:
+        4px solid #222;
 
-    border: 4px solid #111;
+    background: transparent;
 
-    box-shadow:
-        30px 0 0 #222,
-        30px 0 0 4px #111;
+}
+
+
+.pixel-glasses::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 25px;
+    top: -4px;
+
+    width: 20px;
+    height: 17px;
+
+    border:
+        4px solid #222;
 
 }
 
@@ -577,24 +714,24 @@ body {
 
     position: absolute;
 
-    left: 14px;
-    top: 2px;
+    left: 17px;
+    top: 3px;
 
-    width: 22px;
-    height: 5px;
+    width: 12px;
+    height: 4px;
 
-    background: #111;
+    background: #222;
 
 }
 
 
 /* =========================================
-   CUSTOMIZATION
+   CUSTOMIZATION PANEL
 ========================================= */
 
 .customization-panel {
 
-    width: 680px;
+    width: 700px;
 
     max-width: 95vw;
 
@@ -608,7 +745,7 @@ body {
 
     gap: 12px;
 
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.85);
 
     border: 6px solid #347b92;
 
@@ -618,9 +755,11 @@ body {
 }
 
 
-.customization-row {
+/* =========================================
+   ROW
+========================================= */
 
-    min-height: 60px;
+.customization-row {
 
     display: grid;
 
@@ -629,9 +768,11 @@ body {
 
     align-items: center;
 
-    gap: 6px;
+    gap: 5px;
 
-    padding: 6px;
+    min-height: 58px;
+
+    padding: 7px;
 
     background: white;
 
@@ -646,24 +787,24 @@ body {
 
     color: #27657d;
 
-    font-size: 9px;
+    font-size: 10px;
 
 }
 
 
 .selection {
 
-    text-align: center;
-
     color: #27657d;
 
-    font-size: 9px;
+    text-align: center;
+
+    font-size: 10px;
 
 }
 
 
 /* =========================================
-   ARROWS
+   ARROW BUTTONS
 ========================================= */
 
 .arrow-button {
@@ -673,12 +814,6 @@ body {
 
     padding: 0;
 
-    font-family: monospace;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
     color: white;
 
     background: #4c9fbd;
@@ -687,6 +822,12 @@ body {
 
     box-shadow:
         3px 3px 0 #19495d;
+
+    font-family: monospace;
+
+    font-size: 12px;
+
+    font-weight: bold;
 
     cursor: pointer;
 
@@ -711,23 +852,23 @@ body {
 
 
 /* =========================================
-   ACTIONS
+   ACTION BUTTONS
 ========================================= */
 
 .editor-actions {
 
-    margin-top: 22px;
-
     display: flex;
 
     gap: 18px;
+
+    margin-top: 22px;
 
 }
 
 
 .editor-actions button {
 
-    padding: 16px 22px;
+    padding: 15px 22px;
 
     font-family: monospace;
 
@@ -769,7 +910,7 @@ body {
 
 
 /* =========================================
-   BACK
+   BACK BUTTON
 ========================================= */
 
 .back-button {
@@ -781,12 +922,6 @@ body {
 
     padding: 13px 18px;
 
-    font-family: monospace;
-
-    font-size: 10px;
-
-    font-weight: bold;
-
     color: white;
 
     background: #3187aa;
@@ -796,7 +931,23 @@ body {
     box-shadow:
         5px 5px 0 #19495d;
 
+    font-family: monospace;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
     cursor: pointer;
+
+}
+
+
+.back-button:active {
+
+    transform:
+        translate(5px, 5px);
+
+    box-shadow: none;
 
 }
 
@@ -816,8 +967,8 @@ body {
 
     .preview-box {
 
-        width: 280px;
-        height: 270px;
+        width: 300px;
+        height: 300px;
 
     }
 
