@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Create Your Character | My Little Shop</title>
+    <title>My Little Shop - Character</title>
 
     <link
         rel="stylesheet"
@@ -26,51 +26,52 @@
     <main class="character-editor">
 
 
-        <!-- =====================================
-             HEADER
-        ====================================== -->
+        <!-- HEADER -->
 
         <header class="editor-header">
 
             <h1>
-                CREATE YOUR CHARACTER
+                CREATE YOUR SHOPKEEPER
             </h1>
 
             <p>
-                Make your little shopkeeper!
+                Make someone who feels like YOU!
             </p>
 
         </header>
 
 
 
-        <!-- =====================================
-             CHARACTER PREVIEW
-        ====================================== -->
+        <!-- CHARACTER PREVIEW -->
 
         <section class="character-preview">
 
             <div class="preview-box">
 
-                <!-- Character will appear here -->
 
                 <div
                     id="character"
                     class="character"
                 >
 
-                    <div class="character-hair"></div>
 
                     <div class="character-head">
 
+                        <div class="character-hair"></div>
+
+
                         <div class="character-eyes">
+
                             <span></span>
                             <span></span>
+
                         </div>
+
 
                         <div class="character-mouth"></div>
 
                     </div>
+
 
 
                     <div class="character-body">
@@ -80,22 +81,33 @@
                     </div>
 
 
+
                     <div class="character-legs">
 
-                        <div class="character-leg left"></div>
+                        <div
+                            class="character-leg left"
+                        ></div>
 
-                        <div class="character-leg right"></div>
+                        <div
+                            class="character-leg right"
+                        ></div>
 
                     </div>
+
 
 
                     <div class="character-shoes">
 
-                        <div class="character-shoe left"></div>
+                        <div
+                            class="character-shoe left"
+                        ></div>
 
-                        <div class="character-shoe right"></div>
+                        <div
+                            class="character-shoe right"
+                        ></div>
 
                     </div>
+
 
                 </div>
 
@@ -105,9 +117,7 @@
 
 
 
-        <!-- =====================================
-             CUSTOMIZATION
-        ====================================== -->
+        <!-- CUSTOMIZATION -->
 
         <section class="customization-panel">
 
@@ -116,9 +126,7 @@
 
             <div class="customization-row">
 
-                <h2>
-                    HAIR
-                </h2>
+                <h2>HAIR</h2>
 
                 <button
                     class="arrow-button"
@@ -149,9 +157,7 @@
 
             <div class="customization-row">
 
-                <h2>
-                    SHIRT
-                </h2>
+                <h2>SHIRT</h2>
 
                 <button
                     class="arrow-button"
@@ -182,9 +188,7 @@
 
             <div class="customization-row">
 
-                <h2>
-                    PANTS
-                </h2>
+                <h2>PANTS</h2>
 
                 <button
                     class="arrow-button"
@@ -215,9 +219,7 @@
 
             <div class="customization-row">
 
-                <h2>
-                    SHOES
-                </h2>
+                <h2>SHOES</h2>
 
                 <button
                     class="arrow-button"
@@ -248,9 +250,7 @@
 
             <div class="customization-row">
 
-                <h2>
-                    ACCESSORY
-                </h2>
+                <h2>ACCESSORY</h2>
 
                 <button
                     class="arrow-button"
@@ -280,11 +280,10 @@
 
 
 
-        <!-- =====================================
-             ACTIONS
-        ====================================== -->
+        <!-- ACTIONS -->
 
-        <section class="editor-actions">
+        <div class="editor-actions">
+
 
             <button
                 id="randomizeButton"
@@ -298,26 +297,23 @@
                 id="continueButton"
                 class="primary-button"
             >
-                CONTINUE →
+                CONTINUE ▶
             </button>
 
-        </section>
 
+        </div>
 
-
-        <!-- =====================================
-             BACK
-        ====================================== -->
 
         <button
             id="backButton"
             class="back-button"
         >
-            ← BACK
+            ◀ BACK
         </button>
 
 
     </main>
+
 
 
     <script src="character.js"></script>
