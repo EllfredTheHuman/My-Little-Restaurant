@@ -19,80 +19,90 @@
 
 <body>
 
-
     <main class="character-editor">
 
 
+        <!-- HEADER -->
+
         <header class="editor-header">
 
-            <h1>
-                CREATE YOUR SHOPKEEPER
-            </h1>
+            <h1>CREATE YOUR SHOPKEEPER</h1>
 
-            <p>
-                Make your little character!
-            </p>
+            <p>Make your little character!</p>
 
         </header>
 
 
+        <!-- CHARACTER PREVIEW -->
 
         <section class="character-preview">
 
             <div class="preview-box">
 
+                <div id="character" class="character">
 
-                <div
-                    id="character"
-                    class="character"
-                >
+                    <!-- HAIR -->
 
+                    <div class="hair">
 
-                    <div class="character-head">
+                        <div class="hair-top"></div>
 
-                        <div class="character-hair"></div>
+                        <div class="hair-left"></div>
 
-
-                        <div class="character-eyes">
-
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-
-                        <div class="character-mouth"></div>
+                        <div class="hair-right"></div>
 
                     </div>
 
 
+                    <!-- HEAD -->
 
-                    <div class="character-body">
+                    <div class="head">
 
-                        <div class="character-shirt"></div>
+                        <div class="eye left-eye"></div>
 
-                    </div>
+                        <div class="eye right-eye"></div>
 
-
-
-                    <div class="character-legs">
-
-                        <div class="character-leg left"></div>
-
-                        <div class="character-leg right"></div>
+                        <div class="mouth"></div>
 
                     </div>
 
 
+                    <!-- BODY -->
 
-                    <div class="character-shoes">
+                    <div class="body">
 
-                        <div class="character-shoe left"></div>
-
-                        <div class="character-shoe right"></div>
+                        <div class="shirt"></div>
 
                     </div>
 
+
+                    <!-- ARMS -->
+
+                    <div class="arm left-arm"></div>
+
+                    <div class="arm right-arm"></div>
+
+
+                    <!-- LEGS -->
+
+                    <div class="leg left-leg"></div>
+
+                    <div class="leg right-leg"></div>
+
+
+                    <!-- SHOES -->
+
+                    <div class="shoe left-shoe"></div>
+
+                    <div class="shoe right-shoe"></div>
+
+
+                    <!-- ACCESSORY -->
+
+                    <div
+                        id="accessory"
+                        class="accessory"
+                    ></div>
 
                 </div>
 
@@ -101,31 +111,34 @@
         </section>
 
 
+        <!-- CUSTOMIZATION -->
 
         <section class="customization-panel">
 
+
+            <!-- HAIR -->
 
             <div class="customization-row">
 
                 <h2>HAIR</h2>
 
                 <button
-                    class="arrow-button"
                     id="hairPrevious"
+                    class="arrow-button"
                 >
                     ◀
                 </button>
 
                 <div
-                    class="selection"
                     id="hairSelection"
+                    class="selection"
                 >
                     Brown
                 </div>
 
                 <button
-                    class="arrow-button"
                     id="hairNext"
+                    class="arrow-button"
                 >
                     ▶
                 </button>
@@ -133,28 +146,29 @@
             </div>
 
 
+            <!-- SHIRT -->
 
             <div class="customization-row">
 
                 <h2>SHIRT</h2>
 
                 <button
-                    class="arrow-button"
                     id="shirtPrevious"
+                    class="arrow-button"
                 >
                     ◀
                 </button>
 
                 <div
-                    class="selection"
                     id="shirtSelection"
+                    class="selection"
                 >
                     Blue
                 </div>
 
                 <button
-                    class="arrow-button"
                     id="shirtNext"
+                    class="arrow-button"
                 >
                     ▶
                 </button>
@@ -162,28 +176,29 @@
             </div>
 
 
+            <!-- PANTS -->
 
             <div class="customization-row">
 
                 <h2>PANTS</h2>
 
                 <button
-                    class="arrow-button"
                     id="pantsPrevious"
+                    class="arrow-button"
                 >
                     ◀
                 </button>
 
                 <div
-                    class="selection"
                     id="pantsSelection"
+                    class="selection"
                 >
                     Black
                 </div>
 
                 <button
-                    class="arrow-button"
                     id="pantsNext"
+                    class="arrow-button"
                 >
                     ▶
                 </button>
@@ -191,28 +206,29 @@
             </div>
 
 
+            <!-- SHOES -->
 
             <div class="customization-row">
 
                 <h2>SHOES</h2>
 
                 <button
-                    class="arrow-button"
                     id="shoesPrevious"
+                    class="arrow-button"
                 >
                     ◀
                 </button>
 
                 <div
-                    class="selection"
                     id="shoesSelection"
+                    class="selection"
                 >
                     Brown
                 </div>
 
                 <button
-                    class="arrow-button"
                     id="shoesNext"
+                    class="arrow-button"
                 >
                     ▶
                 </button>
@@ -220,28 +236,29 @@
             </div>
 
 
+            <!-- ACCESSORY -->
 
             <div class="customization-row">
 
                 <h2>ACCESSORY</h2>
 
                 <button
-                    class="arrow-button"
                     id="accessoryPrevious"
+                    class="arrow-button"
                 >
                     ◀
                 </button>
 
                 <div
-                    class="selection"
                     id="accessorySelection"
+                    class="selection"
                 >
                     None
                 </div>
 
                 <button
-                    class="arrow-button"
                     id="accessoryNext"
+                    class="arrow-button"
                 >
                     ▶
                 </button>
@@ -252,6 +269,7 @@
         </section>
 
 
+        <!-- ACTIONS -->
 
         <div class="editor-actions">
 
@@ -261,7 +279,6 @@
             >
                 RANDOMIZE
             </button>
-
 
             <button
                 id="continueButton"
@@ -273,6 +290,7 @@
         </div>
 
 
+        <!-- BACK -->
 
         <button
             id="backButton"
