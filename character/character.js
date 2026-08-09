@@ -70,8 +70,11 @@ let character = {
 
 
 /* =========================================
-   GET ELEMENTS
+   ELEMENTS
 ========================================= */
+
+const characterElement =
+    document.getElementById("character");
 
 const hairSelection =
     document.getElementById("hairSelection");
@@ -89,15 +92,11 @@ const accessorySelection =
     document.getElementById("accessorySelection");
 
 
-const characterElement =
-    document.getElementById("character");
-
-
 /* =========================================
-   UPDATE TEXT
+   UPDATE EVERYTHING
 ========================================= */
 
-function updateSelections() {
+function updateCharacter() {
 
     hairSelection.textContent =
         options.hair[character.hair];
@@ -115,43 +114,47 @@ function updateSelections() {
         options.accessory[character.accessory];
 
 
-    updateCharacterAppearance();
+    updateAppearance();
+
 }
 
 
 /* =========================================
-   CYCLE OPTION
+   CHANGE OPTION
 ========================================= */
 
-function changeOption(type, direction) {
+function changeOption(type, amount) {
 
-    character[type] += direction;
+    character[type] += amount;
 
 
     if (character[type] < 0) {
 
         character[type] =
             options[type].length - 1;
+
     }
 
 
     if (character[type] >= options[type].length) {
 
         character[type] = 0;
+
     }
 
 
-    updateSelections();
+    updateCharacter();
+
 }
 
 
 /* =========================================
-   HAIR BUTTONS
+   HAIR
 ========================================= */
 
 document
     .getElementById("hairPrevious")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("hair", -1);
 
@@ -160,7 +163,7 @@ document
 
 document
     .getElementById("hairNext")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("hair", 1);
 
@@ -168,12 +171,12 @@ document
 
 
 /* =========================================
-   SHIRT BUTTONS
+   SHIRT
 ========================================= */
 
 document
     .getElementById("shirtPrevious")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("shirt", -1);
 
@@ -182,7 +185,7 @@ document
 
 document
     .getElementById("shirtNext")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("shirt", 1);
 
@@ -190,12 +193,12 @@ document
 
 
 /* =========================================
-   PANTS BUTTONS
+   PANTS
 ========================================= */
 
 document
     .getElementById("pantsPrevious")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("pants", -1);
 
@@ -204,7 +207,7 @@ document
 
 document
     .getElementById("pantsNext")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("pants", 1);
 
@@ -212,12 +215,12 @@ document
 
 
 /* =========================================
-   SHOES BUTTONS
+   SHOES
 ========================================= */
 
 document
     .getElementById("shoesPrevious")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("shoes", -1);
 
@@ -226,7 +229,7 @@ document
 
 document
     .getElementById("shoesNext")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("shoes", 1);
 
@@ -234,12 +237,12 @@ document
 
 
 /* =========================================
-   ACCESSORY BUTTONS
+   ACCESSORIES
 ========================================= */
 
 document
     .getElementById("accessoryPrevious")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("accessory", -1);
 
@@ -248,7 +251,7 @@ document
 
 document
     .getElementById("accessoryNext")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         changeOption("accessory", 1);
 
@@ -261,90 +264,53 @@ document
 
 document
     .getElementById("randomizeButton")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         character.hair =
-            Math.floor(Math.random() * options.hair.length);
+            Math.floor(
+                Math.random() *
+                options.hair.length
+            );
+
 
         character.shirt =
-            Math.floor(Math.random() * options.shirt.length);
+            Math.floor(
+                Math.random() *
+                options.shirt.length
+            );
+
 
         character.pants =
-            Math.floor(Math.random() * options.pants.length);
+            Math.floor(
+                Math.random() *
+                options.pants.length
+            );
+
 
         character.shoes =
-            Math.floor(Math.random() * options.shoes.length);
+            Math.floor(
+                Math.random() *
+                options.shoes.length
+            );
+
 
         character.accessory =
-            Math.floor(Math.random() * options.accessory.length);
+            Math.floor(
+                Math.random() *
+                options.accessory.length
+            );
 
 
-        updateSelections();
+        updateCharacter();
 
     });
 
 
 /* =========================================
-   CHARACTER APPEARANCE
+   UPDATE CHARACTER APPEARANCE
 ========================================= */
 
-function updateCharacterAppearance() {
-
-    const hair =
-        options.hair[character.hair];
-
-    const shirt =
-        options.shirt[character.shirt];
-
-    const pants =
-        options.pants[character.pants];
-
-    const shoes =
-        options.shoes[character.shoes];
-
-    const accessory =
-        options.accessory[character.accessory];
-
-
-    /* Hair */
-
-    characterElement.dataset.hair =
-        hair.toLowerCase();
-
-
-    /* Shirt */
-
-    characterElement.dataset.shirt =
-        shirt.toLowerCase();
-
-
-    /* Pants */
-
-    characterElement.dataset.pants =
-        pants.toLowerCase();
-
-
-    /* Shoes */
-
-    characterElement.dataset.shoes =
-        shoes.toLowerCase();
-
-
-    /* Accessory */
-
-    characterElement.dataset.accessory =
-        accessory.toLowerCase();
-
-
-    updateColours();
-}
-
-
-/* =========================================
-   COLOUR SYSTEM
-========================================= */
-
-function updateColours() {
+function updateAppearance() {
 
     const hair =
         document.querySelector(".character-hair");
@@ -359,86 +325,86 @@ function updateColours() {
         document.querySelectorAll(".character-shoe");
 
 
-    /* -------------------------
-       HAIR
-    ------------------------- */
+    /* =====================================
+       HAIR COLOURS
+    ====================================== */
 
     const hairColours = {
 
-        brown: "#6b452c",
+        Brown: "#6b452c",
 
-        black: "#292522",
+        Black: "#292522",
 
-        blonde: "#e7bd55",
+        Blonde: "#e7bd55",
 
-        ginger: "#b85c32",
+        Ginger: "#b85c32",
 
-        blue: "#4d83c4",
+        Blue: "#4d83c4",
 
-        pink: "#d86a9b"
+        Pink: "#d86a9b"
 
     };
 
 
     hair.style.backgroundColor =
         hairColours[
-            options.hair[character.hair].toLowerCase()
+            options.hair[character.hair]
         ];
 
 
-    /* -------------------------
-       SHIRT
-    ------------------------- */
+    /* =====================================
+       SHIRT COLOURS
+    ====================================== */
 
     const shirtColours = {
 
-        blue: "#4c8fd1",
+        Blue: "#4c8fd1",
 
-        red: "#d95757",
+        Red: "#d95757",
 
-        green: "#55aa62",
+        Green: "#55aa62",
 
-        yellow: "#e6bd4f",
+        Yellow: "#e6bd4f",
 
-        purple: "#9666c2",
+        Purple: "#9666c2",
 
-        orange: "#df8247"
+        Orange: "#df8247"
 
     };
 
 
     shirt.style.backgroundColor =
         shirtColours[
-            options.shirt[character.shirt].toLowerCase()
+            options.shirt[character.shirt]
         ];
 
 
-    /* -------------------------
-       PANTS
-    ------------------------- */
+    /* =====================================
+       PANTS COLOURS
+    ====================================== */
 
     const pantsColours = {
 
-        black: "#292f4a",
+        Black: "#292f4a",
 
-        blue: "#3d5f9b",
+        Blue: "#3d5f9b",
 
-        brown: "#765039",
+        Brown: "#765039",
 
-        grey: "#727b82",
+        Grey: "#727b82",
 
-        green: "#46734f"
+        Green: "#46734f"
 
     };
 
 
     const pantsColour =
         pantsColours[
-            options.pants[character.pants].toLowerCase()
+            options.pants[character.pants]
         ];
 
 
-    legs.forEach(function (leg) {
+    legs.forEach((leg) => {
 
         leg.style.backgroundColor =
             pantsColour;
@@ -446,30 +412,30 @@ function updateColours() {
     });
 
 
-    /* -------------------------
-       SHOES
-    ------------------------- */
+    /* =====================================
+       SHOE COLOURS
+    ====================================== */
 
     const shoeColours = {
 
-        brown: "#49362c",
+        Brown: "#49362c",
 
-        black: "#292522",
+        Black: "#292522",
 
-        white: "#eeeeee",
+        White: "#eeeeee",
 
-        red: "#b84242"
+        Red: "#b84242"
 
     };
 
 
     const shoeColour =
         shoeColours[
-            options.shoes[character.shoes].toLowerCase()
+            options.shoes[character.shoes]
         ];
 
 
-    shoes.forEach(function (shoe) {
+    shoes.forEach((shoe) => {
 
         shoe.style.backgroundColor =
             shoeColour;
@@ -483,13 +449,15 @@ function updateColours() {
 
 
 /* =========================================
-   ACCESSORIES
+   PIXEL ACCESSORIES
 ========================================= */
 
 function updateAccessory() {
 
-    let oldAccessory =
-        document.querySelector(".character-accessory");
+    const oldAccessory =
+        document.querySelector(
+            ".character-accessory"
+        );
 
 
     if (oldAccessory) {
@@ -516,35 +484,58 @@ function updateAccessory() {
         document.createElement("div");
 
 
-    element.classList.add(
-        "character-accessory"
-    );
+    element.className =
+        "character-accessory";
 
+
+    /* =====================================
+       CAP
+    ====================================== */
 
     if (accessory === "Cap") {
 
-        element.textContent = "🧢";
+        element.classList.add(
+            "pixel-cap"
+        );
 
     }
 
+
+    /* =====================================
+       CHEF HAT
+    ====================================== */
 
     if (accessory === "Chef Hat") {
 
-        element.textContent = "👨‍🍳";
+        element.classList.add(
+            "pixel-chef-hat"
+        );
 
     }
 
+
+    /* =====================================
+       BEANIE
+    ====================================== */
 
     if (accessory === "Beanie") {
 
-        element.textContent = "🧶";
+        element.classList.add(
+            "pixel-beanie"
+        );
 
     }
 
 
+    /* =====================================
+       GLASSES
+    ====================================== */
+
     if (accessory === "Glasses") {
 
-        element.textContent = "🤓";
+        element.classList.add(
+            "pixel-glasses"
+        );
 
     }
 
@@ -574,26 +565,27 @@ function saveCharacter() {
 
 document
     .getElementById("continueButton")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
         saveCharacter();
 
         alert(
-            "Character saved! The restaurant is coming next!"
+            "Character saved!"
         );
 
     });
 
 
 /* =========================================
-   BACK BUTTON
+   BACK TO TITLE
 ========================================= */
 
 document
     .getElementById("backButton")
-    .addEventListener("click", function () {
+    .addEventListener("click", () => {
 
-        window.location.href = "../index.html";
+        window.location.href =
+            "../index.html";
 
     });
 
@@ -610,40 +602,46 @@ function loadCharacter() {
         );
 
 
-    if (!saved) {
+    if (saved) {
 
-        updateSelections();
+        try {
 
-        return;
+            const loaded =
+                JSON.parse(saved);
+
+
+            if (
+                typeof loaded.hair === "number" &&
+                typeof loaded.shirt === "number" &&
+                typeof loaded.pants === "number" &&
+                typeof loaded.shoes === "number" &&
+                typeof loaded.accessory === "number"
+            ) {
+
+                character = loaded;
+
+            }
+
+        }
+
+        catch (error) {
+
+            console.log(
+                "No valid character save found."
+            );
+
+        }
 
     }
 
 
-    try {
-
-        const parsed =
-            JSON.parse(saved);
-
-
-        character = parsed;
-
-
-    } catch (error) {
-
-        console.log(
-            "Could not load character."
-        );
-
-    }
-
-
-    updateSelections();
+    updateCharacter();
 
 }
 
 
 /* =========================================
-   START
+   START CHARACTER EDITOR
 ========================================= */
 
 loadCharacter();
