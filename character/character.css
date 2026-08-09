@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-
     image-rendering: pixelated;
 }
 
@@ -8,38 +7,33 @@ html,
 body {
     margin: 0;
     padding: 0;
-
     min-height: 100%;
-
-    font-family: monospace;
 }
 
 body {
+    font-family: monospace;
     background: #64c9ed;
 }
 
 
 /* =========================================
-   CREATOR
+   EDITOR
 ========================================= */
 
 .creator {
-
     min-height: 100vh;
 
     padding: 25px 20px 50px;
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
 
     background:
         linear-gradient(
-            #64c9ed,
-            #8bd6e8 65%,
-            #a7dfbd
+            #64c9ed 0%,
+            #8bd7e8 65%,
+            #a7dfbd 100%
         );
 }
 
@@ -49,18 +43,15 @@ body {
 ========================================= */
 
 .creator-header {
-
     text-align: center;
 }
 
 .creator-header h1 {
-
     margin: 0;
 
     color: white;
 
     font-size: 28px;
-
     letter-spacing: 3px;
 
     text-shadow:
@@ -68,14 +59,12 @@ body {
 }
 
 .creator-header p {
-
     margin-top: 8px;
 
     color: white;
 
-    font-weight: bold;
-
     font-size: 14px;
+    font-weight: bold;
 }
 
 
@@ -84,12 +73,10 @@ body {
 ========================================= */
 
 .preview-area {
-
     margin-top: 25px;
 }
 
 .preview-background {
-
     position: relative;
 
     width: 380px;
@@ -99,8 +86,8 @@ body {
 
     background:
         linear-gradient(
-            #8edaf0 0%,
-            #b6e7ee 65%,
+            #91dff2 0%,
+            #b8e9ef 65%,
             #9bd78c 65%,
             #9bd78c 100%
         );
@@ -112,25 +99,24 @@ body {
 }
 
 
-/* clouds */
+/* simple cloud */
 
 .preview-background::before {
-
     content: "";
 
     position: absolute;
 
-    width: 80px;
-    height: 20px;
+    left: 45px;
+    top: 55px;
 
-    top: 50px;
-    left: 40px;
+    width: 65px;
+    height: 16px;
 
     background: white;
 
     box-shadow:
-        20px -10px white,
-        40px 0 white;
+        18px -9px 0 white,
+        38px 0 0 white;
 
     opacity: 0.8;
 }
@@ -141,11 +127,10 @@ body {
 ========================================= */
 
 .ground {
-
     position: absolute;
 
-    bottom: 0;
     left: 0;
+    bottom: 0;
 
     width: 100%;
     height: 70px;
@@ -160,22 +145,14 @@ body {
    CHARACTER
 ========================================= */
 
-/*
-   The character itself is deliberately
-   small and chunky.
-
-   We scale the pixel pieces up.
-*/
-
 .character {
-
     position: absolute;
 
     left: 50%;
-    bottom: 53px;
+    bottom: 52px;
 
     width: 120px;
-    height: 190px;
+    height: 195px;
 
     transform: translateX(-50%);
 }
@@ -186,20 +163,87 @@ body {
 ========================================= */
 
 .head {
-
     position: absolute;
 
     left: 28px;
-    top: 10px;
+    top: 18px;
 
     width: 64px;
     height: 64px;
 
     background: #f3bd88;
 
-    border: 6px solid #4a352e;
+    border: 5px solid #49342d;
 
     z-index: 5;
+}
+
+
+/* =========================================
+   HAIR
+========================================= */
+
+/*
+   IMPORTANT:
+   Hair sits directly ON the head.
+
+   It does NOT have a giant back layer.
+*/
+
+.hair-front {
+    position: absolute;
+
+    left: 28px;
+    top: 18px;
+
+    width: 64px;
+    height: 22px;
+
+    background: #70462e;
+
+    border-top: 5px solid #49342d;
+    border-left: 5px solid #49342d;
+    border-right: 5px solid #49342d;
+
+    z-index: 12;
+}
+
+
+/* little hair fringe */
+
+.hair-front::before {
+    content: "";
+
+    position: absolute;
+
+    left: 5px;
+    bottom: -7px;
+
+    width: 13px;
+    height: 9px;
+
+    background: #70462e;
+
+    border-left: 5px solid #49342d;
+    border-bottom: 5px solid #49342d;
+}
+
+
+.hair-front::after {
+    content: "";
+
+    position: absolute;
+
+    right: 5px;
+    bottom: -7px;
+
+    width: 13px;
+    height: 9px;
+
+    background: #70462e;
+
+    border-right: 5px solid #49342d;
+    border-bottom: 5px solid #49342d;
 }
 
 
@@ -208,155 +252,69 @@ body {
 ========================================= */
 
 .face {
-
     position: absolute;
 
     inset: 0;
 
-    z-index: 8;
+    z-index: 15;
 }
 
 
-/* EYES */
+/* =========================================
+   EYES
+========================================= */
 
 .eye {
-
     position: absolute;
 
-    top: 25px;
+    top: 29px;
 
-    width: 8px;
-    height: 10px;
+    width: 7px;
+    height: 9px;
 
     background: #292321;
 }
 
 .eye-left {
-    left: 13px;
+    left: 14px;
 }
 
 .eye-right {
-    right: 13px;
+    right: 14px;
 }
 
 
-/* tiny eye highlights */
+/* eye shine */
 
 .eye::after {
-
     content: "";
 
     position: absolute;
 
-    width: 2px;
-    height: 2px;
-
     left: 2px;
     top: 2px;
+
+    width: 2px;
+    height: 2px;
 
     background: white;
 }
 
 
-/* MOUTH */
+/* =========================================
+   MOUTH
+========================================= */
 
 .mouth {
-
     position: absolute;
 
-    left: 24px;
-    top: 43px;
+    left: 25px;
+    top: 46px;
 
-    width: 14px;
-    height: 5px;
+    width: 12px;
+    height: 4px;
 
     background: #9d4b4b;
-}
-
-
-/* =========================================
-   HAIR BACK
-========================================= */
-
-.hair-back {
-
-    position: absolute;
-
-    left: 22px;
-    top: 5px;
-
-    width: 76px;
-    height: 76px;
-
-    background: #70462e;
-
-    border: 6px solid #49342d;
-
-    z-index: 2;
-}
-
-
-/* =========================================
-   HAIR FRONT
-========================================= */
-
-.hair-front {
-
-    position: absolute;
-
-    left: 28px;
-    top: 7px;
-
-    width: 64px;
-    height: 25px;
-
-    background: #70462e;
-
-    border-top: 6px solid #49342d;
-    border-left: 6px solid #49342d;
-    border-right: 6px solid #49342d;
-
-    z-index: 10;
-}
-
-
-/* little hair chunks */
-
-.hair-front::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: -6px;
-    top: 17px;
-
-    width: 15px;
-    height: 25px;
-
-    background: #70462e;
-
-    border-left: 6px solid #49342d;
-    border-bottom: 6px solid #49342d;
-}
-
-
-.hair-front::after {
-
-    content: "";
-
-    position: absolute;
-
-    right: -6px;
-    top: 17px;
-
-    width: 15px;
-    height: 25px;
-
-    background: #70462e;
-
-    border-right: 6px solid #49342d;
-    border-bottom: 6px solid #49342d;
 }
 
 
@@ -365,36 +323,19 @@ body {
 ========================================= */
 
 .body {
-
     position: absolute;
 
-    left: 25px;
-    top: 76px;
+    left: 24px;
+    top: 80px;
 
-    width: 70px;
+    width: 72px;
     height: 58px;
 
     background: #4d91d1;
 
-    border: 6px solid #394d66;
+    border: 5px solid #394d66;
 
     z-index: 4;
-}
-
-
-/* shirt detail */
-
-.shirt-detail {
-
-    position: absolute;
-
-    left: 25px;
-    top: 10px;
-
-    width: 8px;
-    height: 30px;
-
-    background: rgba(255,255,255,0.3);
 }
 
 
@@ -403,13 +344,12 @@ body {
 ========================================= */
 
 .arm {
-
     position: absolute;
 
-    top: 80px;
+    top: 84px;
 
-    width: 20px;
-    height: 50px;
+    width: 18px;
+    height: 48px;
 
     background: #f3bd88;
 
@@ -419,11 +359,11 @@ body {
 }
 
 .arm-left {
-    left: 8px;
+    left: 9px;
 }
 
 .arm-right {
-    right: 8px;
+    right: 9px;
 }
 
 
@@ -432,13 +372,12 @@ body {
 ========================================= */
 
 .leg {
-
     position: absolute;
 
-    top: 128px;
+    top: 134px;
 
-    width: 25px;
-    height: 42px;
+    width: 24px;
+    height: 40px;
 
     background: #3d5d91;
 
@@ -462,12 +401,11 @@ body {
 ========================================= */
 
 .shoe {
-
     position: absolute;
 
-    top: 162px;
+    top: 166px;
 
-    width: 34px;
+    width: 33px;
     height: 18px;
 
     background: #50382c;
@@ -478,23 +416,22 @@ body {
 }
 
 .shoe-left {
-    left: 25px;
+    left: 24px;
 }
 
 .shoe-right {
-    right: 25px;
+    right: 24px;
 }
 
 
 /* =========================================
-   ACCESSORIES
+   ACCESSORY
 ========================================= */
 
 #accessory {
-
     position: absolute;
 
-    z-index: 20;
+    z-index: 30;
 
     pointer-events: none;
 }
@@ -505,130 +442,18 @@ body {
 ========================================= */
 
 .cap {
+    left: 25px;
+    top: 12px;
 
-    left: 23px;
-    top: 0;
-
-    width: 75px;
-    height: 20px;
-
-    background: #df5555;
-
-    border: 6px solid #793636;
-}
-
-.cap::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 10px;
-    top: -14px;
-
-    width: 38px;
-    height: 14px;
-
-    background: #df5555;
-
-    border-top: 6px solid #793636;
-    border-left: 6px solid #793636;
-    border-right: 6px solid #793636;
-}
-
-.cap::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: -12px;
-    bottom: -11px;
-
-    width: 42px;
-    height: 8px;
+    width: 70px;
+    height: 16px;
 
     background: #df5555;
 
     border: 5px solid #793636;
 }
 
-
-/* =========================================
-   CHEF HAT
-========================================= */
-
-.chef-hat {
-
-    left: 22px;
-    top: -20px;
-
-    width: 76px;
-    height: 43px;
-
-    background: white;
-
-    border: 6px solid #777;
-}
-
-.chef-hat::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 7px;
-    top: -13px;
-
-    width: 18px;
-    height: 13px;
-
-    background: white;
-
-    border-top: 6px solid #777;
-    border-left: 6px solid #777;
-    border-right: 6px solid #777;
-}
-
-.chef-hat::after {
-
-    content: "";
-
-    position: absolute;
-
-    right: 7px;
-    top: -13px;
-
-    width: 18px;
-    height: 13px;
-
-    background: white;
-
-    border-top: 6px solid #777;
-    border-left: 6px solid #777;
-    border-right: 6px solid #777;
-}
-
-
-/* =========================================
-   BEANIE
-========================================= */
-
-.beanie {
-
-    left: 24px;
-    top: 0;
-
-    width: 72px;
-    height: 35px;
-
-    background: #875bc0;
-
-    border: 6px solid #503675;
-}
-
-.beanie::before {
-
+.cap::before {
     content: "";
 
     position: absolute;
@@ -639,11 +464,115 @@ body {
     width: 35px;
     height: 11px;
 
+    background: #df5555;
+
+    border-top: 5px solid #793636;
+    border-left: 5px solid #793636;
+    border-right: 5px solid #793636;
+}
+
+.cap::after {
+    content: "";
+
+    position: absolute;
+
+    left: -10px;
+    bottom: -9px;
+
+    width: 40px;
+    height: 7px;
+
+    background: #df5555;
+
+    border: 4px solid #793636;
+}
+
+
+/* =========================================
+   CHEF HAT
+========================================= */
+
+.chef-hat {
+    left: 24px;
+    top: -5px;
+
+    width: 72px;
+    height: 32px;
+
+    background: white;
+
+    border: 5px solid #777;
+}
+
+.chef-hat::before {
+    content: "";
+
+    position: absolute;
+
+    left: 8px;
+    top: -11px;
+
+    width: 15px;
+    height: 11px;
+
+    background: white;
+
+    border-top: 5px solid #777;
+    border-left: 5px solid #777;
+    border-right: 5px solid #777;
+}
+
+.chef-hat::after {
+    content: "";
+
+    position: absolute;
+
+    right: 8px;
+    top: -11px;
+
+    width: 15px;
+    height: 11px;
+
+    background: white;
+
+    border-top: 5px solid #777;
+    border-left: 5px solid #777;
+    border-right: 5px solid #777;
+}
+
+
+/* =========================================
+   BEANIE
+========================================= */
+
+.beanie {
+    left: 25px;
+    top: 12px;
+
+    width: 70px;
+    height: 25px;
+
     background: #875bc0;
 
-    border-top: 6px solid #503675;
-    border-left: 6px solid #503675;
-    border-right: 6px solid #503675;
+    border: 5px solid #503675;
+}
+
+.beanie::before {
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+    top: -10px;
+
+    width: 32px;
+    height: 10px;
+
+    background: #875bc0;
+
+    border-top: 5px solid #503675;
+    border-left: 5px solid #503675;
+    border-right: 5px solid #503675;
 }
 
 
@@ -651,56 +580,61 @@ body {
    GLASSES
 ========================================= */
 
+/*
+   Tiny frames placed directly over
+   the eyes.
+*/
+
 .glasses {
+    left: 39px;
+    top: 47px;
 
-    left: 38px;
-    top: 33px;
+    width: 17px;
+    height: 13px;
 
-    width: 21px;
-    height: 17px;
+    border: 3px solid #292321;
 
-    border: 4px solid #252525;
+    background: transparent;
 
-    z-index: 30;
+    z-index: 25;
 }
 
 .glasses::before {
-
     content: "";
 
     position: absolute;
 
-    left: 25px;
-    top: -4px;
+    left: 22px;
+    top: -3px;
 
-    width: 21px;
-    height: 17px;
+    width: 17px;
+    height: 13px;
 
-    border: 4px solid #252525;
+    border: 3px solid #292321;
+
+    background: transparent;
 }
 
 .glasses::after {
-
     content: "";
 
     position: absolute;
 
-    left: 17px;
-    top: 3px;
+    left: 14px;
+    top: 2px;
 
-    width: 12px;
-    height: 4px;
+    width: 11px;
+    height: 3px;
 
-    background: #252525;
+    background: #292321;
 }
 
 
 /* =========================================
-   CUSTOMIZATION PANEL
+   CUSTOMIZATION
 ========================================= */
 
 .customization {
-
     width: 700px;
     max-width: 95vw;
 
@@ -723,12 +657,7 @@ body {
 }
 
 
-/* =========================================
-   CUSTOM ROW
-========================================= */
-
 .custom-row {
-
     display: grid;
 
     grid-template-columns:
@@ -745,23 +674,21 @@ body {
     border: 4px solid #63a8bc;
 }
 
+
 .custom-row span {
+    color: #27657d;
 
     font-size: 10px;
-
     font-weight: bold;
-
-    color: #27657d;
 }
 
+
 .custom-row div {
+    color: #27657d;
 
     text-align: center;
 
-    color: #27657d;
-
     font-size: 10px;
-
     font-weight: bold;
 }
 
@@ -771,7 +698,6 @@ body {
 ========================================= */
 
 .custom-row button {
-
     width: 32px;
     height: 32px;
 
@@ -787,14 +713,12 @@ body {
         3px 3px 0 #19495d;
 
     font-family: monospace;
-
     font-weight: bold;
 
     cursor: pointer;
 }
 
 .custom-row button:active {
-
     transform:
         translate(3px, 3px);
 
@@ -803,11 +727,10 @@ body {
 
 
 /* =========================================
-   ACTION BUTTONS
+   BUTTONS
 ========================================= */
 
 .buttons {
-
     display: flex;
 
     gap: 18px;
@@ -815,8 +738,8 @@ body {
     margin-top: 25px;
 }
 
-.buttons button {
 
+.buttons button {
     padding: 14px 22px;
 
     font-family: monospace;
@@ -826,8 +749,8 @@ body {
     cursor: pointer;
 }
 
-.random-button {
 
+.random-button {
     color: #27657d;
 
     background: white;
@@ -838,8 +761,8 @@ body {
         5px 5px 0 #19495d;
 }
 
-.continue-button {
 
+.continue-button {
     color: white;
 
     background: #55aa62;
@@ -856,7 +779,6 @@ body {
 ========================================= */
 
 .back-button {
-
     margin-top: 25px;
 
     padding: 12px 20px;
@@ -871,7 +793,6 @@ body {
         5px 5px 0 #19495d;
 
     font-family: monospace;
-
     font-weight: bold;
 
     cursor: pointer;
