@@ -21,6 +21,10 @@ body {
     font-family: monospace;
 }
 
+body {
+    background: #7ec9df;
+}
+
 
 /* =========================================
    GAME
@@ -30,9 +34,9 @@ body {
     width: 100vw;
     height: 100vh;
 
-    background: #87ceeb;
-
     position: relative;
+
+    background: #7ec9df;
 }
 
 
@@ -43,8 +47,8 @@ body {
 .game-header {
     position: absolute;
 
-    top: 0;
     left: 0;
+    top: 0;
 
     width: 100%;
     height: 65px;
@@ -55,16 +59,16 @@ body {
 
     padding: 0 25px;
 
-    background: #fff4d6;
+    background: #fff1cf;
 
-    border-bottom: 6px solid #6b4534;
+    border-bottom: 6px solid #684532;
 
     z-index: 100;
 }
 
 
 .game-logo {
-    color: #6b4534;
+    color: #674331;
 
     font-size: 20px;
     font-weight: bold;
@@ -72,14 +76,14 @@ body {
     letter-spacing: 2px;
 
     text-shadow:
-        2px 2px 0 #e7c89b;
+        2px 2px 0 #d8b789;
 }
 
 
 .money {
     padding: 9px 14px;
 
-    color: #ffffff;
+    color: white;
 
     background: #55a85b;
 
@@ -110,10 +114,10 @@ body {
 
     overflow: hidden;
 
-    background: #d7b17d;
+    background: #bd7b50;
 
-    border-left: 8px solid #6b4534;
-    border-right: 8px solid #6b4534;
+    border-left: 8px solid #573a2c;
+    border-right: 8px solid #573a2c;
 }
 
 
@@ -133,13 +137,13 @@ body {
     background:
         repeating-linear-gradient(
             0deg,
-            #e7c99f 0px,
-            #e7c99f 24px,
-            #d8b787 24px,
-            #d8b787 28px
+            #e4c69a 0px,
+            #e4c69a 24px,
+            #d2ae7d 24px,
+            #d2ae7d 28px
         );
 
-    border-bottom: 8px solid #8a5b3c;
+    border-bottom: 8px solid #805538;
 }
 
 
@@ -159,19 +163,15 @@ body {
     background:
         repeating-linear-gradient(
             90deg,
-            #b9784e 0px,
-            #b9784e 42px,
-            #a96845 42px,
-            #a96845 46px
+            #b96f49 0px,
+            #b96f49 42px,
+            #a96143 42px,
+            #a96143 46px
         );
 
-    border-top: 5px solid #774a35;
+    border-top: 5px solid #754832;
 }
 
-
-/* =========================================
-   FLOOR TILES
-========================================= */
 
 .floor::after {
     content: "";
@@ -185,14 +185,14 @@ body {
             0deg,
             transparent 0px,
             transparent 38px,
-            rgba(70, 42, 30, 0.15) 38px,
-            rgba(70, 42, 30, 0.15) 42px
+            rgba(55, 32, 22, 0.14) 38px,
+            rgba(55, 32, 22, 0.14) 42px
         );
 }
 
 
 /* =========================================
-   RESTAURANT SIGN
+   SIGN
 ========================================= */
 
 .restaurant-sign {
@@ -205,14 +205,14 @@ body {
 
     padding: 12px 24px;
 
-    color: #ffffff;
+    color: white;
 
-    background: #e45d4d;
+    background: #df594c;
 
     border: 6px solid #813b34;
 
     box-shadow:
-        6px 6px 0 #6b4534;
+        6px 6px 0 #593a2c;
 
     font-size: 18px;
     font-weight: bold;
@@ -234,9 +234,9 @@ body {
     width: 90px;
     height: 120px;
 
-    background: #6b4534;
+    background: #63402e;
 
-    border: 7px solid #493024;
+    border: 7px solid #432c22;
 
     z-index: 5;
 }
@@ -285,7 +285,7 @@ body {
     width: 100%;
     height: 25px;
 
-    background: #9a603c;
+    background: #965b3b;
 
     border: 6px solid #593a29;
 
@@ -363,10 +363,6 @@ body {
 }
 
 
-/* =========================================
-   TABLE LEGS
-========================================= */
-
 .table-top::after {
     content: "";
 
@@ -385,10 +381,6 @@ body {
 }
 
 
-/* =========================================
-   CHAIRS
-========================================= */
-
 .chair {
     position: absolute;
 
@@ -398,8 +390,6 @@ body {
     background: #e25c4d;
 
     border: 6px solid #7c352e;
-
-    z-index: 2;
 }
 
 
@@ -425,10 +415,17 @@ body {
     left: 430px;
     top: 410px;
 
-    width: 70px;
-    height: 110px;
+    width: 64px;
+    height: 104px;
 
     z-index: 50;
+
+    /*
+       Prevent the browser from smoothing
+       the character.
+    */
+
+    image-rendering: pixelated;
 }
 
 
@@ -439,32 +436,13 @@ body {
 .player-head {
     position: absolute;
 
-    left: 12px;
+    left: 10px;
     top: 0;
 
-    width: 46px;
-    height: 46px;
+    width: 44px;
+    height: 44px;
 
     background: #f3bd88;
-
-    border: 5px solid #49342d;
-}
-
-
-/* =========================================
-   PLAYER HAIR
-========================================= */
-
-.player-hair {
-    position: absolute;
-
-    left: -5px;
-    top: -5px;
-
-    width: 46px;
-    height: 16px;
-
-    background: #70462e;
 
     border: 5px solid #49342d;
 
@@ -473,7 +451,30 @@ body {
 
 
 /* =========================================
-   PLAYER EYES
+   HAIR
+========================================= */
+
+.player-hair {
+    position: absolute;
+
+    left: -5px;
+    top: -5px;
+
+    width: 44px;
+    height: 15px;
+
+    background: #70462e;
+
+    border-top: 5px solid #49342d;
+    border-left: 5px solid #49342d;
+    border-right: 5px solid #49342d;
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   EYES
 ========================================= */
 
 .player-eye {
@@ -482,69 +483,173 @@ body {
     top: 22px;
 
     width: 6px;
-    height: 8px;
+    height: 7px;
 
     background: #292321;
 
-    z-index: 6;
+    z-index: 15;
 }
 
 
 .player-eye.eye-left {
-    left: 9px;
+    left: 8px;
 }
 
 
 .player-eye.eye-right {
-    right: 9px;
+    right: 8px;
 }
 
 
 /* =========================================
-   PLAYER BODY
+   MOUTH
+========================================= */
+
+.player-head::after {
+    content: "";
+
+    position: absolute;
+
+    left: 15px;
+    top: 33px;
+
+    width: 9px;
+    height: 3px;
+
+    background: #9d4b4b;
+}
+
+
+/* =========================================
+   BODY
 ========================================= */
 
 .player-body {
     position: absolute;
 
-    left: 8px;
-    top: 43px;
+    left: 7px;
+    top: 41px;
 
-    width: 54px;
-    height: 42px;
+    width: 50px;
+    height: 38px;
 
     background: #4d91d1;
 
     border: 5px solid #394d66;
+
+    z-index: 4;
 }
 
 
 /* =========================================
-   PLAYER LEGS
+   ARMS
+========================================= */
+
+.player-body::before,
+.player-body::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 1px;
+
+    width: 12px;
+    height: 28px;
+
+    background: #f3bd88;
+
+    border: 4px solid #49342d;
+}
+
+
+.player-body::before {
+    left: -16px;
+}
+
+
+.player-body::after {
+    right: -16px;
+}
+
+
+/* =========================================
+   LEGS
 ========================================= */
 
 .player-leg {
     position: absolute;
 
-    top: 82px;
+    top: 76px;
 
-    width: 18px;
+    width: 17px;
     height: 28px;
 
     background: #3d5d91;
 
     border-left: 5px solid #293e66;
     border-right: 5px solid #293e66;
+
+    z-index: 3;
+
+    transition: transform 0.08s;
 }
 
 
 .player-leg.leg-left {
-    left: 15px;
+    left: 13px;
 }
 
 
 .player-leg.leg-right {
-    right: 15px;
+    right: 13px;
+}
+
+
+/* =========================================
+   SHOES
+========================================= */
+
+.player-leg::after {
+    content: "";
+
+    position: absolute;
+
+    left: -5px;
+    bottom: -7px;
+
+    width: 23px;
+    height: 9px;
+
+    background: #50382c;
+
+    border: 4px solid #33251f;
+}
+
+
+/* =========================================
+   WALKING ANIMATION
+========================================= */
+
+#player.walking .leg-left {
+    transform: translateY(-4px);
+}
+
+
+#player.walking .leg-right {
+    transform: translateY(4px);
+}
+
+
+/* Reverse on alternate step */
+
+#player.walking.step-two .leg-left {
+    transform: translateY(4px);
+}
+
+
+#player.walking.step-two .leg-right {
+    transform: translateY(-4px);
 }
 
 
@@ -562,7 +667,7 @@ body {
 
     padding: 9px 15px;
 
-    color: #ffffff;
+    color: white;
 
     background: #493024;
 
