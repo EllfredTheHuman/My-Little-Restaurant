@@ -1,10 +1,4 @@
-/* =========================================
-   MY LITTLE SHOP — PIXEL CHARACTER EDITOR
-========================================= */
-
-@import url(
-    'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'
-);
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 
 /* =========================================
@@ -20,20 +14,18 @@ html,
 body {
     margin: 0;
     padding: 0;
-
     width: 100%;
     min-height: 100%;
 }
 
 body {
     font-family: "Press Start 2P", monospace;
-
     background: #63cbed;
 }
 
 
 /* =========================================
-   EDITOR
+   MAIN EDITOR
 ========================================= */
 
 .character-editor {
@@ -49,8 +41,8 @@ body {
     background:
         linear-gradient(
             #63cbed 0%,
-            #7bd4ef 65%,
-            #9ddfec 100%
+            #7bd4ef 60%,
+            #a3dfed 100%
         );
 }
 
@@ -61,7 +53,6 @@ body {
 
 .editor-header {
     text-align: center;
-    z-index: 10;
 }
 
 .editor-header h1 {
@@ -92,11 +83,11 @@ body {
 
 
 /* =========================================
-   PREVIEW
+   CHARACTER PREVIEW
 ========================================= */
 
 .character-preview {
-    margin-top: 25px;
+    margin-top: 28px;
 }
 
 .preview-box {
@@ -107,7 +98,6 @@ body {
     position: relative;
 
     display: flex;
-
     justify-content: center;
     align-items: flex-end;
 
@@ -122,7 +112,7 @@ body {
 }
 
 
-/* Pixel grass */
+/* Ground */
 
 .preview-box::before {
 
@@ -144,7 +134,7 @@ body {
 }
 
 
-/* Little pixel grass details */
+/* Grass pixels */
 
 .preview-box::after {
 
@@ -152,8 +142,8 @@ body {
 
     position: absolute;
 
-    left: 30px;
-    bottom: 25px;
+    left: 25px;
+    bottom: 22px;
 
     width: 8px;
     height: 12px;
@@ -161,10 +151,10 @@ body {
     background: #3f914c;
 
     box-shadow:
-        40px 7px 0 #3f914c,
-        95px -4px 0 #3f914c,
-        155px 5px 0 #3f914c,
-        210px -3px 0 #3f914c;
+        45px 7px 0 #3f914c,
+        100px -3px 0 #3f914c,
+        155px 6px 0 #3f914c,
+        215px -2px 0 #3f914c;
 
     z-index: 2;
 }
@@ -234,7 +224,6 @@ body {
     z-index: 8;
 
     box-shadow:
-
         8px 8px 0 #6b452c,
         22px 8px 0 #6b452c,
         36px 8px 0 #6b452c,
@@ -256,10 +245,8 @@ body {
     width: 44px;
 
     display: flex;
-
     justify-content: space-between;
 }
-
 
 .character-eyes span {
 
@@ -267,9 +254,6 @@ body {
     height: 11px;
 
     background: #272321;
-
-    box-shadow:
-        2px 2px 0 rgba(0,0,0,0.15);
 }
 
 
@@ -312,11 +296,6 @@ body {
     z-index: 4;
 }
 
-
-/* =========================================
-   SHIRT
-========================================= */
-
 .character-shirt {
 
     position: absolute;
@@ -348,31 +327,12 @@ body {
     border: 5px solid #4b342d;
 }
 
-
 .character-body::before {
     left: -30px;
 }
 
-
 .character-body::after {
     right: -30px;
-}
-
-
-/* =========================================
-   HANDS
-========================================= */
-
-.character-body::before {
-
-    box-shadow:
-        0 40px 0 -5px #f2bd8a;
-}
-
-.character-body::after {
-
-    box-shadow:
-        0 40px 0 -5px #f2bd8a;
 }
 
 
@@ -393,7 +353,6 @@ body {
     z-index: 3;
 }
 
-
 .character-leg {
 
     position: absolute;
@@ -407,11 +366,9 @@ body {
     border-right: 5px solid #202538;
 }
 
-
 .character-leg.left {
     left: 0;
 }
-
 
 .character-leg.right {
     right: 0;
@@ -434,7 +391,6 @@ body {
     z-index: 6;
 }
 
-
 .character-shoe {
 
     position: absolute;
@@ -447,11 +403,9 @@ body {
     border: 5px solid #33251f;
 }
 
-
 .character-shoe.left {
     left: 0;
 }
-
 
 .character-shoe.right {
     right: 0;
@@ -466,42 +420,167 @@ body {
 
     position: absolute;
 
-    left: 43px;
-    top: 2px;
-
-    width: 45px;
-    height: 30px;
-
-    z-index: 15;
-
-    font-family: "Press Start 2P", monospace;
-
-    font-size: 0;
-
     pointer-events: none;
+
+    z-index: 20;
 }
 
 
-/* Pixel cap */
+/* -----------------------------------------
+   CAP
+----------------------------------------- */
 
-.character-accessory::before {
+.pixel-cap {
+
+    left: 38px;
+    top: 9px;
+
+    width: 55px;
+    height: 18px;
+
+    background: #d94f4f;
+
+    border: 5px solid #743838;
+
+    box-shadow:
+        12px -8px 0 #d94f4f,
+        24px -8px 0 #d94f4f,
+        36px -8px 0 #d94f4f;
+}
+
+.pixel-cap::after {
 
     content: "";
 
     position: absolute;
 
-    left: 0;
-    top: 12px;
+    left: -8px;
+    bottom: -9px;
 
     width: 45px;
-    height: 14px;
+    height: 9px;
 
-    background: #e34f4f;
+    background: #d94f4f;
 
-    border: 5px solid #713737;
+    border: 5px solid #743838;
+}
+
+
+/* -----------------------------------------
+   CHEF HAT
+----------------------------------------- */
+
+.pixel-chef-hat {
+
+    left: 35px;
+    top: -8px;
+
+    width: 60px;
+    height: 40px;
+
+    background: white;
+
+    border: 5px solid #777;
 
     box-shadow:
-        15px -9px 0 #e34f4f;
+        8px -8px 0 white,
+        18px -12px 0 white,
+        30px -8px 0 white,
+        40px 0 0 white;
+}
+
+.pixel-chef-hat::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: -5px;
+    bottom: -12px;
+
+    width: 60px;
+    height: 12px;
+
+    background: white;
+
+    border: 5px solid #777;
+}
+
+
+/* -----------------------------------------
+   BEANIE
+----------------------------------------- */
+
+.pixel-beanie {
+
+    left: 28px;
+    top: 8px;
+
+    width: 70px;
+    height: 35px;
+
+    background: #8c5bc4;
+
+    border: 5px solid #523675;
+
+    box-shadow:
+        8px -8px 0 #8c5bc4,
+        20px -10px 0 #8c5bc4,
+        32px -8px 0 #8c5bc4;
+}
+
+.pixel-beanie::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: -5px;
+    bottom: -10px;
+
+    width: 70px;
+    height: 10px;
+
+    background: #7147a4;
+
+    border: 5px solid #523675;
+}
+
+
+/* -----------------------------------------
+   GLASSES
+----------------------------------------- */
+
+.pixel-glasses {
+
+    left: 42px;
+    top: 63px;
+
+    width: 18px;
+    height: 15px;
+
+    background: #222;
+
+    border: 4px solid #111;
+
+    box-shadow:
+        30px 0 0 #222,
+        30px 0 0 4px #111;
+}
+
+.pixel-glasses::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 14px;
+    top: 2px;
+
+    width: 22px;
+    height: 5px;
+
+    background: #111;
 }
 
 
@@ -562,7 +641,6 @@ body {
     border: 4px solid #347b92;
 }
 
-
 .customization-row h2 {
 
     margin: 0;
@@ -574,7 +652,7 @@ body {
 
 
 /* =========================================
-   SELECTION
+   SELECTION TEXT
 ========================================= */
 
 .selection {
@@ -590,7 +668,7 @@ body {
 
 
 /* =========================================
-   ARROWS
+   ARROW BUTTONS
 ========================================= */
 
 .arrow-button {
@@ -616,7 +694,6 @@ body {
     cursor: pointer;
 }
 
-
 .arrow-button:hover {
 
     background: #66b7d4;
@@ -628,7 +705,6 @@ body {
         1px 1px 0 #19495d;
 }
 
-
 .arrow-button:active {
 
     transform:
@@ -639,7 +715,7 @@ body {
 
 
 /* =========================================
-   ACTIONS
+   ACTION BUTTONS
 ========================================= */
 
 .editor-actions {
@@ -653,7 +729,6 @@ body {
     z-index: 10;
 }
 
-
 .editor-actions button {
 
     padding: 16px 20px;
@@ -666,7 +741,7 @@ body {
 }
 
 
-/* Randomize */
+/* RANDOMIZE */
 
 .secondary-button {
 
@@ -680,13 +755,12 @@ body {
         5px 5px 0 #19495d;
 }
 
-
 .secondary-button:hover {
     background: #fff2a8;
 }
 
 
-/* Continue */
+/* CONTINUE */
 
 .primary-button {
 
@@ -700,14 +774,13 @@ body {
         5px 5px 0 #275b31;
 }
 
-
 .primary-button:hover {
     background: #69c477;
 }
 
 
 /* =========================================
-   BACK
+   BACK BUTTON
 ========================================= */
 
 .back-button {
@@ -717,7 +790,7 @@ body {
     left: 20px;
     bottom: 20px;
 
-    z-index: 20;
+    z-index: 30;
 
     padding: 13px 18px;
 
@@ -737,7 +810,6 @@ body {
     cursor: pointer;
 }
 
-
 .back-button:hover {
     background: #429cbe;
 }
@@ -753,25 +825,19 @@ body {
         padding-top: 25px;
     }
 
-
     .editor-header h1 {
         font-size: 18px;
     }
-
 
     .preview-box {
         width: 270px;
         height: 250px;
     }
 
-
     .customization-panel {
-
         grid-template-columns: 1fr;
-
         width: 95vw;
     }
-
 
     .editor-actions {
 
@@ -780,11 +846,9 @@ body {
         width: 280px;
     }
 
-
     .editor-actions button {
         width: 100%;
     }
-
 
     .back-button {
 
@@ -792,5 +856,4 @@ body {
 
         margin-top: 20px;
     }
-
 }
