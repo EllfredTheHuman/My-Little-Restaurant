@@ -1,0 +1,595 @@
+/* =========================================
+   MY LITTLE RESTAURANT
+   GAME CSS
+========================================= */
+
+* {
+    box-sizing: border-box;
+    image-rendering: pixelated;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    font-family: monospace;
+}
+
+
+/* =========================================
+   GAME
+========================================= */
+
+#game {
+    width: 100vw;
+    height: 100vh;
+
+    background: #87ceeb;
+
+    position: relative;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.game-header {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 25px;
+
+    background: #fff4d6;
+
+    border-bottom: 6px solid #6b4534;
+
+    z-index: 100;
+}
+
+
+.game-logo {
+    color: #6b4534;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        2px 2px 0 #e7c89b;
+}
+
+
+.money {
+    padding: 9px 14px;
+
+    color: #ffffff;
+
+    background: #55a85b;
+
+    border: 4px solid #36763c;
+
+    box-shadow:
+        4px 4px 0 #27552c;
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   RESTAURANT
+========================================= */
+
+#restaurant {
+    position: absolute;
+
+    left: 50%;
+    top: 65px;
+
+    width: 900px;
+    height: calc(100vh - 65px);
+
+    transform: translateX(-50%);
+
+    overflow: hidden;
+
+    background: #d7b17d;
+
+    border-left: 8px solid #6b4534;
+    border-right: 8px solid #6b4534;
+}
+
+
+/* =========================================
+   WALL
+========================================= */
+
+.wall {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 42%;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #e7c99f 0px,
+            #e7c99f 24px,
+            #d8b787 24px,
+            #d8b787 28px
+        );
+
+    border-bottom: 8px solid #8a5b3c;
+}
+
+
+/* =========================================
+   FLOOR
+========================================= */
+
+.floor {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 58%;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #b9784e 0px,
+            #b9784e 42px,
+            #a96845 42px,
+            #a96845 46px
+        );
+
+    border-top: 5px solid #774a35;
+}
+
+
+/* =========================================
+   FLOOR TILES
+========================================= */
+
+.floor::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 38px,
+            rgba(70, 42, 30, 0.15) 38px,
+            rgba(70, 42, 30, 0.15) 42px
+        );
+}
+
+
+/* =========================================
+   RESTAURANT SIGN
+========================================= */
+
+.restaurant-sign {
+    position: absolute;
+
+    top: 35px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 12px 24px;
+
+    color: #ffffff;
+
+    background: #e45d4d;
+
+    border: 6px solid #813b34;
+
+    box-shadow:
+        6px 6px 0 #6b4534;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   ENTRANCE
+========================================= */
+
+.entrance {
+    position: absolute;
+
+    right: 30px;
+    bottom: 30px;
+
+    width: 90px;
+    height: 120px;
+
+    background: #6b4534;
+
+    border: 7px solid #493024;
+
+    z-index: 5;
+}
+
+
+.door {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #82c8d8;
+
+    border: 6px solid #4d8491;
+
+    font-size: 30px;
+}
+
+
+/* =========================================
+   COUNTER
+========================================= */
+
+.counter {
+    position: absolute;
+
+    left: 30px;
+    top: 210px;
+
+    width: 240px;
+    height: 110px;
+
+    z-index: 20;
+}
+
+
+.counter-top {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 25px;
+
+    background: #9a603c;
+
+    border: 6px solid #593a29;
+
+    box-shadow:
+        5px 5px 0 #493024;
+}
+
+
+.counter-front {
+    position: absolute;
+
+    left: 15px;
+    top: 25px;
+
+    width: calc(100% - 30px);
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #fff4d6;
+
+    background: #c47745;
+
+    border: 6px solid #70432d;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   TABLES
+========================================= */
+
+.table {
+    position: absolute;
+
+    width: 190px;
+    height: 130px;
+
+    z-index: 15;
+}
+
+
+.table-one {
+    left: 330px;
+    top: 220px;
+}
+
+
+.table-two {
+    left: 560px;
+    top: 360px;
+}
+
+
+.table-top {
+    position: absolute;
+
+    left: 25px;
+    top: 25px;
+
+    width: 140px;
+    height: 70px;
+
+    background: #d88a4c;
+
+    border: 7px solid #70432d;
+
+    box-shadow:
+        5px 5px 0 #493024;
+}
+
+
+/* =========================================
+   TABLE LEGS
+========================================= */
+
+.table-top::after {
+    content: "";
+
+    position: absolute;
+
+    left: 55px;
+    top: 60px;
+
+    width: 25px;
+    height: 45px;
+
+    background: #70432d;
+
+    border-left: 5px solid #493024;
+    border-right: 5px solid #493024;
+}
+
+
+/* =========================================
+   CHAIRS
+========================================= */
+
+.chair {
+    position: absolute;
+
+    width: 38px;
+    height: 38px;
+
+    background: #e25c4d;
+
+    border: 6px solid #7c352e;
+
+    z-index: 2;
+}
+
+
+.chair-one {
+    left: 5px;
+    top: 40px;
+}
+
+
+.chair-two {
+    right: 5px;
+    top: 40px;
+}
+
+
+/* =========================================
+   PLAYER
+========================================= */
+
+#player {
+    position: absolute;
+
+    left: 430px;
+    top: 410px;
+
+    width: 70px;
+    height: 110px;
+
+    z-index: 50;
+}
+
+
+/* =========================================
+   PLAYER HEAD
+========================================= */
+
+.player-head {
+    position: absolute;
+
+    left: 12px;
+    top: 0;
+
+    width: 46px;
+    height: 46px;
+
+    background: #f3bd88;
+
+    border: 5px solid #49342d;
+}
+
+
+/* =========================================
+   PLAYER HAIR
+========================================= */
+
+.player-hair {
+    position: absolute;
+
+    left: -5px;
+    top: -5px;
+
+    width: 46px;
+    height: 16px;
+
+    background: #70462e;
+
+    border: 5px solid #49342d;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   PLAYER EYES
+========================================= */
+
+.player-eye {
+    position: absolute;
+
+    top: 22px;
+
+    width: 6px;
+    height: 8px;
+
+    background: #292321;
+
+    z-index: 6;
+}
+
+
+.player-eye.eye-left {
+    left: 9px;
+}
+
+
+.player-eye.eye-right {
+    right: 9px;
+}
+
+
+/* =========================================
+   PLAYER BODY
+========================================= */
+
+.player-body {
+    position: absolute;
+
+    left: 8px;
+    top: 43px;
+
+    width: 54px;
+    height: 42px;
+
+    background: #4d91d1;
+
+    border: 5px solid #394d66;
+}
+
+
+/* =========================================
+   PLAYER LEGS
+========================================= */
+
+.player-leg {
+    position: absolute;
+
+    top: 82px;
+
+    width: 18px;
+    height: 28px;
+
+    background: #3d5d91;
+
+    border-left: 5px solid #293e66;
+    border-right: 5px solid #293e66;
+}
+
+
+.player-leg.leg-left {
+    left: 15px;
+}
+
+
+.player-leg.leg-right {
+    right: 15px;
+}
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.controls {
+    position: absolute;
+
+    bottom: 15px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 9px 15px;
+
+    color: #ffffff;
+
+    background: #493024;
+
+    border: 4px solid #2f2019;
+
+    box-shadow:
+        4px 4px 0 #201510;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    z-index: 200;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 950px) {
+
+    #restaurant {
+        width: 100%;
+    }
+
+    .restaurant-sign {
+        font-size: 14px;
+    }
+
+}
