@@ -29,8 +29,8 @@ const options = {
     ],
 
     pants: [
-        "Black",
         "Blue",
+        "Black",
         "Brown",
         "Grey",
         "Green"
@@ -55,19 +55,15 @@ const options = {
 
 
 /* =========================================
-   CURRENT CHARACTER
+   CHARACTER DATA
 ========================================= */
 
 let character = {
 
     hair: 0,
-
     shirt: 0,
-
     pants: 0,
-
     shoes: 0,
-
     accessory: 0
 
 };
@@ -77,11 +73,14 @@ let character = {
    ELEMENTS
 ========================================= */
 
-const hair =
-    document.querySelector(".hair");
+const hairBack =
+    document.querySelector(".hair-back");
 
-const shirt =
-    document.querySelector(".shirt");
+const hairFront =
+    document.querySelector(".hair-front");
+
+const body =
+    document.querySelector(".body");
 
 const legs =
     document.querySelectorAll(".leg");
@@ -93,32 +92,22 @@ const accessory =
     document.getElementById("accessory");
 
 
-const selections = {
+const names = {
 
     hair:
-        document.getElementById(
-            "hairSelection"
-        ),
+        document.getElementById("hairName"),
 
     shirt:
-        document.getElementById(
-            "shirtSelection"
-        ),
+        document.getElementById("shirtName"),
 
     pants:
-        document.getElementById(
-            "pantsSelection"
-        ),
+        document.getElementById("pantsName"),
 
     shoes:
-        document.getElementById(
-            "shoesSelection"
-        ),
+        document.getElementById("shoesName"),
 
     accessory:
-        document.getElementById(
-            "accessorySelection"
-        )
+        document.getElementById("accessoryName")
 
 };
 
@@ -129,15 +118,15 @@ const selections = {
 
 const hairColours = {
 
-    Brown: "#70452d",
+    Brown: "#70462e",
 
     Black: "#292321",
 
-    Blonde: "#e5bd55",
+    Blonde: "#e6bd55",
 
     Ginger: "#b85b31",
 
-    Blue: "#4b82bd",
+    Blue: "#4c82bd",
 
     Pink: "#d7659b"
 
@@ -146,7 +135,7 @@ const hairColours = {
 
 const shirtColours = {
 
-    Blue: "#4c8fd1",
+    Blue: "#4d91d1",
 
     Red: "#d95757",
 
@@ -163,9 +152,9 @@ const shirtColours = {
 
 const pantsColours = {
 
-    Black: "#292f4a",
+    Blue: "#3d5d91",
 
-    Blue: "#3e6096",
+    Black: "#292f4a",
 
     Brown: "#765039",
 
@@ -178,7 +167,7 @@ const pantsColours = {
 
 const shoeColours = {
 
-    Brown: "#49362c",
+    Brown: "#50382c",
 
     Black: "#292522",
 
@@ -195,30 +184,17 @@ const shoeColours = {
 
 function updateCharacter() {
 
-
     const hairName =
-        options.hair[
-            character.hair
-        ];
-
+        options.hair[character.hair];
 
     const shirtName =
-        options.shirt[
-            character.shirt
-        ];
-
+        options.shirt[character.shirt];
 
     const pantsName =
-        options.pants[
-            character.pants
-        ];
-
+        options.pants[character.pants];
 
     const shoesName =
-        options.shoes[
-            character.shoes
-        ];
-
+        options.shoes[character.shoes];
 
     const accessoryName =
         options.accessory[
@@ -228,67 +204,108 @@ function updateCharacter() {
 
     /* TEXT */
 
-    selections.hair.textContent =
+    names.hair.textContent =
         hairName;
 
-    selections.shirt.textContent =
+    names.shirt.textContent =
         shirtName;
 
-    selections.pants.textContent =
+    names.pants.textContent =
         pantsName;
 
-    selections.shoes.textContent =
+    names.shoes.textContent =
         shoesName;
 
-    selections.accessory.textContent =
+    names.accessory.textContent =
         accessoryName;
 
 
-    /* COLOURS */
+    /* HAIR */
 
-    hair.style.backgroundColor =
+    hairBack.style.backgroundColor =
+        hairColours[hairName];
+
+    hairFront.style.backgroundColor =
         hairColours[hairName];
 
 
-    hair.querySelector(
-        ".hair-top"
-    ).style.backgroundColor =
-        hairColours[hairName];
+    /* SHIRT */
 
-
-    hair.querySelector(
-        ".hair-left"
-    ).style.backgroundColor =
-        hairColours[hairName];
-
-
-    hair.querySelector(
-        ".hair-right"
-    ).style.backgroundColor =
-        hairColours[hairName];
-
-
-    shirt.style.backgroundColor =
+    body.style.backgroundColor =
         shirtColours[shirtName];
 
 
-    legs.forEach(function (leg) {
+    /* PANTS */
 
-        leg.style.backgroundColor =
-            pantsColours[pantsName];
+    legs.forEach(
+        function (leg) {
 
-    });
+            leg.style.backgroundColor =
+                pantsColours[pantsName];
+
+        }
+    );
 
 
-    shoes.forEach(function (shoe) {
+    /* SHOES */
 
-        shoe.style.backgroundColor =
-            shoeColours[shoesName];
+    shoes.forEach(
+        function (shoe) {
 
-    });
+            shoe.style.backgroundColor =
+                shoeColours[shoesName];
 
+        }
+    );
+
+
+    /* ACCESSORY */
 
     updateAccessory();
+
+}
+
+
+/* =========================================
+   ACCESSORIES
+========================================= */
+
+function updateAccessory() {
+
+    accessory.className = "";
+
+    const name =
+        options.accessory[
+            character.accessory
+        ];
+
+
+    if (name === "Cap") {
+
+        accessory.classList.add("cap");
+
+    }
+
+
+    if (name === "Chef Hat") {
+
+        accessory.classList.add("chef-hat");
+
+    }
+
+
+    if (name === "Beanie") {
+
+        accessory.classList.add("beanie");
+
+    }
+
+
+    if (name === "Glasses") {
+
+        accessory.classList.add("glasses");
+
+    }
 
 }
 
@@ -306,8 +323,7 @@ function changeOption(
 
 
     if (
-        character[type] <
-        0
+        character[type] < 0
     ) {
 
         character[type] =
@@ -332,218 +348,60 @@ function changeOption(
 
 
 /* =========================================
-   HAIR BUTTONS
+   BUTTON HELPER
 ========================================= */
 
-document
-    .getElementById(
-        "hairPrevious"
-    )
-    .onclick = function () {
+function setupButtons(type) {
 
-        changeOption(
-            "hair",
-            -1
+    document
+        .getElementById(
+            type + "Previous"
+        )
+        .addEventListener(
+            "click",
+            function () {
+
+                changeOption(
+                    type,
+                    -1
+                );
+
+            }
         );
 
-    };
 
+    document
+        .getElementById(
+            type + "Next"
+        )
+        .addEventListener(
+            "click",
+            function () {
 
-document
-    .getElementById(
-        "hairNext"
-    )
-    .onclick = function () {
+                changeOption(
+                    type,
+                    1
+                );
 
-        changeOption(
-            "hair",
-            1
+            }
         );
-
-    };
-
-
-/* =========================================
-   SHIRT BUTTONS
-========================================= */
-
-document
-    .getElementById(
-        "shirtPrevious"
-    )
-    .onclick = function () {
-
-        changeOption(
-            "shirt",
-            -1
-        );
-
-    };
-
-
-document
-    .getElementById(
-        "shirtNext"
-    )
-    .onclick = function () {
-
-        changeOption(
-            "shirt",
-            1
-        );
-
-    };
-
-
-/* =========================================
-   PANTS BUTTONS
-========================================= */
-
-document
-    .getElementById(
-        "pantsPrevious"
-    )
-    .onclick = function () {
-
-        changeOption(
-            "pants",
-            -1
-        );
-
-    };
-
-
-document
-    .getElementById(
-        "pantsNext"
-    )
-    .onclick = function () {
-
-        changeOption(
-            "pants",
-            1
-        );
-
-    };
-
-
-/* =========================================
-   SHOES BUTTONS
-========================================= */
-
-document
-    .getElementById(
-        "shoesPrevious"
-    )
-    .onclick = function () {
-
-        changeOption(
-            "shoes",
-            -1
-        );
-
-    };
-
-
-document
-    .getElementById(
-        "shoesNext"
-    )
-    .onclick = function () {
-
-        changeOption(
-            "shoes",
-            1
-        );
-
-    };
-
-
-/* =========================================
-   ACCESSORY BUTTONS
-========================================= */
-
-document
-    .getElementById(
-        "accessoryPrevious"
-    )
-    .onclick = function () {
-
-        changeOption(
-            "accessory",
-            -1
-        );
-
-    };
-
-
-document
-    .getElementById(
-        "accessoryNext"
-    )
-    .onclick = function () {
-
-        changeOption(
-            "accessory",
-            1
-        );
-
-    };
-
-
-/* =========================================
-   ACCESSORIES
-========================================= */
-
-function updateAccessory() {
-
-
-    accessory.className =
-        "accessory";
-
-
-    const name =
-        options.accessory[
-            character.accessory
-        ];
-
-
-    if (name === "Cap") {
-
-        accessory.classList.add(
-            "pixel-cap"
-        );
-
-    }
-
-
-    if (name === "Chef Hat") {
-
-        accessory.classList.add(
-            "pixel-chef-hat"
-        );
-
-    }
-
-
-    if (name === "Beanie") {
-
-        accessory.classList.add(
-            "pixel-beanie"
-        );
-
-    }
-
-
-    if (name === "Glasses") {
-
-        accessory.classList.add(
-            "pixel-glasses"
-        );
-
-    }
 
 }
+
+
+/* =========================================
+   SETUP
+========================================= */
+
+setupButtons("hair");
+
+setupButtons("shirt");
+
+setupButtons("pants");
+
+setupButtons("shoes");
+
+setupButtons("accessory");
 
 
 /* =========================================
@@ -554,61 +412,56 @@ document
     .getElementById(
         "randomizeButton"
     )
-    .onclick = function () {
+    .addEventListener(
+        "click",
+        function () {
+
+            character.hair =
+                Math.floor(
+                    Math.random() *
+                    options.hair.length
+                );
+
+            character.shirt =
+                Math.floor(
+                    Math.random() *
+                    options.shirt.length
+                );
+
+            character.pants =
+                Math.floor(
+                    Math.random() *
+                    options.pants.length
+                );
+
+            character.shoes =
+                Math.floor(
+                    Math.random() *
+                    options.shoes.length
+                );
+
+            character.accessory =
+                Math.floor(
+                    Math.random() *
+                    options.accessory.length
+                );
 
 
-        character.hair =
-            Math.floor(
-                Math.random() *
-                options.hair.length
-            );
+            updateCharacter();
 
-
-        character.shirt =
-            Math.floor(
-                Math.random() *
-                options.shirt.length
-            );
-
-
-        character.pants =
-            Math.floor(
-                Math.random() *
-                options.pants.length
-            );
-
-
-        character.shoes =
-            Math.floor(
-                Math.random() *
-                options.shoes.length
-            );
-
-
-        character.accessory =
-            Math.floor(
-                Math.random() *
-                options.accessory.length
-            );
-
-
-        updateCharacter();
-
-    };
+        }
+    );
 
 
 /* =========================================
-   SAVE CHARACTER
+   SAVE
 ========================================= */
 
 function saveCharacter() {
 
     localStorage.setItem(
-
         "myLittleShopCharacter",
-
         JSON.stringify(character)
-
     );
 
 }
@@ -622,14 +475,17 @@ document
     .getElementById(
         "continueButton"
     )
-    .onclick = function () {
+    .addEventListener(
+        "click",
+        function () {
 
-        saveCharacter();
+            saveCharacter();
 
-        window.location.href =
-            "../index.html";
+            window.location.href =
+                "../index.html";
 
-    };
+        }
+    );
 
 
 /* =========================================
@@ -640,12 +496,15 @@ document
     .getElementById(
         "backButton"
     )
-    .onclick = function () {
+    .addEventListener(
+        "click",
+        function () {
 
-        window.location.href =
-            "../index.html";
+            window.location.href =
+                "../index.html";
 
-    };
+        }
+    );
 
 
 /* =========================================
@@ -653,7 +512,6 @@ document
 ========================================= */
 
 function loadCharacter() {
-
 
     const saved =
         localStorage.getItem(
@@ -723,9 +581,7 @@ function loadCharacter() {
 
             }
 
-        }
-
-        catch {
+        } catch (error) {
 
             console.log(
                 "Could not load character."
