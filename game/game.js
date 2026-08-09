@@ -4,36 +4,41 @@
 // =========================================
 
 
+const player =
+    document.getElementById("player");
+
+
 // =========================================
-// PLAYER
+// POSITION
 // =========================================
-
-const player = document.getElementById("player");
-
-
-// Starting position
 
 let playerX = 430;
 let playerY = 410;
 
 
-// Movement speed
+// =========================================
+// MOVEMENT
+// =========================================
 
 const speed = 3;
 
-
-// =========================================
-// KEYS
-// =========================================
-
 const keys = {
-
     up: false,
     down: false,
     left: false,
     right: false
-
 };
+
+
+// =========================================
+// WALK ANIMATION
+// =========================================
+
+let walking = false;
+
+let stepTimer = 0;
+
+let step = false;
 
 
 // =========================================
@@ -155,7 +160,7 @@ document.addEventListener(
 
 
 // =========================================
-// MOVE PLAYER
+// MOVEMENT
 // =========================================
 
 function movePlayer() {
@@ -164,39 +169,24 @@ function movePlayer() {
     let moveY = 0;
 
 
-    // Vertical movement
-
     if (keys.up) {
-
         moveY -= speed;
-
     }
 
     if (keys.down) {
-
         moveY += speed;
-
     }
 
-
-    // Horizontal movement
-
     if (keys.left) {
-
         moveX -= speed;
-
     }
 
     if (keys.right) {
-
         moveX += speed;
-
     }
 
 
-    // =====================================
-    // PREVENT DIAGONAL SPEED BOOST
-    // =====================================
+    // Prevent diagonal speed boost
 
     if (
         moveX !== 0 &&
@@ -204,25 +194,24 @@ function movePlayer() {
     ) {
 
         moveX *= 0.707;
+
         moveY *= 0.707;
 
     }
 
-
-    // =====================================
-    // APPLY MOVEMENT
-    // =====================================
 
     playerX += moveX;
     playerY += moveY;
 
 
     // =====================================
-    // RESTAURANT BOUNDARIES
+    // BOUNDARIES
     // =====================================
 
     const restaurant =
-        document.getElementById("restaurant");
+        document.getElementById(
+            "restaurant"
+        );
 
 
     const maxX =
@@ -235,51 +224,103 @@ function movePlayer() {
         player.offsetHeight;
 
 
-    // Left boundary
-
     if (playerX < 0) {
-
         playerX = 0;
-
     }
 
-
-    // Right boundary
 
     if (playerX > maxX) {
-
         playerX = maxX;
-
     }
 
-
-    // Top boundary
 
     if (playerY < 0) {
-
         playerY = 0;
-
     }
 
 
-    // Bottom boundary
-
     if (playerY > maxY) {
-
         playerY = maxY;
-
     }
 
 
     // =====================================
-    // UPDATE POSITION
+    // APPLY POSITION
     // =====================================
 
     player.style.left =
-        playerX + "px";
+        Math.round(playerX) + "px";
 
     player.style.top =
-        playerY + "px";
+        Math.round(playerY) + "px";
+
+
+    // =====================================
+    // WALKING
+    // =====================================
+
+    const isMoving =
+        moveX !== 0 ||
+        moveY !== 0;
+
+
+    if (isMoving) {
+
+        if (!walking) {
+
+            walking = true;
+
+            stepTimer = 0;
+
+        }
+
+
+        stepTimer++;
+
+
+        if (stepTimer >= 10) {
+
+            stepTimer = 0;
+
+            step = !step;
+
+        }
+
+
+        player.classList.add("walking");
+
+
+        if (step) {
+
+            player.classList.add(
+                "step-two"
+            );
+
+        } else {
+
+            player.classList.remove(
+                "step-two"
+            );
+
+        }
+
+    } else {
+
+        walking = false;
+
+        stepTimer = 0;
+
+        step = false;
+
+        player.classList.remove(
+            "walking"
+        );
+
+        player.classList.remove(
+            "step-two"
+        );
+
+    }
 
 }
 
@@ -292,7 +333,9 @@ function gameLoop() {
 
     movePlayer();
 
-    requestAnimationFrame(gameLoop);
+    requestAnimationFrame(
+        gameLoop
+    );
 
 }
 
