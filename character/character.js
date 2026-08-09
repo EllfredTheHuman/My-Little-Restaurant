@@ -1,12 +1,7 @@
 /* =========================================
-   MY LITTLE SHOP
    CHARACTER CREATOR
 ========================================= */
 
-
-/* =========================================
-   OPTIONS
-========================================= */
 
 const options = {
 
@@ -54,10 +49,6 @@ const options = {
 };
 
 
-/* =========================================
-   CHARACTER DATA
-========================================= */
-
 let character = {
 
     hair: 0,
@@ -69,12 +60,9 @@ let character = {
 };
 
 
-/* =========================================
-   GET ELEMENTS
-========================================= */
-
 const characterElement =
     document.getElementById("character");
+
 
 const selections = {
 
@@ -97,7 +85,7 @@ const selections = {
 
 
 /* =========================================
-   UPDATE DISPLAY
+   UPDATE
 ========================================= */
 
 function updateCharacter() {
@@ -124,7 +112,7 @@ function updateCharacter() {
 
 
 /* =========================================
-   CHANGE OPTION
+   CHANGE OPTIONS
 ========================================= */
 
 function changeOption(type, amount) {
@@ -132,10 +120,7 @@ function changeOption(type, amount) {
     character[type] += amount;
 
 
-    if (
-        character[type] <
-        0
-    ) {
+    if (character[type] < 0) {
 
         character[type] =
             options[type].length - 1;
@@ -159,7 +144,7 @@ function changeOption(type, amount) {
 
 
 /* =========================================
-   BUTTON CONNECTIONS
+   BUTTONS
 ========================================= */
 
 document
@@ -260,15 +245,35 @@ document
     .getElementById("randomizeButton")
     .onclick = () => {
 
-        Object.keys(character).forEach(type => {
+        character.hair =
+            Math.floor(
+                Math.random() *
+                options.hair.length
+            );
 
-            character[type] =
-                Math.floor(
-                    Math.random() *
-                    options[type].length
-                );
+        character.shirt =
+            Math.floor(
+                Math.random() *
+                options.shirt.length
+            );
 
-        });
+        character.pants =
+            Math.floor(
+                Math.random() *
+                options.pants.length
+            );
+
+        character.shoes =
+            Math.floor(
+                Math.random() *
+                options.shoes.length
+            );
+
+        character.accessory =
+            Math.floor(
+                Math.random() *
+                options.accessory.length
+            );
 
 
         updateCharacter();
@@ -303,8 +308,6 @@ function updateAppearance() {
         );
 
 
-    /* HAIR */
-
     const hairColours = {
 
         Brown: "#70452d",
@@ -316,14 +319,6 @@ function updateAppearance() {
 
     };
 
-
-    hair.style.backgroundColor =
-        hairColours[
-            options.hair[character.hair]
-        ];
-
-
-    /* SHIRT */
 
     const shirtColours = {
 
@@ -337,14 +332,6 @@ function updateAppearance() {
     };
 
 
-    shirt.style.backgroundColor =
-        shirtColours[
-            options.shirt[character.shirt]
-        ];
-
-
-    /* PANTS */
-
     const pantsColours = {
 
         Black: "#292f4a",
@@ -356,18 +343,6 @@ function updateAppearance() {
     };
 
 
-    legs.forEach(leg => {
-
-        leg.style.backgroundColor =
-            pantsColours[
-                options.pants[character.pants]
-            ];
-
-    });
-
-
-    /* SHOES */
-
     const shoeColours = {
 
         Brown: "#49362c",
@@ -376,6 +351,28 @@ function updateAppearance() {
         Red: "#b84242"
 
     };
+
+
+    hair.style.backgroundColor =
+        hairColours[
+            options.hair[character.hair]
+        ];
+
+
+    shirt.style.backgroundColor =
+        shirtColours[
+            options.shirt[character.shirt]
+        ];
+
+
+    legs.forEach(leg => {
+
+        leg.style.backgroundColor =
+            pantsColours[
+                options.pants[character.pants]
+            ];
+
+    });
 
 
     shoes.forEach(shoe => {
@@ -406,9 +403,7 @@ function updateAccessory() {
 
 
     if (old) {
-
         old.remove();
-
     }
 
 
@@ -419,9 +414,7 @@ function updateAccessory() {
 
 
     if (accessory === "None") {
-
         return;
-
     }
 
 
@@ -553,12 +546,10 @@ function loadCharacter() {
 
             }
 
-        }
-
-        catch {
+        } catch {
 
             console.log(
-                "Save could not be loaded."
+                "Could not load character."
             );
 
         }
@@ -570,9 +561,5 @@ function loadCharacter() {
 
 }
 
-
-/* =========================================
-   START
-========================================= */
 
 loadCharacter();
